@@ -4,7 +4,7 @@ import drabdulaziz from '../../assets/png/drabdulaziz.png';
 import { Link, useLocation } from "react-router-dom";
 
 
-const sidebarNavLinks = [ "dashboard", "privilege control", "reports", "Sign Out"];
+const sidebarNavLinks = [ "dashboard", "privileges", "reports", "Sign Out"];
 
 function Sidebar (){
     const location = useLocation();
@@ -39,6 +39,9 @@ function Sidebar (){
                         </li>
                     )}
                 </ul>
+            </nav>
+            <nav>
+                <button>Signout</button>
             </nav>
 
         </div>

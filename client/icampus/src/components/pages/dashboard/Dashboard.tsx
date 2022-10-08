@@ -5,9 +5,9 @@ function Dashboard (){
 
     return (
         <>
-        <main className={styles.dashboard}>
-            <div><p>hello</p></div>
-        </main>
+        <div>
+            <h1>Dashboard</h1>
+        </div>
         </>
     )
 }
