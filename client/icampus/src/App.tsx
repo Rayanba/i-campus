@@ -1,8 +1,10 @@
 import React from 'react';
-import Sidebar from './components/sidebar/Sidebar';
 import './App.css';
 import {BrowserRouter as Router } from 'react-router-dom';
-import Topbar from './components/topbar/Topbar';
+import {Sidebar, Topbar, Container} from './components/index';
+import {Dashboard, Privileges, Reports} from './components/pages/index';
+
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <Router>
         <Sidebar />
         <Topbar/>
+        <Container/>
       </Router>
     </div>
   );

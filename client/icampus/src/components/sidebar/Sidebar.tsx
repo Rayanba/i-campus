@@ -41,9 +41,8 @@ function Sidebar (){
                 </ul>
             </nav>
             <nav>
-                <button>Signout</button>
+                <button>Sign-out</button>
             </nav>
-
         </div>
     </aside>
     </>
