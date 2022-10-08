@@ -4,7 +4,8 @@ import drabdulaziz from '../../assets/png/drabdulaziz.png';
 import { Link, useLocation } from "react-router-dom";
 
 
-const sidebarNavLinks = [ "dashboard", "privileges", "reports", "Sign Out"];
+const sidebarNavLinks = [ "dashboard", "privileges", "reports"];
+
 
 function Sidebar (){
     const location = useLocation();
@@ -40,8 +41,8 @@ function Sidebar (){
                     )}
                 </ul>
             </nav>
-            <nav>
-                <button>Sign-out</button>
+            <nav className={styles.signoutdiv}>
+                <a href="#">Sign Out</a>
             </nav>
         </div>
     </aside>

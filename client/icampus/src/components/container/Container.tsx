@@ -5,7 +5,7 @@ function Container (){
 
     return (
         <>
-        <div>
+        <div className={styles.mainbody}>
             <h1>Container</h1>
         </div>
         </>
