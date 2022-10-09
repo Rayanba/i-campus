@@ -10,7 +10,6 @@ function App() {
     <div className={"app"}>
         <Topbar/>
         <Sidebar/>
-        {/* <Container/>  */}
         <MainRoutes/>
     </div>
   );
