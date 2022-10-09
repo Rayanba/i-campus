@@ -5,7 +5,7 @@ function Dashboard (){
 
     return (
         <>
-        <div>
+        <div className={styles.dashContainer}>
             <h1>Dashboard</h1>
         </div>
         </>
