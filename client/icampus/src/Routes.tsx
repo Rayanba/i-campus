@@ -1,14 +1,16 @@
 import React from "react";
 import {Routes, Route} from 'react-router-dom';
 
-import {InnerContent, Dashboard, Privileges, Reports} from './components/pages/index';
+import { Dashboard, Privileges, Reports} from './components/container/pages/index';
+import {Container} from './components/index';
+
 
 
 function MainRoutes (){
     return(
         
             <Routes>
-                <Route path="/" element={<InnerContent/>}>
+                <Route path="/" element={<Container/>}>
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path="/privileges" element={<Privileges/>}/>
                     <Route path="/reports" element={<Reports/>}/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 // import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Sidebar, Topbar, Container} from './components/index';
+import {Sidebar, Topbar} from './components/index';
 import MainRoutes from './Routes';
 
 
@@ -10,7 +10,7 @@ function App() {
     <div className={"app"}>
         <Topbar/>
         <Sidebar/>
-        <Container/> 
+        {/* <Container/>  */}
         <MainRoutes/>
     </div>
   );
