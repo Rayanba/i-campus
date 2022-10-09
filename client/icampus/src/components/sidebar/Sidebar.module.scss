@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 20vw;
+    width: 18vw;
     background-color: #202020;
     color: white;
     border-radius: 0 2rem 2rem 0 ;
@@ -26,16 +26,17 @@
 
 .profileDetails {
     // border: solid yellowgreen;
-    margin-top: 2rem;
+    margin-top: 3rem;
     font-weight: 500;
     font-size: medium;
-    // flex-grow: 1;
+    flex-grow: 1;
 }
 
 .profileImageDiv{
+    // margin-top: 4rem;
     // border: solid plum;
-    position: relative;
 }
+
 .profileImageDiv img {
     // border: solid 5px royalblue;
     border-radius: 25%;
@@ -55,12 +56,12 @@
 
 .sidebarNav {
     // border: solid plum;
-    margin-top: -5rem;
-    margin-bottom: 6rem;
+    // margin-top: -5rem;
+    // margin-bottom: 6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // flex-grow: 2;
+    flex-grow: 2;
 }
 
 .sidebarNavItem {
@@ -87,7 +88,10 @@
     // border: solid royalblue;
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
+    // margin-bottom: 5rem;
+    flex-grow: 1;
+
+
     
 }
 

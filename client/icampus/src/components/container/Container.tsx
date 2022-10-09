@@ -5,8 +5,9 @@ function Container (){
 
     return (
         <>
-        <div className={styles.mainbody}>
-            <h1>Container</h1>
+        <div className={styles.container}>
+        
+            
         </div>
         </>
     )
