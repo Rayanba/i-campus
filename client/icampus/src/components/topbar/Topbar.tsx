@@ -1,5 +1,5 @@
 import styles from "./Topbar.module.scss";
-import logo6 from "../../assets/png/logo6.png";
+import logo7 from "../../assets/png/logo7.png";
 import { FaBell, FaEllipsisV } from "react-icons/fa";
 
 function Topbar (){
@@ -8,7 +8,7 @@ function Topbar (){
         <>
         <div className={styles.topbarContainer}>
             <div className={styles.logoDiv}>
-                <img src={logo6} alt="logo" height={80}/>
+                <img src={logo7} alt="logo" height={70}/>
                
             </div>
             <div className={styles.timeDateDiv}>
