@@ -1,7 +1,54 @@
-h1 {
+.dashContainer{
+    border: 2px solid red;
     position: absolute;
-    right: 0;
-    top: 0;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
     color: rgb(92, 91, 91);
-    font-size: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.dashUpper{
+    border: 2px solid green;
+    height: 50%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+
+}
+
+.dashSquareCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    flex-grow: 3;
+
+   
+
+}
+.dashTriangle {
+    flex-grow: 1;
+   
+
+}
+
+
+
+
+
+//here gose the lower part of the Dashboard --will use Route--
+.dashLower {
+border: 2px solid blue;
+height: 50%;
+width: 100%;
+
 }

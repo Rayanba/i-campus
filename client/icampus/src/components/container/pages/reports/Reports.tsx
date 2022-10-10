@@ -1,14 +1,13 @@
-import styles from "./Report.module.scss";
+import styles from "./Reports.module.scss";
 
 
 function Reports (){
 
     return (
-        <>
-        <div>
+        <div className={styles.theReports} >
             <h1>Reports</h1>
         </div>
-        </>
+        
     )
 }
 export default Reports;

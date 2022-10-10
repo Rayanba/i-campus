@@ -5,8 +5,8 @@ function Privileges (){
 
     return (
         <>
-        <div>
-            <h1>Privleges</h1>
+        <div className={styles.mainprivileges}>
+            <h1>Privileges</h1>
         </div>
         </>
     )
