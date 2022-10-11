@@ -42,7 +42,7 @@ function Sidebar (){
                 </ul>
             </nav>
             <nav className={styles.signoutdiv}>
-                <a href="#">Sign Out</a>
+                {/* <a href="#">Sign Out</a> */}
             </nav>
         </div>
     </aside>
