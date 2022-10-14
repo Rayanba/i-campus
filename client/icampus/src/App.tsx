@@ -1,17 +1,18 @@
 import React from 'react';
-import './App.scss';
 // import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Sidebar, Topbar, Login} from './components/index';
-// import MainRoutes from './Routes';
+
+import './App.scss';
+import {Sidebar, Topbar} from './components/index';  //, Login //
+import MainRoutes from './Routes';
 
 
 function App() {
   return (
     <main className={"app"}>
-        <Login/>
-        {/* <Topbar/>
+        {/* <Login/> */}
+        <Topbar/>
         <Sidebar/>
-        <MainRoutes/> */}
+        <MainRoutes/>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import styles from "./Dashboard.module.scss";
+
 // import {Outlet} from 'react-router-dom'
-import { AttendanceCard, EmployeesCard, FacilitiesCard, InstructorsCard, LecturesCard, RoomsCard, StudentsCard } from './index';
+import { FacilitiesCard, AttendanceCard, EmployeesCard, InstructorsCard, LecturesCard, RoomsCard, StudentsCard } from './index'; // 
 
 
 
@@ -11,20 +12,24 @@ function Dashboard (){
         <div className={styles.dashContainer}>
             <div className={styles.dashUpper}>
                 <div className={styles.dashSquareCards}>
-                    <AttendanceCard/>
-                    <EmployeesCard/>
-                    <InstructorsCard/>
-                    <LecturesCard/>
-                    <RoomsCard/>
-                    <StudentsCard/>
+                    
+                        <div className={styles.cards}><AttendanceCard/></div>
+                        <div className={styles.cards}><RoomsCard/></div>
+                        <div className={styles.cards}><LecturesCard/></div>
+                        <div className={styles.cards}><InstructorsCard/> </div>
+                        <div className={styles.cards}><EmployeesCard/></div>
+                        <div className={styles.cards}><StudentsCard/></div>
+                
+                   
                 </div>
 
-                <div className={styles.dashTriangle}>
+                <div className={styles.dashFacilites}>
                     <FacilitiesCard/>
                 </div>
             </div>
 
             <div className={styles.dashLower}>
+
 
 
             </div>

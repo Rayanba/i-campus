@@ -1,6 +1,6 @@
-import {useRef, useState, useEffect, useContext} from 'react';
+import {useRef, useState, useEffect} from 'react'; //, useContext
 
-import AuthContext from '../../context/AuthProvider';
+// import AuthContext from '../../context/AuthProvider';
 import styles from "./Login.module.scss";
 
 import axios from '../../api/axios'
@@ -9,7 +9,7 @@ const LOGIN_URL = '/users'
 
 function Login (){
 
-    const  setAuth  = useContext(AuthContext);
+    // const  setAuth  = useContext(AuthContext);
 
     //refrences needed///////////
     const userRef = useRef<HTMLInputElement>(null!);
