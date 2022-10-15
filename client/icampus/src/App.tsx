@@ -1,18 +1,31 @@
 import React from 'react';
-// import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.scss';
-import {Sidebar, Topbar} from './components/index';  //, Login //
-import MainRoutes from './Routes';
+// import MainRoutes from './MainRoutes';
+import Admin from './components/admin/Admin';
 
 
 function App() {
   return (
     <main className={"app"}>
-        {/* <Login/> */}
-        <Topbar/>
+        {/* ///////////// Public routes ////////////// */}
+        {/* <Login /> */}
+        {/* <LinkPage /> */}
+        {/* <Unauthorized /> */}
+
+
+
+        {/* ////////////////// Protected Routes /////////////// */}
+        {/* <Topbar/>
         <Sidebar/>
-        <MainRoutes/>
+        <MainRoutes/> */}
+        <Admin/>
+
+        {/* ///////////////// Catch all ////////////////// */}
+
+
+
+
     </main>
   );
 }

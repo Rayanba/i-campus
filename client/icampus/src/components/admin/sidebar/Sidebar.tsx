@@ -1,6 +1,6 @@
 // import React from "react";
 import styles from './Sidebar.module.scss';
-import drabdulaziz from '../../assets/png/drabdulaziz.png';
+import drabdulaziz from '../../../assets/png/drabdulaziz.png';
 import { Link, useLocation } from "react-router-dom";
 
 
@@ -29,11 +29,11 @@ function Sidebar (){
                         <li className={styles.sidebarNavItem} key={sidebarNavLinks}>
                             <Link 
                             className={
-                                location.pathname === `/${sidebarNavLinks}` 
+                                location.pathname === `/admin/${sidebarNavLinks}` 
                                     ? styles.sidebarNavLinkActive 
                                     : styles.sidebarNavLink
                                 }
-                                to={`/${sidebarNavLinks}`}
+                                to={`/admin/${sidebarNavLinks}`}
                                 >
                                 {sidebarNavLinks.charAt(0).toUpperCase() + sidebarNavLinks.slice(1)}
                             </Link>
@@ -42,6 +42,7 @@ function Sidebar (){
                 </ul>
             </nav>
             <nav className={styles.signoutdiv}>
+                <h1>Sign Out</h1>
                 {/* <a href="#">Sign Out</a> */}
             </nav>
         </div>

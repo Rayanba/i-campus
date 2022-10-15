@@ -16,8 +16,8 @@ function Dashboard (){
                         <div className={styles.cards}><AttendanceCard/></div>
                         <div className={styles.cards}><RoomsCard/></div>
                         <div className={styles.cards}><LecturesCard/></div>
-                        <div className={styles.cards}><InstructorsCard/> </div>
                         <div className={styles.cards}><EmployeesCard/></div>
+                        <div className={styles.cards}><InstructorsCard/> </div>
                         <div className={styles.cards}><StudentsCard/></div>
                 
                    

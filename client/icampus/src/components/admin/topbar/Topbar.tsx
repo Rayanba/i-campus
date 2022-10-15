@@ -1,5 +1,5 @@
 import styles from "./Topbar.module.scss";
-import logo7 from "../../assets/png/logo7.png";
+import logo7 from "../../../assets/png/logo7.png";
 import { FaBell, FaEllipsisV } from "react-icons/fa";
 
 function Topbar (){

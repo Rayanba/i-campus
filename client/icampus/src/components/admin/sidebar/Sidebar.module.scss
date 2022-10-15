@@ -1,14 +1,16 @@
 .sidebar {
     // border: solid red;
     position: absolute;
-    // padding: 1rem;
     top: 0;
     left: 0;
     bottom: 0;
     width: 18vw;
+    flex-grow: 1;
     background-color: #202020;
     color: white;
-    border-radius: 0 2rem 2rem 0 ;
+    border-radius: 0 2rem 2rem 0;
+
+
     display: flex;
     flex-direction: column;
     justify-content: center;
