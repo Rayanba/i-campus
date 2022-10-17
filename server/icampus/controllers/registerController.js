@@ -1,7 +1,5 @@
 const User = require('../model/User');
-
 const bcrypt = require('bcrypt');
-
 
 
 const handleNewUser = async (req, res) => {
@@ -21,7 +19,7 @@ const handleNewUser = async (req, res) => {
             "username": user,
             "password": hashedPwd
         });
-
+        
         console.log(result);
        
         res.status(201).json({'success': `New user ${user} created!`});

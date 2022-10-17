@@ -19,22 +19,14 @@ function Dashboard (){
                         <div className={styles.cards}><EmployeesCard/></div>
                         <div className={styles.cards}><InstructorsCard/> </div>
                         <div className={styles.cards}><StudentsCard/></div>
-                
-                   
                 </div>
-
                 <div className={styles.dashFacilites}>
                     <FacilitiesCard/>
                 </div>
             </div>
-
             <div className={styles.dashLower}>
-
-
-
             </div>
         </div>
-        
     )
 }
 export default Dashboard;
