@@ -1,30 +1,45 @@
 import React from 'react';
 
 import './App.scss';
-// import MainRoutes from './MainRoutes';
-import Admin from './components/admin/Admin';
+import { Dashboard, Privileges, Reports} from './components/pages/index';
+import Login from './components/login/Login';
+import RequireAuth from './components/RequireAuth';
+import {Routes, Route} from 'react-router-dom'
+import Layout from './components/Layout';
+
+// 2001 user 
+// 1984 employee
+// 5150 
 
 
 function App() {
   return (
-    <main className={"app"}>
-        {/* ///////////// Public routes ////////////// */}
-        {/* <Login /> */}
-        {/* <LinkPage /> */}
-        {/* <Unauthorized /> */}
+    <main className="App">
+        
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            {/* Public routes */}
+            <Route path="login" element={<Login/>}/>
 
+            {/* Protected routes */}
+              <Route element={ <RequireAuth allowedRoles={[2001]}/>}> 
+                <Route path="dashboard" element={<Dashboard/>}/>
 
+              </Route>
 
-        {/* ////////////////// Protected Routes /////////////// */}
-        {/* <Topbar/>
-        <Sidebar/>
-        <MainRoutes/> */}
-        <Admin/>
+              <Route element={ <RequireAuth allowedRoles={[1984]}/>}>
 
-        {/* ///////////////// Catch all ////////////////// */}
+              </Route>
 
+              <Route element={ <RequireAuth allowedRoles={[5150]}/>}>
+                <Route path="privileges" element={<Privileges/>}/>
+                <Route path="reports" element={<Reports/>}/>
+              </Route>
+              
+            </Route>
+            {/* catch all routes */}
 
-
+        </Routes>
 
     </main>
   );

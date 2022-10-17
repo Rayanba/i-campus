@@ -1,14 +1,14 @@
 // import React from "react";
 import styles from './Sidebar.module.scss';
 import drabdulaziz from '../../../assets/png/drabdulaziz.png';
-import { Link, useLocation } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
 
 
 const sidebarNavLinks = [ "dashboard", "privileges", "reports"];
 
 
 function Sidebar (){
-    const location = useLocation();
+    // const location = useLocation();
 
     return (
     <>
@@ -27,7 +27,7 @@ function Sidebar (){
                 <ul>
                     {sidebarNavLinks.map(sidebarNavLinks => 
                         <li className={styles.sidebarNavItem} key={sidebarNavLinks}>
-                            <Link 
+                            {/* <Link 
                             className={
                                 location.pathname === `/admin/${sidebarNavLinks}` 
                                     ? styles.sidebarNavLinkActive 
@@ -36,7 +36,7 @@ function Sidebar (){
                                 to={`/admin/${sidebarNavLinks}`}
                                 >
                                 {sidebarNavLinks.charAt(0).toUpperCase() + sidebarNavLinks.slice(1)}
-                            </Link>
+                            </Link> */}
                         </li>
                     )}
                 </ul>

@@ -1,23 +1,23 @@
-import { createContext, useState} from "react";
+import { createContext, ReactNode, useState} from "react";
 
-type AuthProviderProps = {
-    children: any
+type authprops = {
+    children: ReactNode;
 }
 
 
 const AuthContext = createContext({});
 // Is using 'any' safe ?? // Is  using const safe? 
-export const AuthProvider = ({children}: AuthProviderProps) => {
+export const AuthProvider = ({children}:authprops) => {
     const [auth, setAuth] = useState({});
 
 
 
     return(
-        <>
+        
         <AuthContext.Provider value={{auth, setAuth}}>
             {children}
         </AuthContext.Provider>
-        </>
+        
     )
 
 }

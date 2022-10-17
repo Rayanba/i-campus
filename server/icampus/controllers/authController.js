@@ -13,7 +13,7 @@ const handleLogin = async (req, res) => {
     //evaluate password 
     const match = await bcrypt.compare(pwd, foundUser.password);
     if (match){
-        const roles = Object.values(foundUser.roles);
+        const roles = Object.values(foundUser.roles).filter(Boolean); /// filter will take all nulls out 
 
         // create Json Web Tokens (JWTs) here
         const accessToken = jwt.sign(
