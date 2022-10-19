@@ -17,6 +17,7 @@ const handleNewUser = async (req, res) => {
         // create and store the new user 
         const result = await User.create({
             "username": user,
+            "roles": {"Student": 2001},
             "password": hashedPwd
         });
         

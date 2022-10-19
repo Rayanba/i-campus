@@ -1,0 +1,114 @@
+.sidebar {
+    /* border: solid red; */
+    background-color: #202020;
+    color: white;
+    border-radius: 0 2rem 2rem 0;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarContent{
+    /* border: solid orange; */
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.profileDetails {
+    /* border: solid yellowgreen; */
+    margin-top: 3rem;
+    font-weight: 500;
+    font-size: medium;
+    flex-grow: 1;
+}
+
+
+.profileImageDiv img {
+    /* border: solid 5px royalblue; */
+    border-radius: 25%;
+}
+
+.userName {
+    margin-top: 2rem;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.userEmail {
+    margin-top: 1rem;
+    opacity: 0.6;
+
+}
+
+.sidebarNav {
+    /* border: solid plum; */
+    /* margin-top: -5rem; */
+    /* margin-bottom: 6rem; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 2;
+}
+
+.sidebarNavItem {
+    /* border: solid royalblue; */
+    margin: 2rem 0;
+}
+
+.sidebarNavLink:ac {
+    /* border: solid royalblue; */
+    text-decoration: none;
+    outline: none;
+    color: aliceblue;
+    opacity: 0.5;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.sidebarNavLink{
+    /* border: solid royalblue; */
+    text-decoration: none;
+    outline: none;
+    color: aliceblue;
+    opacity: 0.5;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.sidebarNavLinkActive {
+        opacity: 1;
+        text-decoration: none;
+        outline: none;
+        color: aliceblue;
+        font-size: 28px;
+        font-weight: 500;
+}
+
+.signoutdiv {
+    /* border: solid royalblue; */
+    display: flex;
+    justify-content: center;
+    /* margin-bottom: 5rem; */
+    flex-grow: 1;
+}
+
+.signoutdiv a{
+    text-decoration: none;
+    outline: none;
+    font-size:25px;
+    font-weight: 400;
+    border-width:2px;
+    color: whitesmoke;
+    border-radius: 6px;
+    background:#202020;
+    opacity: 0.5rem;
+}
+

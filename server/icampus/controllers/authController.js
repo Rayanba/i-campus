@@ -36,7 +36,7 @@ const handleLogin = async (req, res) => {
         const result = await foundUser.save();
         console.log(result);
 
-        res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None',  maxAge: 24 * 60 * 60 *1000 }); //secure: true, // temporary to use thunder client
+        res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true,  maxAge: 24 * 60 * 60 *1000 }); //secure: true, // temporary to use thunder client
         res.json({ accessToken }); // front-end should save this in memory 
     } else {
         res.sendStatus(401);
