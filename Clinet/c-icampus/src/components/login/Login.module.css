@@ -1,23 +1,19 @@
 .loginContainer {
     position: absolute;
-
     color: white;
-    
     width: 100%;
     max-width: 420px;
     min-height: 400px;
+    margin: 1rem;
     padding: 1rem;
     background-color: rgba(0,0,0,0.4);
     border-radius: 2rem;
     
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     
-    
 }
-
 
 .errmsg {
     background-color: lightpink;
@@ -25,13 +21,34 @@
     font-weight: bold;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
+
 }
 
 .offscreen {
     position: absolute;
     left: -9999px;
+
 }
 
 .line {
     display: inline-block;
+    
+}
+
+.persistCheck {
+    font-size: 0.75rem;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.persistCheck label {
+    margin: 0;
+}
+
+[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    margin: 0 5px 2px 2px;
 }

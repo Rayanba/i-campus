@@ -1,7 +1,7 @@
-// import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from './Sidebar.module.css';
 import drabdulaziz from '../../../assets/png/drabdulaziz.png';
-import { Link, useLocation } from "react-router-dom";
+import useLogout from '../../../hooks/useLogout';
 
 
 const sidebarNavLinks = [ "dashboard", "privileges", "reports"];
@@ -9,7 +9,14 @@ const sidebarNavLinks = [ "dashboard", "privileges", "reports"];
 
 function Sidebar (){
     const location = useLocation();
-
+    const navigate = useNavigate();
+    const logout = useLogout();
+    const signOut = async () => {
+        await logout();
+        navigate('/login');
+        
+    }
+    
     return (
     <>
     <aside className={styles.sidebar}>
@@ -42,8 +49,8 @@ function Sidebar (){
                 </ul>
             </nav>
             <nav className={styles.signoutdiv}>
-                <h1>Sign Out</h1>
-                {/* <a href="#">Sign Out</a> */}
+                
+                <Link onClick={signOut}>Sign Out</Link>
             </nav>
         </div>
     </aside>

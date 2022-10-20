@@ -1,8 +1,7 @@
-import styles from './Register.css';
-
 import { useRef, useState, useEffect } from "react";
-import { FaCheck, FaInfoCircle, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import styles from './Register.css';
+import { FaCheck, FaInfoCircle, FaTimes } from "react-icons/fa";
 import axios from '../../api/axios';
 
 
@@ -57,6 +56,7 @@ const Register = () => {
             return;
         }
         try {
+            // eslint-disable-next-line no-unused-vars
             const response = await axios.post(REGISTER_URL,
                 JSON.stringify({ user, pwd }),
                 {
@@ -64,9 +64,8 @@ const Register = () => {
                     withCredentials: true
                 }
             );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
+            console.log(JSON.response?.data);
+            // console.log(JSON.stringify(response))
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this

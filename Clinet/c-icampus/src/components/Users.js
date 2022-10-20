@@ -17,6 +17,7 @@ const Users = () => {
                 const response = await axiosPrivate.get('/users', {
                     signal: controller.signal
                 });
+                // console.log(response.data);
                 console.log(response.data);
                 isMounted && setUsers(response.data);
             } catch (err) {
@@ -24,13 +25,14 @@ const Users = () => {
                 navigate('/login', { state: { from: location }, replace: true });
             }
         }
-
         getUsers();
+
 
         return () => {
             isMounted = false;
             controller.abort();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

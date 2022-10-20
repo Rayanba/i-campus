@@ -24,7 +24,7 @@ const handleLogin = async (req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '30s' }
+            { expiresIn: '10s' }
         );
         const refreshToken = jwt.sign(
             { "username": foundUser.username },
@@ -37,7 +37,7 @@ const handleLogin = async (req, res) => {
         console.log(result);
 
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true,  maxAge: 24 * 60 * 60 *1000 }); //secure: true, // temporary to use thunder client
-        res.json({ accessToken }); // front-end should save this in memory 
+        res.json({ roles, accessToken }); // front-end shouldn't save this in memory 
     } else {
         res.sendStatus(401);
     }

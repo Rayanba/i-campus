@@ -1,13 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Login.module.css';
+
 import axios from '../../api/axios';
-
-
 const LOGIN_URL = '/auth'; // like in back-end
+
 const Login = () => {
-    const { setAuth } = useAuth();
+    const { setAuth, persist, setPersist } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -61,12 +61,16 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+    const togglePersist = () => {
+        setPersist(prev => !prev);
+    }
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist);
+    }, [persist])
 
     return (
         <div className={styles.loginContainer}>
-
-            
-                
                 <p ref={errRef} className={errMsg ? styles.errMsg : styles.offscreen} aria-live="assertive">{errMsg}</p>
                 <h1>Sign In</h1>
                 <form onSubmit={handleSubmit}>
@@ -88,15 +92,19 @@ const Login = () => {
                         value={pwd}
                         required
                         />
+                        
                     <button>Sign In</button>
+                    <div className={styles.persistCheck}>
+                    <input
+                        type="checkbox"
+                        id="persist"
+                        onChange={togglePersist}
+                        checked={persist}
+                    />
+                    <label htmlFor="persist">Trust This Device</label>
+                </div>
                 </form>
-                {/* <p>
-                    Need an Account?<br />
-                    <span className={styles.line}>
-                        <Link to="/register">Sign Up</Link>
-                    </span>
-                </p> */}
-
+            
         </div>
     )
 }
