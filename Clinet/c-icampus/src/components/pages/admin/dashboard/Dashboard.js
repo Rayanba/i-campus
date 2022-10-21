@@ -1,7 +1,7 @@
 import styles from "./Dashboard.module.css";
+import {Outlet, Link} from 'react-router-dom'
+import { FacilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, RoomsCard, StudentsCard} from './index';
 
-// import {Outlet} from 'react-router-dom'
-import { FacilitiesCard, AttendanceCard, EmployeesCard, InstructorsCard, LecturesCard, RoomsCard, StudentsCard } from './index'; // 
 
 
 
@@ -12,19 +12,20 @@ function Dashboard (){
         <div className={styles.dashContainer}>
             <div className={styles.dashUpper}>
                 <div className={styles.dashSquareCards}>
-                    
-                        <div className={styles.cards}><AttendanceCard/></div>
-                        <div className={styles.cards}><RoomsCard/></div>
-                        <div className={styles.cards}><LecturesCard/></div>
-                        <div className={styles.cards}><EmployeesCard/></div>
-                        <div className={styles.cards}><InstructorsCard/> </div>
-                        <div className={styles.cards}><StudentsCard/></div>
+                        <Link className={styles.card} to= '/admin/dashboard/attendance'><AttendanceCard/></Link>
+                        <Link className={styles.card} to= '/admin/dashboard/rooms'><RoomsCard/></Link>
+                        <Link className={styles.card} to= '/admin/dashboard/lectures'><LecturesCard/></Link>
+                        <Link className={styles.card} to= '/admin/dashboard/employees'><EmployeesCard/></Link>
+                        <Link className={styles.card} to= '/admin/dashboard/instructors'><InstructorsCard/> </Link>
+                        <Link className={styles.card} to= '/admin/dashboard/students'><StudentsCard/></Link>
                 </div>
-                <div className={styles.dashFacilites}>
+                <Link className={styles.dashFacilites} to='/admin/dashboard/facilities'>
                     <FacilitiesCard/>
-                </div>
+                </Link>
             </div>
             <div className={styles.dashLower}>
+            <div className={styles.Lowercard}><Outlet/></div>
+            
             </div>
         </div>
     )

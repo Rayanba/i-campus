@@ -1,0 +1,46 @@
+.admincontainer {
+    /* border: 3px solid red; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.adminSidebar {
+    /* border: 3px solid orange; */
+    width: 13vw;
+    /* display: none; */
+}
+
+.adminRight{
+    /* border: 3px solid blue; */
+    width: 87vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.adminTopbar {
+    /* border: 3px solid green; */
+    height: 6%;
+}
+
+.adminPagesContainer {
+    /* border: 3px solid green; */
+
+    height: 94%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminPages {
+    /* border: 3px solid green; */
+    width: 98%;
+    height: 98%;
+    background-color: whitesmoke;
+    border-radius: 2rem;
+}

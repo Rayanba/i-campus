@@ -1,6 +1,5 @@
-import './Admin.css';
+import styles from  './Admin.module.css';
 import {  Outlet } from "react-router-dom";
-
 
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
@@ -8,20 +7,20 @@ import Topbar from '../pages/topbar/Topbar';
 
 function Admin () {
     return (
-        <div className="admincontainer" >
-            <div className="adminSidebar">
+        <div className={styles.admincontainer} >
+            <div className={styles.adminSidebar}>
                 <Sidebar/>
             </div>
 
-            <div className="adminRight">
-                <div className="adminTopbar">
+            <div className={styles.adminRight}>
+                <div className={styles.adminTopbar}>
                     <Topbar/>
                 </div>
-                <div className="pagesContainer">
+                <div className={styles.adminPagesContainer}>
                     {/* <br/>
                     <Users />
                     <br/> */}
-                    <div className="pages" >  
+                    <div className={styles.adminPages }>  
                         <Outlet/>
 
                     </div>

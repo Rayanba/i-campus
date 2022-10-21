@@ -30,11 +30,11 @@
     
 }
 
-.cards {
+.card {
     width: 30%;
-    /* margin: 5px; */
+    margin: 5px;
     /* border: 1px solid palevioletred; */
-    flex-grow: 1;
+    flex-grow: 1 ;
     
     display: flex;
     justify-content: center;
@@ -56,8 +56,19 @@
 
 /* here gose the lower part of the Dashboard --will use Route-- */
 .dashLower {
-border: 2px solid blue;
+margin-top: 5px;
+/* border: 2px solid blue; */
 height: 45%;
+min-width: 400px;
 width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 
+}
+.Lowercard{
+    margin: 5px;
+    /* border: 2px solid red; */
+    height: 100%;
+    width: 100%;
 }

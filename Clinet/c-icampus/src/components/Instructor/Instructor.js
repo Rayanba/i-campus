@@ -1,16 +1,32 @@
-import { Link } from "react-router-dom"
+import styles from  './Instructor.module.css';
+import {  Outlet } from "react-router-dom";
 
-function Instructor  () {
+import Sidebar from '../pages/sidebar/Sidebar';
+import Topbar from '../pages/topbar/Topbar';
+
+
+function Instructor () {
     return (
-        <section>
-            <h1>Instructors Page</h1>
-            <br />
-            <p>You must have been assigned an Instructor role.</p>
-            <div className="flexGrow">
-                <Link to="/">Home</Link>
+        <div className={styles.instructorcontainer} >
+            <div className={styles.instructorSidebar}>
+                <Sidebar/>
             </div>
-        </section>
+
+            <div className={styles.instructorRight}>
+                <div className={styles.instructorTopbar}>
+                    <Topbar/>
+                </div>
+                <div className={styles.instructorPagesContainer}>
+                    
+                    <div className={styles.instructorPages }>  
+                        <Outlet/>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     )
 }
 
-export default Instructor
+export default Instructor;

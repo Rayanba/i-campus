@@ -1,4 +1,4 @@
-.admincontainer {
+.instructorcontainer {
     /* border: 3px solid red; */
     position: absolute;
     top: 0;
@@ -10,25 +10,25 @@
     flex-direction: row;
 }
 
-.adminSidebar {
+.instructorSidebar {
     /* border: 3px solid orange; */
-    flex-grow: 1;
+    width: 13vw;
     /* display: none; */
 }
 
-.adminRight{
+.instructorRight{
     /* border: 3px solid blue; */
-    flex-grow: 6;
+    width: 87vw;
     display: flex;
     flex-direction: column;
 }
 
-.adminTopbar {
+.instructorTopbar {
     /* border: 3px solid green; */
     height: 6%;
 }
 
-.pagesContainer {
+.instructorPagesContainer {
     /* border: 3px solid green; */
 
     height: 94%;
@@ -37,7 +37,7 @@
     align-items: center;
 }
 
-.pages {
+.instructorPages {
     /* border: 3px solid green; */
     width: 98%;
     height: 98%;
