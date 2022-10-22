@@ -41,8 +41,7 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />} />
         {/*  protected routes */}
         <Route element={<PresistLogin/>}>
-        {/* element={<RequireAuth allowedRoles={[ROLES.Admin]} />} */}
-          <Route > 
+          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> 
             <Route path="admin" element={<Admin />} >
               <Route path="dashboard" element={<Dashboard />}>
                 <Route path="attendance" element={<AttendanceCardLower/>} />
@@ -57,8 +56,7 @@ function App() {
               <Route path="Reports" element={<Reports />} />
             </Route>
           </Route>
-          {/* element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} */}
-          <Route >
+          <Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} >
             <Route path="instructor" element={<Instructor />} />
           </Route>
 

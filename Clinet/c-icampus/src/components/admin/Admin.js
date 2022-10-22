@@ -1,7 +1,7 @@
 import styles from  './Admin.module.css';
 import {  Outlet } from "react-router-dom";
 
-import Sidebar from '../pages/sidebar/Sidebar';
+import Sidebar from '../pages/admin/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
 
 
@@ -11,6 +11,7 @@ function Admin () {
             <div className={styles.adminSidebar}>
                 <Sidebar/>
             </div>
+            
 
             <div className={styles.adminRight}>
                 <div className={styles.adminTopbar}>
@@ -22,6 +23,7 @@ function Admin () {
                     <br/> */}
                     <div className={styles.adminPages }>  
                         <Outlet/>
+                        
 
                     </div>
                     

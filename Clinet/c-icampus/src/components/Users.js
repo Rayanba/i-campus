@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Users = () => {
+function Users  () {
     const [users, setUsers] = useState();
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
@@ -32,8 +32,8 @@ const Users = () => {
             isMounted = false;
             controller.abort();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    
+    }, [null])
 
     return (
         <article>

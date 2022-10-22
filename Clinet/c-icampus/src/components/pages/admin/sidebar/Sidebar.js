@@ -1,14 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from './Sidebar.module.css';
-import drabdulaziz from '../../../assets/png/drabdulaziz.png';
-import useLogout from '../../../hooks/useLogout';
+import drabdulaziz from '../../../../assets/png/drabdulaziz.png';
+import useLogout from '../../../../hooks/useLogout';
 
-    const sidebarNavLinks = ["home","dashboard", "privileges", "scan", "My QR"];
-  
-    
+
 
 
 function Sidebar (){
+    const sidebarNavLinks = ["home","dashboard", "privileges", "scan", "My QR"];
     const location = useLocation();
     const navigate = useNavigate();
     const logout = useLogout();

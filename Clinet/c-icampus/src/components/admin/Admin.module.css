@@ -25,7 +25,7 @@
 
 .adminTopbar {
     /* border: 3px solid green; */
-    height: 6%;
+    min-height: 65px;
 }
 
 .adminPagesContainer {

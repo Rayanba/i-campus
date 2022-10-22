@@ -1,6 +1,7 @@
 import styles from "../cardsStyleLower/CardsStyleLower.module.css"; 
+import { Link } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
-
+// import Users from "../../../../../Users";
 function EmployeesCardLower (){
 
     return (
@@ -15,6 +16,13 @@ function EmployeesCardLower (){
                 </div>
             </div>
             <div className={styles.cardBodyLower}>   
+            <h1>Admins Page</h1>
+            <br />
+            
+            <br />
+            <div className={styles.flexGrow}>
+                <Link to="/">Home</Link>
+            </div>
             </div>
         </div>
         
