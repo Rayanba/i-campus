@@ -1,6 +1,4 @@
 .instructorsCardContainer {
-    border: 1px solid blue;
-    height: 50%;
-    color: black;
-    flex-grow: 1 25%;
+    width: 100%;
+    height: 100%;
 }

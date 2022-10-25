@@ -1,24 +1,20 @@
-import styles from "../cardsStyle/CardsStyle.module.css"; 
+import UpperCard from '../UpperCard';
+// import styles from './AttendanceCard.module.css'
 import { FaEllipsisV } from "react-icons/fa";
 
 function AttendanceCard (){
 
     return (
        
-        <div className={styles.cardContainer}>
+        
+            <UpperCard
+            title={'Attendance'}
+            options= {<FaEllipsisV/>}
+            body= {<h1>Hello </h1>}
+            />
+            
 
-            <div className={styles.cardHeader}>
-                <div className={styles.cardtitle}>
-                    <h4>Attendance</h4>
-                </div>
-                <div className={styles.cardoptions}>
-                    <FaEllipsisV/>
-                </div>
-            </div>
-            <div className={styles.cardBody}>   
-            </div>
-
-        </div>
+       
         
     )
 }

@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
-const {logger} = require('./middleware/logEvents');
+const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // built-in middleware static files 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 // unverified
@@ -67,7 +67,7 @@ app.use(errorHandler);
 // if connected to db : start listen
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => console.log(`/from server Server running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
 
 });
 

@@ -1,12 +1,17 @@
-import styles from "./privileges.css";
-
+import styles from "./Privileges.module.css";
+import Cardy from "./Cardy";
+import { FaEllipsisV } from "react-icons/fa";
 
 function Privileges (){
 
     return (
         <>
         <div className={styles.mainprivileges}>
-            <h1>Privileges</h1>
+            <Cardy 
+            title={'privileges'}
+            options={<FaEllipsisV/>}
+            body={<h1>hello</h1>}
+            />
         </div>
         </>
     )

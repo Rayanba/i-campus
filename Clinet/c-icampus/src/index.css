@@ -26,12 +26,37 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
-    background-color: #1C1C1C;
+    background-color: white;
     overflow-x: hidden;
     overflow-y: hidden;
+    display: flex;
+    
 
+}
+
+#root {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
+
+.App {
+    /* margin-top: 50px;
+    margin-right: 50px;
+    margin-left: 50px; */
+    /* max-width: 1920px; */
+    width: 100%;
+    height: 100vh; 
+    background-color: #1C1C1C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 15px gray;
 }
 ol, ul {
 	list-style: none;
@@ -47,14 +72,6 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; 
 }
 
 /* 

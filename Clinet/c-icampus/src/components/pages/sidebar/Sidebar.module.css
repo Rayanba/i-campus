@@ -58,40 +58,6 @@
     flex-grow: 2;
 }
 
-.sidebarNavItem {
-    /* border: solid royalblue; */
-    margin: 2rem 0;
-}
-
-.sidebarNavLink:ac {
-    /* border: solid royalblue; */
-    text-decoration: none;
-    outline: none;
-    color: aliceblue;
-    opacity: 0.5;
-    font-size: 28px;
-    font-weight: 500;
-}
-
-.sidebarNavLink{
-    /* border: solid royalblue; */
-    text-decoration: none;
-    outline: none;
-    color: aliceblue;
-    opacity: 0.5;
-    font-size: 28px;
-    font-weight: 500;
-}
-
-.sidebarNavLinkActive {
-        opacity: 1;
-        text-decoration: none;
-        outline: none;
-        color: aliceblue;
-        font-size: 28px;
-        font-weight: 500;
-}
-
 .signoutdiv {
     /* border: solid royalblue; */
     display: flex;

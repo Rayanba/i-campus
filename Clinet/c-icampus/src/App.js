@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
 import Layout from './components/Layout';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import Admin from './components/admin/Admin';
 import Instructor from './components/Instructor/Instructor';
 import Student from './components/student/Student';
@@ -41,6 +41,7 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />} />
         {/*  protected routes */}
         <Route element={<PresistLogin/>}>
+        {/*  */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> 
             <Route path="admin" element={<Admin />} >
               <Route path="dashboard" element={<Dashboard />}>

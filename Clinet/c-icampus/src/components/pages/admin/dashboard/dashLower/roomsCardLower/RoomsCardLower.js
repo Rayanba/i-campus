@@ -1,22 +1,15 @@
-import styles from "../cardsStyleLower/CardsStyleLower.module.css"; 
+import LowerCard from '../LowerCard';
+// import styles from "./RoomsCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 
 
 function RoomsCardLower (){
-
     return (
-        <div className={styles.cardContainerLower}>
-            <div className={styles.cardHeaderLower}>
-                <div className={styles.cardtitleLower}>
-                    <h4>Rooms Lower</h4>
-                </div>
-                <div className={styles.cardoptionsLower}>
-                    <FaEllipsisV/>
-                </div>
-            </div>
-            <div className={styles.cardBodyLower}>   
-            </div>
-        </div>
+        <LowerCard
+        title={'Rooms Lower'}
+        options={<FaEllipsisV/>}
+        body={<h1>hello</h1>}
+        />
     )
 }
 export default RoomsCardLower;

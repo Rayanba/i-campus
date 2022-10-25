@@ -54,6 +54,7 @@ const Login = () => {
             navigate(from, { replace: true });
 
         } catch (err) {
+            
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
@@ -62,6 +63,7 @@ const Login = () => {
                 setErrMsg('Unauthorized');
             } else {
                 setErrMsg('Login Failed');
+                    
             }
             errRef.current.focus();
         }
@@ -96,6 +98,7 @@ const Login = () => {
                         value={pwd}
                         required
                         />
+                        
                         
                     <button>Sign In</button>
                     <div className={styles.persistCheck}>
