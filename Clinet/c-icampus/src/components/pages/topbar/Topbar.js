@@ -13,10 +13,10 @@ function Topbar (){
             </div>
             <div className={styles.timeDateDiv}>
                 <div className={styles.clockDiv} >
-                    <h2>05:12 pm</h2>
+                    <h3>05:12 pm</h3>
                 </div>
                 <div className={styles.DateDiv} >
-                    <h2>Tuesday 8th Novermber</h2>
+                    <h3>Tuesday 8th Novermber</h3>
                 </div>
             </div>
             <div className={styles.topRightIcons}>

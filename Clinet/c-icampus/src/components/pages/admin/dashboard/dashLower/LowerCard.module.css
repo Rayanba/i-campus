@@ -13,9 +13,10 @@
 }
 
 .lowerCardHeader {
+  height: 1rem;
   border-bottom: 1px solid rgb(177, 177, 177);
   padding: 1rem;
-  margin: 0rem 0.5rem 1rem 0.5rem ;
+  margin: 0rem 0.5rem 0rem 0.5rem ;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,10 +27,12 @@
 
 .lowerCardBody {
   /* border: 1px solid rgb(177, 177, 177); */
-  margin: 0rem 0.5rem ;
+  margin: 0rem 0.5rem 1rem 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-grow: 1 ;
+  overflow-y: scroll;
+
 
 }

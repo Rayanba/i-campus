@@ -8,9 +8,9 @@ function RoomsCard (){
        
         
             <UpperCard
-            title={'Employees'}
+            title={'Rooms'}
             options= {<FaEllipsisV/>}
-            body= {<h1>Hello attendace</h1>}
+            body= {<h5>Hello attendace</h5>}
             />
             
 

@@ -10,7 +10,7 @@ function AttendanceCard (){
             <UpperCard
             title={'Attendance'}
             options= {<FaEllipsisV/>}
-            body= {<h1>Hello </h1>}
+            body= {<h5>Hello </h5>}
             />
             
 

@@ -10,7 +10,7 @@ function InstructorsCard (){
             <UpperCard
             title={'Instructor'}
             options= {<FaEllipsisV/>}
-            body= {<h1>Hello attendace</h1>}
+            body= {<h5>Hello attendace</h5>}
             />
             
 

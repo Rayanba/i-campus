@@ -3,7 +3,7 @@ import {  Outlet , Link, useLocation} from "react-router-dom";
 
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
-const instructorSidebarNavLinks = ["home","dashboard", "privileges", "scan", "My QR"];
+const instructorSidebarNavLinks = ["home","schedule", "scan", "My QR"];
 // const InstructorSidebarNavLinks = ["home", "scan", "My QR"];
 
 
@@ -26,7 +26,7 @@ function Instructor () {
                                 {sidebarNavLink.charAt(0).toUpperCase() + sidebarNavLink.slice(1)}
                             </Link>
                         </li>
-                        )
+                    )
                 }
                 />
             </div>
@@ -36,12 +36,10 @@ function Instructor () {
                     <Topbar/>
                 </div>
                 <div className={styles.instructorPagesContainer}>
-                    
                     <div className={styles.instructorPages }>  
                         <Outlet/>
 
                     </div>
-                    
                 </div>
             </div>
         </div>

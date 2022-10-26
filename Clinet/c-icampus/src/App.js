@@ -11,6 +11,8 @@ import Unauthorized from './components/unauthorized/Unauthorized';
 import RequireAuth from './components/RequireAuth';
 import PresistLogin from './components/PersistLogin';
 import Dashboard from './components/pages/admin/dashboard/Dashboard';
+import Schedule from './components/pages/sharedpages/schedule/Schedule';
+import Scan from './components/pages/sharedpages/scan/Scan';
 import { 
   AttendanceCardLower,
   EmployeesCardLower, 
@@ -19,9 +21,11 @@ import {
   RoomsCardLower, 
   StudentsCardLower, 
   FacilitiesCardLower
-} from './components/pages/admin/dashboard/index'
+}
+from './components/pages/admin/dashboard/index'
 import Privileges from './components/pages/admin/privileges/Privileges';
 import Reports from './components/pages/admin/reports/Reports';
+import MyQR from './components/pages/sharedpages/myQR/MyQR';
 
 
 const ROLES = {
@@ -55,16 +59,18 @@ function App() {
               </Route>
               <Route path="privileges" element={<Privileges />} />
               <Route path="Reports" element={<Reports />} />
+              <Route path="my-qr" element={<MyQR/>} />
+              <Route path="Scan" element={<Scan/>} />
             </Route>
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} >
-            <Route path="instructor" element={<Instructor />} />
+            <Route path="instructor" element={<Instructor />} >
+              <Route path="schedule" element={<Schedule/>} />
+            </Route>
           </Route>
-
           <Route element={<RequireAuth allowedRoles={[ROLES.Student]} />}>
             <Route path="student" element={<Student />} />
           </Route>
-
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor, ROLES.Admin]} />}>
           </Route>
         </Route>

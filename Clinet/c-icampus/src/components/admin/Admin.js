@@ -4,7 +4,7 @@ import {  Outlet, Link, useLocation } from "react-router-dom";
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
 
-const adminSidebarNavLinks = ["home","dashboard", "privileges", "scan", "My QR"];
+const adminSidebarNavLinks = ["dashboard", "privileges","Reports", "scan", "my-QR"];
 
 function Admin () {
     const location = useLocation();

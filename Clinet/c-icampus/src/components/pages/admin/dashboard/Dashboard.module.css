@@ -32,9 +32,9 @@
 
 .card {
     width: 30%;
-    margin: 5px;
     /* border: 1px solid palevioletred; */
     flex-grow: 1 ;
+    margin: 5px;
     
     display: flex;
     justify-content: center;

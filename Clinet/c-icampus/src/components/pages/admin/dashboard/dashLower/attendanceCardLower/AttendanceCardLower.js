@@ -1,5 +1,5 @@
 import LowerCard from '../LowerCard';
-// import styles from "./AttendanceCardLower.module.css"; 
+import styles from "./AttendanceCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 
 
