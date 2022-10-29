@@ -9,7 +9,7 @@ const handleLogout = async (req, res) => {
     if (!cookies?.jwt) return res.sendStatus(204); // 204 success but No content to send back 
     const refreshToken = cookies.jwt;
     
-    //is refreshToken in DB?
+    //is refreshToken in DB?, delete from cookie
     const foundUser = await User.findOne({refreshToken}).exec();
     if (!foundUser) {
         res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true});

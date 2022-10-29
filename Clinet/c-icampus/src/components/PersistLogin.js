@@ -5,15 +5,13 @@ import useAuth from '../hooks/useAuth';
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const PersistLogin = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);//for dev
     const refresh = useRefreshToken();
     const { auth } = useAuth();
     const [persist] = useLocalStorage('persist', false);
     
-
     useEffect(() => {
         let isMounted = true;
-
         const verifyRefreshToken = async () => {
             try {
                 await refresh();
@@ -25,11 +23,8 @@ const PersistLogin = () => {
                 isMounted && setIsLoading(false);
             }
         }
-
-        
         // Avoids unwanted call to verifyRefreshToken
         !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
-
         return () => isMounted = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -49,7 +44,6 @@ const PersistLogin = () => {
                     : <Outlet />
             }
         </>
-    )
+    ) 
 }
-
 export default PersistLogin

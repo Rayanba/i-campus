@@ -1161,3 +1161,5 @@
 20221028	01:32:52	b72b81e4-104d-4efe-8d12-bc09ffe082af	OPTIONS	http://localhost:3000	/auth
 20221028	01:32:52	d03c2bf3-129b-4aa9-a307-5d61c32c84e5	POST	http://localhost:3000	/auth
 20221028	01:33:00	dd612c4b-6934-4207-9b70-336d33d6134b	GET	http://localhost:3000	/refresh
+20221028	01:47:19	8844d1b9-b758-42d2-96d4-076d7816a8f1	GET	http://localhost:3000	/refresh
+20221028	01:47:22	bc190d59-9feb-4bb8-89cd-48f819ba983c	GET	http://localhost:3000	/logout
