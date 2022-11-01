@@ -1,12 +1,13 @@
 import styles from  './Admin.module.css';
 import {  Outlet, Link, useLocation } from "react-router-dom";
-
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
+import useSocket from '../../hooks/useSocket';
 
 const adminSidebarNavLinks = ["dashboard", "privileges","Reports", "scan", "my-QR"];
 
 function Admin () {
+    useSocket();
     const location = useLocation();
     return (
         <div className={styles.admincontainer} >
@@ -29,8 +30,6 @@ function Admin () {
                 }
                 />
             </div>
-            
-
             <div className={styles.adminRight}>
                 <div className={styles.adminTopbar}>
                     <Topbar/>
@@ -41,10 +40,7 @@ function Admin () {
                     <br/> */}
                     <div className={styles.adminPages }>  
                         <Outlet/>
-                        
-
                     </div>
-                    
                 </div>
             </div>
         </div>
