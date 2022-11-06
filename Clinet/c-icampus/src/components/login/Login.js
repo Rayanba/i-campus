@@ -20,7 +20,7 @@ const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, resetUser, userAttribs] = useInput('user', '', '');// useLocalStorage('user', ''); //useState('');
+    const [username, resetUser, userAttribs] = useInput('username', '', '');// useLocalStorage('user', ''); //useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [check, toggleCheck] = useToggle('persist', false);
@@ -31,13 +31,13 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [username, pwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ username, pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -47,7 +47,7 @@ const Login = () => {
             // console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({username, pwd, roles, accessToken});
             // setUser('');
             resetUser();
             setPwd('');

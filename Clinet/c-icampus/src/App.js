@@ -45,7 +45,6 @@ function App() {
         <Route path="unauthorized" element={<Unauthorized />} />
         {/*  protected routes */}
         <Route element={<PresistLogin/>}>
-        {/*  */}
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> 
             <Route path="admin" element={<Admin />} >
               <Route path="dashboard" element={<Dashboard />}>

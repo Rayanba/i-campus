@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { Socket } = require('socket.io');
 
 const verifyJWT = (req, res, next) => {
     // some times it's authorization and sometimes it's Authorization
@@ -20,5 +19,5 @@ const verifyJWT = (req, res, next) => {
         }
     );
 }
-const wrap = expresMiddleware => (Socket, next) => expresMiddleware(Socket.request, {}, next);
-module.exports = {verifyJWT, wrap};
+// const wrap = expresMiddleware => (Socket, next) => expresMiddleware(Socket.request, {}, next);
+module.exports = {verifyJWT};

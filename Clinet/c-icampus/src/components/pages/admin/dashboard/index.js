@@ -5,7 +5,7 @@ export {default as InstructorsCard} from './dashUpper/instructorsCard/Instructor
 export {default as LecturesCard} from './dashUpper/lecturesCard/LecturesCard';
 export {default as RoomsCard} from './dashUpper/roomsCard/RoomsCard';
 export {default as StudentsCard} from './dashUpper/studentsCard/StudentsCard';
-export {default as FacilitiesCard} from './dashUpper/facilitiesCard/FacilitiesCard';
+export {default as UtilitiesCard} from './dashUpper/utilitiesCard/UtilitiesCard';
 
 // lower // for App
 export {default as AttendanceCardLower} from './dashLower/attendanceCardLower/AttendanceCardLower';

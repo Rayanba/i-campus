@@ -7,11 +7,9 @@ function Users  () {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
-
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
-        
         const getUsers = async () => {
             try {
                 const response = await axiosPrivate.get('/users', {
@@ -26,15 +24,11 @@ function Users  () {
             }
         }
         getUsers();
-
-
         return () => {
             isMounted = false;
             controller.abort();
         }
-    
     }, [null])
-
     return (
         <article>
             <h2>Users List</h2>
@@ -48,5 +42,4 @@ function Users  () {
         </article>
     );
 };
-
 export default Users;

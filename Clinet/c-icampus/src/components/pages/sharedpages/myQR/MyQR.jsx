@@ -1,12 +1,15 @@
 import style from './MyQR.module.css'
 import QRCode from 'react-qr-code';
+
+
 const MyQR = () => {
   return (
     <div className={style.myqrContainer}>
       
 
         <QRCode
-        value="https://google.com" 
+        id=""
+        value="https://seu.ehjgu.sa" 
         size={300}
          />
 

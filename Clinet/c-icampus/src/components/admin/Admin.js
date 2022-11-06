@@ -1,13 +1,18 @@
 import styles from  './Admin.module.css';
 import {  Outlet, Link, useLocation } from "react-router-dom";
-import Sidebar from '../pages/sidebar/Sidebar';
+// const [path, setPath] = useState();
+    // const navigate = useNavigate(
 import Topbar from '../pages/topbar/Topbar';
-import useSocket from '../../hooks/useSocket';
+import Sidebar from '../pages/sidebar/Sidebar';
+
+// import useSocket from '../../hooks/useSocket';
+
 
 const adminSidebarNavLinks = ["dashboard", "privileges","Reports", "scan", "my-QR"];
 
+
 function Admin () {
-    useSocket();
+    // useSocket();
     const location = useLocation();
     return (
         <div className={styles.admincontainer} >

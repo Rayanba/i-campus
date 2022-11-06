@@ -10,8 +10,6 @@ const Schedule = () => {
 
 
   return (
-
-
     <div className={styles.scheduleContainer}>
       <div><h1>Schedule</h1></div>
       <div className={styles.schedule}>
@@ -22,9 +20,6 @@ const Schedule = () => {
           <Inject services={[ Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop ]}/>
         </ScheduleComponent>
       </div>
-
-      
-
     </div>
   )
 }

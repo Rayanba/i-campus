@@ -1,12 +1,17 @@
 import styles from "./Dashboard.module.css";
 import {Outlet, Link} from 'react-router-dom'
-import { FacilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, RoomsCard, StudentsCard} from './index';
+import { UtilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, RoomsCard, StudentsCard} from './index';
+import { useEffect } from "react";
 
 
 
 
 function Dashboard (){
+    
+    useEffect (() =>{
 
+
+    },[])
     return (
         
         <div className={styles.dashContainer}>
@@ -19,8 +24,8 @@ function Dashboard (){
                         <Link className={styles.card} to= '/admin/dashboard/instructors'><InstructorsCard/> </Link>
                         <Link className={styles.card} to= '/admin/dashboard/students'><StudentsCard/></Link>
                 </div>
-                <Link className={styles.dashFacilites} to='/admin/dashboard/facilities'>
-                    <FacilitiesCard/>
+                <Link className={styles.dashFacilites} to='/admin/dashboard/utilities'>
+                    <UtilitiesCard/>
                 </Link>
             </div>
             <div className={styles.dashLower}>

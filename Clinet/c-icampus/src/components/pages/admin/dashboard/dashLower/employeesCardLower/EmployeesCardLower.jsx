@@ -1,5 +1,5 @@
 import LowerCard from '../LowerCard';
-import styles from "./EmployeesCardLower.module.css"; 
+import style from "./EmployeesCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page, Toolbar , Print} from '@syncfusion/ej2-react-grids';
 import { employeesData, employeesGrid } from '../../../../../../data/dummy';
@@ -14,7 +14,7 @@ function EmployeesCardLower (){
         title={'Employees'}
         options={<FaEllipsisV/>}
         body={
-            <div className={styles.employeeCardLowerConatiner}>
+            <div className={style.employeeCardLowerConatiner}>
                 <div>
                     <GridComponent
                     dataSource={employeesData}

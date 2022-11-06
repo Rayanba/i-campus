@@ -8,3 +8,58 @@
 20221017	14:14:02	fcb4e868-5f48-4d89-96de-5747798fd6f0	Error: Not allowed by CORS
 20221017	14:14:16	5f97a924-24a8-4041-8e5c-cb78e8a65ba8	Error: Not allowed by CORS
 20221017	14:14:17	2e7de8b8-40cd-463f-8d5a-7f62fec17426	Error: Not allowed by CORS
+20221104	09:05:36	b64485b1-0585-4f3a-9d77-97222b4c0b11	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT COUNT(utility_avaliability) FROM utility WHERE utility_avaliability = tru' at line 1
+20221104	09:06:11	76fa2eed-d6f1-4db2-889b-80eaab91149b	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT COUNT(utility_avaliability) FROM utility WHERE utility_avaliability = tru' at line 1
+20221104	09:08:34	9c895626-cfff-4d5a-8179-3b5af70831c0	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT COUNT(utility_avaliability) FROM utility WHERE utility_avaliability = tru' at line 1
+20221104	09:14:19	0b6b0008-acc2-46a3-aee5-b8e8a8e4722b	ReferenceError: utility_avaliability is not defined
+20221104	09:14:39	b82d17b5-420a-4fe7-8dd5-58b71ac7aa3f	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT COUNT(utility_avaliability) FROM utility WHERE utility_avaliability = tru' at line 1
+20221104	09:16:14	5a3a7adc-68da-4a2b-b092-55a7c39fef93	ReferenceError: utility_avaliability is not defined
+20221104	09:28:13	7dfa8ca8-61e5-4292-b215-64f8e65dfcd8	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM facility' at line 1
+20221104	09:28:26	56afdb35-766a-4014-930f-457e969bd87d	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM facility' at line 1
+20221104	09:29:08	dd3e3473-f733-4475-931e-9da2164b8838	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM facility' at line 1
+20221104	09:29:49	e0403125-adaf-41d5-8b66-a6c6febb44e2	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM facility' at line 1
+20221104	09:32:08	68c923df-0f4b-46e9-a3d7-bc3cb26a4f1e	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM facility' at line 1
+20221104	09:48:13	52ce2ec9-09f5-4c0d-b111-43a877fe6d32	ReferenceError: cost is not defined
+20221104	09:50:34	c15f9f10-0310-4521-a0f6-98bba34e3da6	ReferenceError: result is not defined
+20221104	09:50:53	efd407f2-83d2-4c43-a634-3ad985e3433f	ReferenceError: result is not defined
+20221104	09:52:09	7dce415e-9019-4a0c-a67f-e99e1d834ab8	ReferenceError: results is not defined
+20221104	10:05:15	822b72cb-7a86-49ad-b6da-bdbdd7072abd	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+20221104	10:06:27	eaf6ab6f-a212-48ed-88ea-4f34725de62e	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+20221104	10:07:50	6d305985-24c5-4f83-9fab-3a3e6380a647	TypeError: Assignment to constant variable.
+20221104	10:08:05	977ec1f2-5bff-4891-8a93-af6abdd9a3e2	TypeError: Assignment to constant variable.
+20221104	10:14:47	9a083816-6760-47f5-86fe-7038b4dfac1d	TypeError: Assignment to constant variable.
+20221104	10:16:09	b6a57f4f-4295-4dbf-b30d-92f6c913c913	ReferenceError: Cannot access 'names' before initialization
+20221104	11:13:33	94a6af00-92e4-4ffb-a6c6-7b1eca8e256b	ReferenceError: sql is not defined
+20221104	11:13:50	29ead17c-05c6-4001-9368-0d770dc7397d	ReferenceError: sql is not defined
+20221104	11:14:15	255f08e5-4858-4068-8a99-a5c7ea7b5c86	ReferenceError: sql is not defined
+20221104	11:15:04	b2fcdee2-3465-4fef-a789-5cf9b178cd5a	ReferenceError: sql is not defined
+20221104	11:16:26	4088185c-2b12-44e6-b0b9-7f9f8fe15d11	ReferenceError: sql is not defined
+20221104	11:21:25	db143421-723c-4f66-92aa-643731ac136d	ReferenceError: sql is not defined
+20221104	11:22:37	7f14e49b-89f6-4ad0-9a34-22a39b1ff918	ReferenceError: sql is not defined
+20221104	11:25:24	c8582453-a977-44a8-8de1-42bd38f6cadf	ReferenceError: sql is not defined
+20221104	11:25:48	97b061e2-752c-411f-9811-f644d2e793bb	ReferenceError: sql is not defined
+20221105	11:26:38	7bb89dd8-63eb-42a7-926a-18777cf0b262	Error: connect EHOSTUNREACH 192.168.100.220:3306
+20221105	11:26:41	ba160995-164b-4f3f-bb0b-52a7b7a63d03	Error: connect EHOSTUNREACH 192.168.100.220:3306
+20221105	11:26:55	6c730750-3f3d-4f5b-8d97-4b9a11c502c5	Error: connect EHOSTUNREACH 192.168.100.220:3306
+20221105	11:27:30	0ec69217-1385-4848-bbf7-82096c1cf103	Error: connect EHOSTUNREACH 192.168.100.220:3306
+20221105	13:37:18	297289ec-a192-42b2-b8fe-c0f0d2965095	SyntaxError: Unexpected token } in JSON at position 2
+20221105	13:37:53	7836d41e-b538-4077-8845-d22ee3216c34	SyntaxError: Unexpected token } in JSON at position 2
+20221105	13:46:19	7447e57b-2c3b-454f-bcf8-e9e98967f165	SyntaxError: Unexpected token } in JSON at position 2
+20221105	14:33:22	1ccc1889-3405-430a-b887-5237ddd5008b	SyntaxError: Unexpected token } in JSON at position 2
+20221105	14:34:39	77b3e717-9630-44f6-9130-cfbc12e68d38	SyntaxError: Unexpected token } in JSON at position 2
+20221105	14:34:51	b123526e-66a5-4bba-9de3-fcc6e049630f	SyntaxError: Unexpected token } in JSON at position 2
+20221105	14:38:50	83862b9c-8c8f-48ce-9364-6cc872d367f4	SyntaxError: Unexpected token } in JSON at position 2
+20221106	07:40:41	d8eb07ab-d402-429e-8d96-6fb6508ae7d9	SyntaxError: Unexpected token } in JSON at position 2
+20221106	07:42:22	5abc67e3-02cb-4294-a9e3-c53982a29b5a	SyntaxError: Unexpected token } in JSON at position 2
+20221106	07:44:35	6c7975ef-137c-40b8-bad5-1d1d96fc9c6b	SyntaxError: Unexpected token } in JSON at position 2
+20221106	07:46:17	ca23fe99-369b-44c9-af44-21acaa69f16a	SyntaxError: Unexpected token } in JSON at position 2
+20221106	07:49:14	0683e904-1dca-4b38-9e40-fcaada8404a4	SyntaxError: Unexpected token } in JSON at position 2
+20221106	09:10:34	ee8444b9-96a5-4f22-99cf-293fa54fb3e3	RangeError: Invalid status code: 2001
+20221106	09:11:11	8dc623cb-66f9-41af-9b49-417598ed8c0e	RangeError: Invalid status code: 2001
+20221106	09:11:59	df270d1e-f9b4-46dd-8565-8356a11246fb	Error: Cannot set headers after they are sent to the client
+20221106	10:22:14	2e80f9df-e72e-4995-b1b6-4f0de210b8a9	SyntaxError: Unexpected token } in JSON at position 32
+20221106	12:16:50	21601de1-2e42-4157-bce7-93a0e70f92e7	TypeError: utility.findAllProjector is not a function
+20221106	12:24:16	e829f015-a96e-465d-b9fd-58bfc6898527	Error: Callback function is not available with promise clients.
+20221106	12:38:26	5a83143c-9620-47a8-92c7-9696eaad1e39	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all, count(utility_avaliability) AS available from utility where utility_avaliab' at line 1
+20221106	12:40:38	369fd9ae-cf62-4183-9aa5-029d0810dc92	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all, count(utility_avaliability) AS available from utility where utility_avaliab' at line 1
+20221106	12:42:04	954a4f97-aa9b-4e52-8f9d-8e8a0a13af65	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all, count(utility_avaliability) AS available from utility where utility_avaliab' at line 1

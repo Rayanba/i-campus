@@ -9,15 +9,17 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
-const {verifyJWT, wrap} = require('./middleware/verifyJWT');
+const {verifyJWT} = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
-const mongoose = require('mongoose');
-const connectDB = require('./config/dbConn');
+// const mongoose = require('mongoose');
+// const connectDB = require('./config/dbConn');
+// const pool = require('./config/dbConn');
 const PORT = process.env.PORT || 3500; 
 
 // connect to MongoDB
-connectDB();
+// connectDB();
+// pool();
 
 // set express with http
 const server = http.createServer(app);
@@ -61,11 +63,18 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 // unverified
+
 app.use('/', require('./routes/root'));
-app.use('/register', require('./routes/register'));
+// app.use('/register', require('./routes/register'));
+app.use('/registeration', require('./routes/userRegi'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
+
+app.use('/utility', require('./routes/api/utilities'));
+
+
+
 // verifying start from here 
 app.use(verifyJWT);
 
@@ -94,13 +103,17 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler);
 
-// if connected to db : start listen
-mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-    server.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
 
-});
+// const call = async () =>{
 
+//     const [rows] = await pool.query("SELECT * FROM Users");
+//     console.log(rows);
+//     return rows;
+// }
+
+// call();
+
+server.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
 
 
 

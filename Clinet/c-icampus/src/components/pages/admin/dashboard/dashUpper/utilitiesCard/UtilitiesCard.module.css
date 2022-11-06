@@ -1,0 +1,36 @@
+.uCardContainer {
+    /* border: 1px solid blue; */
+    width: 100%;
+    height: 100%;
+    
+    
+
+}
+.uCardWrapper{
+    width: 100%;
+    position: relative;
+}
+.uCardWrapper ul{
+    position: absolute;
+    right: 0;
+    width: 100%;
+
+}
+.utilityBarContainer{
+    margin-top: -0.5rem;
+    /* margin-top: 0.5rem; */
+    position: relative;
+    height: 20px;
+    width: 100%;
+    /* flex-grow: 1; */
+    border-radius: 2rem;
+    background-color: rgb(230, 230, 230);
+}
+
+
+/* 
+@keyframes bar-animation {
+    0% { width: 0%;}
+    100%{width: 100%;}
+}
+ */
