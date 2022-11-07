@@ -5,7 +5,7 @@ const handleRefreshToken = async (req, res) => {
 
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(401);
-
+  console.log(cookies)
   const refreshToken = cookies.jwt;
 
   const [foundUser, _] = await User.findUserToken(refreshToken);
@@ -29,8 +29,8 @@ const handleRefreshToken = async (req, res) => {
         { expiresIn: '10s' }
       );
       res.json({roles, accessToken});
-      console.log('here is at',accessToken);
-      console.log('here is rt',refreshToken);
+      // console.log('here is at',accessToken);
+      // console.log('here is rt',refreshToken);
     }
   )
 }
