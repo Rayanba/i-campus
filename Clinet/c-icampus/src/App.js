@@ -26,6 +26,7 @@ from './components/pages/admin/dashboard/index'
 import Privileges from './components/pages/admin/privileges/Privileges';
 import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
+import { socket, SocketContext } from './context/SocketProvider';
 
 
 const ROLES = {
@@ -73,6 +74,7 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor, ROLES.Admin]} />}>
           </Route>
         </Route>
+
         {/* catch all */}
         <Route path="*" element={<Missing />} />
       </Route>

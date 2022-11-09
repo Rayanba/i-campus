@@ -1,5 +1,19 @@
-.lecturePieChart{
-  /* position: absolute; */
-  /* overflow: hidden; */
+.lecturePieChartContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.PieChartDiv{
+  /* border: 1px solid red; */
+  display: flex;
   
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 200px;
+}
+.doff{
+  /* border: 1px solid red; */
+
+  margin-right: 100px;
 }

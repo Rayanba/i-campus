@@ -1,92 +1,41 @@
+import { useContext, useState,  useEffect } from 'react';
+import { SocketContext } from '../../../../../../context/SocketProvider';
 import UpperCard from '../UpperCard';
 import style from './UtilitiesCard.module.css'
 import { FaEllipsisV } from "react-icons/fa";
-import { useState, useEffect } from 'react';
-
-
-
-
 
 
 
 
 function UtilitiesCard (){
 
-	const data = {
-		"projector": [
-			{
-				"count(utility_name)": 8,
-				"count(utility_avaliability)": 8
-			}
-		],
-		"printer": [
-			{
-				"count(utility_name)": 7,
-				"count(utility_avaliability)": 7
-			}
-		],
-		"powerPank": [
-			{
-				"count(utility_name)": 20,
-				"count(utility_avaliability)": 7
-			}
-		],
-		"computer": [
-			{
-				"count(utility_name)": 7,
-				"count(utility_avaliability)": 7
-			}
-		],
-		"vending Mashine": [
-			{
-				"count(utility_name)": 7,
-				"count(utility_avaliability)": 7
-			}
-		],
-		"air Condition": [
-			{
-				"count(utility_name)": 9,
-				"count(utility_avaliability)": 9
-			}
-		],
-		"water Cooler": [
-			{
-				"count(utility_name)": 9,
-				"count(utility_avaliability)": 9
-			}
-		]
-	} 
-	// // call names 
-	// console.log(typeof( data.printer))
-	
-	// const namess = Object.entries(data);
-	// console.log(`entries ${JSON.stringify(namess[0])}`);
+	const socket = useContext(SocketContext);
 
-	// // console.log(JSON.parse)
-	// // const values = JSON.stringify(data)
-	// // console.log(` values ${values}`);
 	
-	const [dataa, setDataa] = useState(data);
-	// const [values, setValues] = useState();
-	
-	// cons/ole.log(setValues)
+	const [newUtilitiesLoad, setNewUtilitiesLoad] = useState([]);
 	
 	
 
-	// useEffect( () => {
-	// 	const valus = Object.values(dataa.printer[0]);
-	// 	const max = JSON.stringify(valus[0]) ;
-	// 	const min = JSON.stringify(valus[1]) ;
-	// 	const result = (min / max ) * 100;
-	// },[dataa])
+	useEffect( () => {
+		socket.on("NewutilitiesLoad", (utili) =>{
+			// console.log(utili)
+			setNewUtilitiesLoad(utili)
+
+		});
 		
-	// widthSize();
-
+		/////// CLEAN-UP ////////////
+		
+	},[])
 	
 
-
-	const blue = '#83AEF2';
 	// const widtha = '55%';
+	
+	
+	
+	
+	const blue = '#83AEF2';
+
+	// console.log(1- (utili[1] * utili[0] / 100))
 
 	return (
 			<div className={style.uCardContainer}>
@@ -96,26 +45,25 @@ function UtilitiesCard (){
 					body= {
 					<div className={style.uCardWrapper}>
 						<ul>
-								{Object.keys(dataa).map(name => 
-									<li key={name}>
-										<h4>{name}</h4>
-										<div className={style.utilityBarContainer} >
-										<div style={{
-											backgroundColor: `${blue}`,
-											height: '100%',
-											borderRadius: '2rem',
-											width: `50%`
-										}}></div>
-										</div>
-									</li>
-									)
-								}
+					
+					{Object.entries(newUtilitiesLoad).map(utili => 
+						<li key={utili} >
+							<h4>{utili[0]}</h4>
+							<div className={style.utilityBarContainer} >
+							
+							<div style={{
+								backgroundColor: `${blue}`,
+								height: '100%',
+								borderRadius: '2rem',
+								width: `${ utili[1][1] * 100 / utili[1][0]}%`
+							}}></div>
+							</div>
+						</li>
+						)} 
 						</ul>
 					</div>
 					}
 					/>
-
-
 			</div>
 					
 

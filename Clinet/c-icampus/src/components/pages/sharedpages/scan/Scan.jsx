@@ -25,9 +25,21 @@ const Scan = () => {
 
   }
   
+  useEffect( () => {
+
+    // socket.on("utilityInfo", (utili) =>{
+		// 	// console.log(utili)
+		// 	setNewUtilitiesLoad(utili)
+
+		// });
+  },[])
+
+
+  const handlesearch = () => {
+
+  }
   return(
     <div className={style.scanContainer}>
-
       <div className={CamState === false ? style.CamOff : style.camOnn}>
       <QRScanner
       onScanned={handleScan}
@@ -46,6 +58,11 @@ const Scan = () => {
 
         <button className={CamState === true ? style.CamOff : style.camOnn} onClick={hanldeCamOpen}>Scan Again</button>
       <div>
+        <form onClick={handlesearch()}>
+          <label>search by name</label>
+          <input></input>
+          <button>search</button>
+        </form>
       <p> {scannedData}</p>
     </div>
     </div>
