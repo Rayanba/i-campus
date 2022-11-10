@@ -31,6 +31,8 @@ footer, header, hgroup, menu, nav, section {
   * {
     scrollbar-width: auto;
     scrollbar-color: #c7c7c7 #ffffff;
+	font-size: 24px;
+
   }
 
   /* Chrome, Edge, and Safari */
@@ -53,7 +55,6 @@ body {
     margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	line-height: 1;
     background-color: white;
@@ -65,6 +66,9 @@ body {
 
 }
 
+.socketStatusContainer{
+
+}
 #root {
     flex-grow: 1;
     display: flex;
@@ -86,6 +90,7 @@ body {
     align-items: center;
     box-shadow: 0px 0px 15px gray;
 }
+
 ol, ul {
 	list-style: none;
 }

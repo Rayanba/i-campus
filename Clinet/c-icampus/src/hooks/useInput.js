@@ -13,4 +13,4 @@ const useInput = (key, initValue) => {
     return [value, reset, attributeObj];
 }
 
-export default useInput 
+export default useInput;

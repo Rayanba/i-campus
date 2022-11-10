@@ -16,9 +16,10 @@
 
 .upperCardHeader {
   height: 0.5rem;
-  margin: 0rem 0.5rem 1rem 0.5rem ;
+  margin: 0rem 0.5rem 0rem 0.5rem ;
   padding: 1rem;
   border-bottom: 1px solid rgb(177, 177, 177);
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,11 +28,15 @@
 }
 
 .upperCardBody {
-  /* border: 1px solid rgb(177, 177, 177); */
-  margin: 0rem 0.5rem 0.5rem 0.5rem ;
+  /* border: 1px solid rgb(196, 6, 6); */
+  margin: 0rem 0.5rem 1rem 0.5rem ;
+  /* width: 99%; */
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-grow: 1 ;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
 }

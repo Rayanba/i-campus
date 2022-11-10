@@ -16,6 +16,39 @@
     flex-grow: 1;
     /* display: none; */
 }
+.socketFalse{
+color: red;
+
+}
+.socketTrue{
+color: green;
+
+}
+.socketStatusContainer{
+    border: 1px solid rgb(74, 74, 74);
+    position: absolute;
+    /* right: 100px; */
+    margin-left: 300px;
+    bottom: 100px;
+    width: 80%;
+    /* height: 10; */
+    font-size: 24px;
+    color: rgb(74, 74, 74);
+    border-radius: 2rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    /* align-items: center; */
+}
+.socketOff{
+    display: none;
+}
+.SocketConnected{
+    display: flex;
+    flex-direction: row;
+}
 
 .sidebarNavItem {
     /* border: solid royalblue; */
