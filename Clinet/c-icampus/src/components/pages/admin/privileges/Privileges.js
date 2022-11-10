@@ -7,11 +7,14 @@ function Privileges (){
     return (
         <>
         <div className={styles.mainprivileges}>
-            <Cardy 
-            title={'privileges'}
-            options={<FaEllipsisV/>}
-            body={<h1>hello</h1>}
-            />
+            <form>
+                <div className={styles.messageContainer}>
+                    <label>Send Message</label>
+                    <input></input>
+                    <button>Send</button>
+
+                </div>
+            </form>
         </div>
         </>
     )

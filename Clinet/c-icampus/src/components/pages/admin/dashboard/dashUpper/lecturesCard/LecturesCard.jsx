@@ -8,11 +8,11 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-    labels: [ 'Finished', 'Finished', 'Finished' ],
+    labels: [ 'Finished', 'Up Comming', 'In progress' ],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5],
+        data: [12, 5, 3],
         backgroundColor: [
           '#f283ae',
           '#83AEF2',

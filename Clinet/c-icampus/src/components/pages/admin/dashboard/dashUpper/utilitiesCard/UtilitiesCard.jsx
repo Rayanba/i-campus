@@ -1,21 +1,14 @@
 import { useContext, useState,  useEffect } from 'react';
 import { SocketContext } from '../../../../../../context/SocketProvider';
 import UpperCard from '../UpperCard';
-import style from './UtilitiesCard.module.css'
+import style from './UtilitiesCard.module.css';
 import { FaEllipsisV } from "react-icons/fa";
 
 
-
-
 function UtilitiesCard (){
-
 	const socket = useContext(SocketContext);
-
-	
 	const [newUtilitiesLoad, setNewUtilitiesLoad] = useState([]);
 	
-	
-
 	useEffect( () => {
 		socket.on("NewutilitiesLoad", (utili) =>{
 			// console.log(utili)
@@ -27,11 +20,7 @@ function UtilitiesCard (){
 		
 	},[])
 	
-
 	// const widtha = '55%';
-	
-	
-	
 	
 	const blue = '#83AEF2';
 
@@ -65,10 +54,6 @@ function UtilitiesCard (){
 					}
 					/>
 			</div>
-					
-
-			
-			
 	)
 }
 export default UtilitiesCard;

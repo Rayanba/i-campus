@@ -18,7 +18,7 @@ import {
   EmployeesCardLower, 
   InstructorsCardLower, 
   LecturesCardLower, 
-  RoomsCardLower, 
+  UtilitiesCardLower, 
   StudentsCardLower, 
   FacilitiesCardLower
 }
@@ -26,8 +26,6 @@ from './components/pages/admin/dashboard/index'
 import Privileges from './components/pages/admin/privileges/Privileges';
 import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
-import { socket, SocketContext } from './context/SocketProvider';
-
 
 const ROLES = {
   'Student': 2001,
@@ -53,7 +51,7 @@ function App() {
                 <Route path="employees" element={<EmployeesCardLower/>} />
                 <Route path="instructors" element={<InstructorsCardLower/>} />
                 <Route path="lectures" element={<LecturesCardLower/>} />
-                <Route path="rooms" element={<RoomsCardLower/>} />
+                <Route path="utilities" element={<UtilitiesCardLower/>} />
                 <Route path="students" element={<StudentsCardLower/>} />
                 <Route path="facilities" element={<FacilitiesCardLower/>} />
               </Route>
@@ -66,15 +64,20 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} >
             <Route path="instructor" element={<Instructor />} >
               <Route path="schedule" element={<Schedule/>} />
+              <Route path="my-qr" element={<MyQR/>} />
+              <Route path="Scan" element={<Scan/>} />
             </Route>
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Student]} />}>
-            <Route path="student" element={<Student />} />
+            <Route path="student" element={<Student />} >
+              <Route path="schedule" element={<Schedule/>} />
+              <Route path="my-qr" element={<MyQR/>} />
+              <Route path="Scan" element={<Scan/>} />
+            </Route>
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor, ROLES.Admin]} />}>
           </Route>
         </Route>
-
         {/* catch all */}
         <Route path="*" element={<Missing />} />
       </Route>

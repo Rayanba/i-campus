@@ -1,6 +1,6 @@
 import styles from "./Dashboard.module.css";
 import {Outlet, Link} from 'react-router-dom'
-import { UtilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, RoomsCard, StudentsCard} from './index';
+import { UtilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, FacilitiesCard, StudentsCard} from './index';
 import { useEffect } from "react";
 
 
@@ -18,7 +18,7 @@ function Dashboard (){
             <div className={styles.dashUpper}>
                 <div className={styles.dashSquareCards}>
                         <Link className={styles.card} to= '/admin/dashboard/attendance'><AttendanceCard/></Link>
-                        <Link className={styles.card} to= '/admin/dashboard/rooms'><RoomsCard/></Link>
+                        <Link className={styles.card} to= '/admin/dashboard/facilities'><FacilitiesCard/></Link>
                         <Link className={styles.card} to= '/admin/dashboard/lectures'><LecturesCard/></Link>
                         <Link className={styles.card} to= '/admin/dashboard/employees'><EmployeesCard/></Link>
                         <Link className={styles.card} to= '/admin/dashboard/instructors'><InstructorsCard/> </Link>

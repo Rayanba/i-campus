@@ -1,10 +1,8 @@
 import styles from  './Instructor.module.css';
 import {  Outlet , Link, useLocation} from "react-router-dom";
-
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
 const instructorSidebarNavLinks = ["home","schedule", "scan", "My QR"];
-// const InstructorSidebarNavLinks = ["home", "scan", "My QR"];
 
 
 function Instructor () {

@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  // <React.StrictMode>
     <BrowserRouter>
         <SocketContext.Provider  value={socket}>
           <AuthProvider>
@@ -18,7 +17,6 @@ root.render(
           </AuthProvider>
           </SocketContext.Provider>
     </BrowserRouter>
-  // {/* </React.StrictMode>, */}
 );
 
 

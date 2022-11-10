@@ -12,7 +12,22 @@ function AttendanceCard (){
             <UpperCard
             title={'Attendance'}
             options= {<FaEllipsisV/>}
-            body= {'hello'}
+            body= {
+                <div className={style.UpperFacilitiesleft }>
+                        <h5>Instructors</h5>
+                            <div className={style.UpperFacilitiesBarCont }>
+                                <div className={style.UpperFacilitiesBarVal }>
+
+                                </div>
+                            </div>
+                        <h5>Student</h5>
+                            <div className={style.UpperFacilitiesBarCont }>
+                                <div className={style.UpperFacilitiesBarVal }>
+
+                                </div>
+                            </div>
+                    </div>
+            }
             />
             
 

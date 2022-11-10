@@ -3,10 +3,7 @@ import styles from './Cardy.module.css';
 
 
 function Cardy ({title, options, body}){
-
-
   return (
-  
     <div className={styles.cardyContainer}>
       <div className={styles.cardyHeader}>
         <div className={styles.cardytitle}>
@@ -19,10 +16,7 @@ function Cardy ({title, options, body}){
         <div className={styles.cardyBody}>  
           {body}
         </div>
-            
     </div>
-  
   )
 }
-
 export default Cardy;

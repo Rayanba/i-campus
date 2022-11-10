@@ -1,0 +1,82 @@
+.studentContainer {
+  /* border: 3px solid red; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.studentSidebar {
+  /* border: 3px solid orange; */
+  width: 13vw;
+  /* display: none; */
+}
+
+.sidebarNavItem {
+  /* border: solid royalblue; */
+  margin: 2rem 0;
+}
+
+.sidebarNavLink:ac {
+  /* border: solid royalblue; */
+  text-decoration: none;
+  outline: none;
+  color: aliceblue;
+  opacity: 0.5;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.sidebarNavLink{
+  /* border: solid royalblue; */
+  text-decoration: none;
+  outline: none;
+  color: aliceblue;
+  opacity: 0.5;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.sidebarNavLinkActive {
+      opacity: 1;
+      text-decoration: none;
+      outline: none;
+      color: aliceblue;
+      font-size: 28px;
+      font-weight: 500;
+}
+
+.studentRight{
+  /* border: 3px solid blue; */
+  width: 87vw;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.studentTopbar {
+  /* border: 3px solid green; */
+  height: 6%;
+}
+
+.studentPagesContainer {
+  /* border: 3px solid green; */
+  height: 94%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.studentPages {
+  /* border: 3px solid green; */
+  width: 98%;
+  height: 98%;
+  background-color: whitesmoke;
+  border-radius: 2rem;
+  display: flex;
+}
