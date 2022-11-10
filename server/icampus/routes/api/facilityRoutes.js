@@ -1,12 +1,13 @@
 const express = require('express')
-const utility = require('./facilityControllers')
+const facility = require('../../controllers/facilityControllers')
 const router = express.Router()
+const ROLES_LIST = require('../../config/roles_list');
+const verifyRoles = require('../../middleware/verifyRoles');
 
 
+router.route('/name').get(verifyRoles(ROLES_LIST.Admin),facility.getAllByName)
 
-router.route('/name').get(utility.getAllByName)
-
-router.route('/all').get(utility.getAllFacilites)
+router.route('/all').get(verifyRoles(ROLES_LIST.Admin),facility.getAllFacilites)
 
 
 module.exports = router

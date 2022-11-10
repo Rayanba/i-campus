@@ -2,7 +2,7 @@ import { Outlet, Link , useLocation} from "react-router-dom"
 import styles from  './Student.module.css';
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
-const studentSidebarNavLinks = ["home","schedule", "scan", "My QR"];
+const studentSidebarNavLinks = ["schedule", "scan", "My QR"];
 
 
 function Student () {
