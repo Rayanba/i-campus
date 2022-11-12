@@ -1,18 +1,25 @@
 .instructorcontainer {
-    /* border: 3px solid red; */
-    position: absolute;
-    top: 0;
+    /* border: 1px solid red; */
+    position: relative;
+    /* top: 0;
     bottom: 0;
     right: 0;
-    left: 0;
+    left: 0;  */
+    height: 100%;
+    width: 99%;
+    float: left;
 
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
 }
 
 .instructorSidebar {
+    /* never Change */
     /* border: 3px solid orange; */
-    width: 13vw;
+    position: relative;
+    height: 100%;
+    width: 15%;
+    float: left;
     /* display: none; */
 }
 
@@ -52,33 +59,39 @@
 
 
 .instructorRight{
+    /* Never Change  */
     /* border: 3px solid blue; */
-    width: 87vw;
-    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    width: 84.7%;
+    /* float: right; */
+    float: left;
     display: flex;
     flex-direction: column;
 }
 
 .instructorTopbar {
-    /* border: 3px solid green; */
-    height: 6%;
+    /* border: 3px solid blue; */
+    height: 10%;
+    width: 100%;
 }
 
 .instructorPagesContainer {
-    /* border: 3px solid green; */
-
-    height: 94%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: 3px solid green;
+    width: 100%;
+    height: 89%;
+    
+        
 
 }
 
 .instructorPages {
-    /* border: 3px solid green; */
-    width: 98%;
-    height: 98%;
-    background-color: whitesmoke;
+    /* Don't Change */
+    /* border: 1px solid green; */
+
+
+    width: 100%;
+    height: 100%;
+    background-color: white;
     border-radius: 2rem;
-    display: flex;
 }

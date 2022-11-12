@@ -10,10 +10,9 @@ function UpperCard ({title, options, body}){
     <div className={styles.upperCardContainer}>
       <div className={styles.upperCardHeader}>
         <div className={styles.upperCardtitle}>
-          <h4>
+          <h2>
           {title}
-
-          </h4>
+          </h2>
         </div>
         <div className={styles.upperCardoptions}>
             {options}

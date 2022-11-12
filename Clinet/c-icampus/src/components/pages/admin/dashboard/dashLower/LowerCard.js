@@ -10,10 +10,10 @@ function LowerCard ({title, options, body}){
     <div className={styles.lowerCardContainer}>
       <div className={styles.lowerCardHeader}>
         <div className={styles.lowerCardtitle}>
-          <h3>
+          <h2>
           {title}
 
-          </h3>
+          </h2>
         </div>
         <div className={styles.lowerCardoptions}>
             {options}

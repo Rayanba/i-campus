@@ -14,13 +14,13 @@ function AttendanceCard (){
             options= {<FaEllipsisV/>}
             body= {
                 <div className={style.UpperFacilitiesleft }>
-                        <h5>Instructors</h5>
+                        <h3>Instructors</h3>
                             <div className={style.UpperFacilitiesBarCont }>
                                 <div className={style.UpperFacilitiesBarVal }>
 
                                 </div>
                             </div>
-                        <h5>Student</h5>
+                        <h3>Student</h3>
                             <div className={style.UpperFacilitiesBarCont }>
                                 <div className={style.UpperFacilitiesBarVal }>
 

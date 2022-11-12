@@ -13,6 +13,8 @@ import PresistLogin from './components/PersistLogin';
 import Dashboard from './components/pages/admin/dashboard/Dashboard';
 import Schedule from './components/pages/sharedpages/schedule/Schedule';
 import Scan from './components/pages/sharedpages/scan/Scan';
+import InstHome from './components/pages/instructor/InstHome';
+
 import { 
   AttendanceCardLower,
   EmployeesCardLower, 
@@ -23,7 +25,7 @@ import {
   FacilitiesCardLower
 }
 from './components/pages/admin/dashboard/index'
-import Privileges from './components/pages/admin/privileges/Privileges';
+import Messages from './components/pages/admin/messages/Messages';
 import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
 
@@ -55,7 +57,7 @@ function App() {
                 <Route path="students" element={<StudentsCardLower/>} />
                 <Route path="facilities" element={<FacilitiesCardLower/>} />
               </Route>
-              <Route path="privileges" element={<Privileges />} />
+              <Route path="messages" element={<Messages />} />
               <Route path="Reports" element={<Reports />} />
               <Route path="my-qr" element={<MyQR/>} />
               <Route path="Scan" element={<Scan/>} />
@@ -64,6 +66,7 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} >
             <Route path="instructor" element={<Instructor />} >
               <Route path="schedule" element={<Schedule/>} />
+              <Route path="home" element={<InstHome/>} />
               <Route path="my-qr" element={<MyQR/>} />
               <Route path="Scan" element={<Scan/>} />
             </Route>

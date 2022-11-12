@@ -34,10 +34,7 @@
     background-color: rgb(230, 230, 230);
 }
 .UpperFacilitiesBarVal{
-    /* backgroundColor: `${blue}`,
-								height: '100%',
-								borderRadius: '2rem',
-								width: `${ utili[1][1] * 100 / utili[1][0]}%` */
+
     background-color: #83AEF2;
     height: 100%;
     border-radius: 2rem;

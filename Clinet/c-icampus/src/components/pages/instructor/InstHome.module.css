@@ -1,0 +1,67 @@
+/* .instHomeContainer{
+  border: 5px solid red;
+  width: 100%;
+  height: 100%;
+ 
+
+} */
+ /* padding: 1% 1% 1% 1% ; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+
+
+  .instructorMainContainer{
+    width: 100%;
+    height: 100%;
+  }
+.instHomeUpper{
+  /* NEVER CHAANGE */
+  /* border: 1px solid orange; */
+  padding: 0.2% 0.2% 0.2% 0.2%   ;
+  height: 49.2%;
+  width: 99.6%;
+  position: relative;
+  float: left;
+  /* display: flex;
+  flex-direction: row; */
+
+}
+
+.instHomeUpperLeft{
+  /* border: 1px solid blue; */
+  width: 48%;
+  position: absolute;
+  left: 1.25%;
+  top: 1.25%;
+  /* float: left; */
+  height: 98.2%;
+
+}
+.instHomeUpperRight{
+  /* border: 1px solid red; */
+  width: 48%;
+  position: absolute;
+  right: 1.25%;
+  top: 1.25%;
+  /* float: right; */
+  height: 98.2%;
+}
+.instrutorHomeLowerNew{
+  /* NEVER CHAANGE */
+  /* border: 1px solid RED; */
+  padding: 0.2%  0.2% 0.2% 0.2%  ;
+  height: 49.2%;
+  width: 99.6%;
+  position: relative;
+  float: left;
+}
+
+.instrutorHomeWrapper{
+  /* border: 1px solid red; */
+  position: absolute;
+  left: 1.25%;
+  bottom: 1.25%;
+  width: 97.4%;
+  height: 97.2%; 
+}

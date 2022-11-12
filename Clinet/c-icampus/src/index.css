@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
 
-/* html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -13,7 +13,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
+	/* margin: 0; */
 	padding: 0;
 	border: 0;
 	font-size: 100%;
@@ -25,13 +25,13 @@ time, mark, audio, video {
 /* article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}  */
+} 
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
     scrollbar-width: auto;
     scrollbar-color: #c7c7c7 #ffffff;
-	font-size: 24px;
+	/* font-size: 24px; */
 
   }
 
@@ -50,6 +50,7 @@ footer, header, hgroup, menu, nav, section {
     border: 3px solid #ffffff;
   }
 
+
 body {
 	vertical-align: baseline;
     margin: 0;
@@ -62,13 +63,12 @@ body {
     overflow-y: hidden;
     font-family: 'Poppins', sans-serif;
     display: flex;
-    
+    /* position: relative; */
 
 }
 
-.socketStatusContainer{
 
-}
+
 #root {
     flex-grow: 1;
     display: flex;
@@ -81,7 +81,7 @@ body {
     margin-right: 50px;
     margin-left: 50px; */
     /* max-width: 1920px; */
-    width: 100%;
+    width: 100vw;
     height: 100vh; 
     background-color: #1C1C1C;
     display: flex;

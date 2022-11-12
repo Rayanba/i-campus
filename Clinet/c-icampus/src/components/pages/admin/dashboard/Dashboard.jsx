@@ -1,17 +1,15 @@
 import styles from "./Dashboard.module.css";
 import {Outlet, Link} from 'react-router-dom'
 import { UtilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, FacilitiesCard, StudentsCard} from './index';
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { useState } from "react";
+import { SocketContext } from '../../../../context/SocketProvider';
 
 
 
 
 function Dashboard (){
-    
-    useEffect (() =>{
 
-
-    },[])
     return (
         
         <div className={styles.dashContainer}>
@@ -29,7 +27,9 @@ function Dashboard (){
                 </Link>
             </div>
             <div className={styles.dashLower}>
-            <div className={styles.Lowercard}><Outlet/></div>
+            <div className={styles.Lowercard}>
+                <Outlet/>
+            </div>
             
             </div>
         </div>

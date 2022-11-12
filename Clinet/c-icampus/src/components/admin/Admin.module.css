@@ -21,16 +21,16 @@ color: red;
 
 }
 .socketTrue{
-color: green;
+color: yellowgreen;
 
 }
 .socketStatusContainer{
     border: 1px solid rgb(74, 74, 74);
     position: absolute;
-    /* right: 100px; */
+    right: 100px;
     margin-left: 300px;
-    bottom: 100px;
-    width: 80%;
+    bottom: 2rem;
+    width: 60%;
     /* height: 10; */
     font-size: 24px;
     color: rgb(74, 74, 74);

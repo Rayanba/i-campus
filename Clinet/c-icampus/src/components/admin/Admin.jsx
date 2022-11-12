@@ -2,18 +2,12 @@ import { useContext, useState,  useEffect } from 'react';
 import { SocketContext } from '../../context/SocketProvider';
 import styles from  './Admin.module.css';
 import {  Outlet, Link, useLocation } from "react-router-dom";
-    // const navigate = useNavigate(
 import Topbar from '../pages/topbar/Topbar';
 import Sidebar from '../pages/sidebar/Sidebar';
-const adminSidebarNavLinks = ["dashboard", "privileges","Reports", "scan", "my-QR"];
-
 
 function Admin () {
-
-
-
+    const adminSidebarNavLinks = ["dashboard", "messages","Reports", "scan", "my-QR"];
     const socket = useContext(SocketContext);
- 
     const [isConnected, setIsConnected] = useState(true);
     const [socketId] = useState(socket.id);
     const [socketall] = useState(socket);
@@ -21,11 +15,13 @@ function Admin () {
     const [unAuthorizedEvent , setUnAuthorizedEvent] = useState(false);
     const [currentRooms , setCurrentRooms] = useState();
 	const [utilitiesLoad, setUtilitiesLoad] = useState([]);
+    const [dashData, DashData] = useState([{}]);
     
     useEffect(() => {
         //////// CONNECT ////////////
         socket.on('connect', () => {
             setIsConnected(true);
+
         });
         
         //////// DISCONECT ///////////
@@ -36,6 +32,7 @@ function Admin () {
         /////// PONG ////////////////
         socket.on('pong', () => {
             setLastPong(new Date().toISOString());
+
         });
         /////// UNAUTHORIZED ACCESS ////////////////
         socket.on("unAuthorized", () =>{
@@ -44,11 +41,17 @@ function Admin () {
         })
         /////// CURRENT ROOMS ////////////////
         socket.on("myRoom", (obj) => {
-            setCurrentRooms(obj);
-            console.log(obj)
+            setCurrentRooms.y(obj);
+            console.log(obj);
+
         })
         ////////// UTILITY LOAD ////////////////
-        
+        socket.on("NewutilitiesLoad", (utili) =>{
+			// console.log(utili)
+			// setNewUtilitiesLoad(utili)
+            DashData(utili);
+            
+		});
         
         //////////////////////////////////
         /////////// INITIALIZAION //////////
@@ -69,19 +72,16 @@ function Admin () {
         }
     },[isConnected])
 
+    useEffect(()=>{
+
+    },[])
     const sendPing = () => {
         socket.emit('ping');
     }
-    
-
     const sendPingsa = () => {
         console.log(socketall);
     }
-
-
     const location = useLocation();
-
-
     return (
         <div className={styles.admincontainer} >
             <div className={styles.adminSidebar}>
@@ -150,12 +150,11 @@ function Admin () {
                     <Users />
                     <br/> */}
                     <div className={styles.adminPages }>  
-                        <Outlet/>
+                        <Outlet context={{dashData,lastPong}}/>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
-
 export default Admin;

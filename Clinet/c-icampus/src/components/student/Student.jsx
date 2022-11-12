@@ -2,10 +2,11 @@ import { Outlet, Link , useLocation} from "react-router-dom"
 import styles from  './Student.module.css';
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
-const studentSidebarNavLinks = ["schedule", "scan", "My QR"];
+
 
 
 function Student () {
+    const studentSidebarNavLinks = ["schedule", "scan", "my-QR"];
     const location = useLocation();
     return (
         <div className={styles.studentContainer} >

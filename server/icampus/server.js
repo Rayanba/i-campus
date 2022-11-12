@@ -87,7 +87,7 @@ app.use(errorHandler);
 /////////////////////SOCKET-IO INIT/////////////////////////
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:3000", "https://admin.socket.io"],
+        origin: ["http://localhost:3000","http://192,168.100.179:3000", "https://admin.socket.io"],
         methods: ["GET", "POST"],
         credentials: true,
     }
@@ -149,34 +149,27 @@ const message = {
 }
 //  socket connections ./ 
 io.on("connection", socket => {
-
   console.log(socket.rooms)
   let [currentRooms,] = socket.rooms;
   io.emit('myRoom', currentRooms);
-
   socket.emit('pong');
-
   /// send username to all connected users
   socket.on("join server", (username) => {
     const user = {username};
     users.push(user);
     io.emit("new user", users);
   });
-
   // handle join room 
   socket.on("join room", (roomName, cb) => {
     socket.join(roomName);
     cb(message[roomName]);
     console.log(socket.id)
   });
-
-
 ////////////////////////////// ADMIN //////////////////////////////////////
   socket.on("imAdmin", async ()  => {
     let adminRole = socket.roles
     if (adminRole.includes(5150)) {
       socket.join('Admino');
-
       const Utility = require('./model/Utility');
       const [utilities, _] = await Utility.findAll();
       let araay = [];
@@ -185,8 +178,6 @@ io.on("connection", socket => {
         araay.push(Object(utilities)[i]['name']);
       }
       socket.emit("utilitiesLoad", araay);
-
-
       const Utilites = require('./controllers/utilityController')
       const result = await Utilites.getAllUtilities();
       socket.emit("NewutilitiesLoad", result);

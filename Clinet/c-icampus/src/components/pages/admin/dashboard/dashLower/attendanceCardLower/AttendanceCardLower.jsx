@@ -24,7 +24,7 @@ const data = [
     },
     {
       "name": "04:00",
-      "instructor": 25,
+      "instructor": 38,
       "student": 93,
       "amt": 200
     },

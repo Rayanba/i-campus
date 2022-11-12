@@ -5,45 +5,36 @@ import { FaEllipsisV } from "react-icons/fa";
 function FacilitiesCard (){
 
     return (
-       
-        
             <UpperCard
-            title={'FacilitesCard'}
+            title={'Facilites'}
             options= {<FaEllipsisV/>}
             body= {
                 <div className={style.UpperFacilitiesContainer }>
                     <div className={style.UpperFacilitiesleft }>
-                        <h5>Class Rooms</h5>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
+                        <h3>Class Rooms</h3>
+                        <div className={style.UpperFacilitiesBarCont }>
+                            <div className={style.UpperFacilitiesBarVal }>
                             </div>
-                        <h5>Labs</h5>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
+                        </div>
+                        <h3>Labs</h3>
+                        <div className={style.UpperFacilitiesBarCont }>
+                            <div className={style.UpperFacilitiesBarVal }>
                             </div>
+                        </div>
                     </div>
                     <div className={style.UpperFacilitiesRight}>
-                        <h5>Theatre</h5>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
+                        <h3>Theatre</h3>
+                        <div className={style.UpperFacilitiesBarCont }>
+                            <div className={style.UpperFacilitiesBarVal }>
                             </div>
-                        <h5>Office</h5>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
+                        </div>
+                        <h3>Office</h3>
+                        <div className={style.UpperFacilitiesBarCont }>
+                            <div className={style.UpperFacilitiesBarVal }>
                             </div>
+                        </div>
                     </div>
-
                 </div>
-                
-        
             }
             />
             

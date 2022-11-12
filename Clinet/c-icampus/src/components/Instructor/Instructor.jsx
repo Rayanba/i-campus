@@ -2,10 +2,11 @@ import styles from  './Instructor.module.css';
 import {  Outlet , Link, useLocation} from "react-router-dom";
 import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
-const instructorSidebarNavLinks = ["schedule", "scan", "My QR"];
+
 
 
 function Instructor () {
+    const instructorSidebarNavLinks = ["home", "schedule", "scan", "my-QR"];
     const location = useLocation();
     return (
         <div className={styles.instructorcontainer} >

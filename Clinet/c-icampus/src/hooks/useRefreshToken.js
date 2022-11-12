@@ -9,7 +9,7 @@ const useRefreshToken = () => {
             withCredentials: true
         });
         setAuth(prev => {
-            console.log(JSON.stringify(prev)); // show rev value (should be empty)
+            // console.log(JSON.stringify(prev)); // show rev value (should be empty)
             // console.log(response.data.accessToken);
             return { 
                 ...prev,
@@ -19,7 +19,7 @@ const useRefreshToken = () => {
         });
         return response.data.accessToken;
     }
-    console.log(auth)// remove this
+    // console.log(auth)// remove this
     return refresh;
 };
 
