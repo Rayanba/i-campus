@@ -147,10 +147,12 @@ const message = {
   jokes: [], 
   javascript:[]
 }
+
 //  socket connections ./ 
 io.on("connection", socket => {
   console.log(socket.rooms)
   let [currentRooms,] = socket.rooms;
+
   io.emit('myRoom', currentRooms);
   socket.emit('pong');
   /// send username to all connected users
@@ -165,11 +167,19 @@ io.on("connection", socket => {
     cb(message[roomName]);
     console.log(socket.id)
   });
+  
 ////////////////////////////// ADMIN //////////////////////////////////////
   socket.on("imAdmin", async ()  => {
     let adminRole = socket.roles
     if (adminRole.includes(5150)) {
       socket.join('Admino');
+
+
+      //////////////////////////////////////////////
+      ////////////////// UTILITIES /////////////////
+      //////////////////////////////////////////////
+
+      /////////// Upper Utilities///////////////
       const Utility = require('./model/Utility');
       const [utilities, _] = await Utility.findAll();
       let araay = [];
@@ -180,23 +190,109 @@ io.on("connection", socket => {
       socket.emit("utilitiesLoad", araay);
       const Utilites = require('./controllers/utilityController')
       const result = await Utilites.getAllUtilities();
-      socket.emit("NewutilitiesLoad", result);
-
+      socket.emit("upperUtilitiesLoad", result);
       console.log(result);
       // console.log(Object(result));
+
+      ///////////  Lower Utilities //////////////
+      let hi = 'hi'
+      ///Bring Data
+      socket.emit("lowerUtilitiesLoad", hi);
+      
+      /////////////////////////////////////////////////
+      ////////////////// Lectures /////////////////////
+      /////////////////////////////////////////////////
+
+      /////////// Upper Lectures ///////////////
+      socket.emit("upperLecturesLoad", hi);
+
+
+      /////////// Lower Lectures ///////////////
+      socket.emit("lowerLecturesLoad", hi);
+
+      
+
+      ////////////////////////////////////////////////
+      ////////////////// Facilities //////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Facilites ///////////////
+      socket.emit("upperFacilitiesLoad", hi);
+      /////////// Upper Facilites ///////////////
+      socket.emit("lowerFacilitiesLoad", hi);
+
+
+      ////////////////////////////////////////////////
+      ////////////////// Attendance //////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Attendance ///////////////
+      socket.emit("upperAttendanceLoad", hi);
+      /////////// Lower Attendance ///////////////
+      socket.emit("lowerAttendanceLoad", hi);
+
+
+      ////////////////////////////////////////////////
+      ////////////////// Student /////////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Students ///////////////
+      socket.emit("upperStudentsLoad", hi);
+      /////////// Lower Students ///////////////
+      socket.emit("lowerStudentsLoad", hi);
+
+
+      ////////////////////////////////////////////////
+      ////////////////// Instructor //////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Instructor ///////////////
+      socket.emit("upperInstructorsLoad", hi);
+      /////////// Lower Instructor ///////////////
+      socket.emit("lowerInstructorsLoad", hi);
+
+      ////////////////////////////////////////////////
+      ////////////////// Employees ///////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Employees ///////////////
+      socket.emit("upperEmployeesLoad", hi);
+      /////////// Lower Employees ///////////////
+      socket.emit("lowerEmployeesLoad", hi);
+
+
+      ////////////////////////////////////////////////
+      ////////////////// Reports ///////////////////
+      ////////////////////////////////////////////////
+
+      /////////// Upper Reports ///////////////
+      socket.emit("upperReportsLoad", hi);
+      /////////// Lower Reports ///////////////
+      socket.emit("lowerReportsLoad", hi);
+
+
+
+
+
+
+
+
+
+
+
+
 
     }else{
       socket.emit("unAuthorized")
     }
-    
   });
 
 
-  socket.on("imAdmin", async () => {
+  // socket.on("imAdmi", async () => {
+    
+  //   socket.emit("facilityInfo")
 
-    socket.emit("facilityInfo")
-
-  }) 
+  // }) 
 
 
 
@@ -238,95 +334,57 @@ io.on("connection", socket => {
   });
 
 
+ socket.on("imInst",  async (msg)  => {
 
+  let adminRole = socket.roles
+    if (adminRole.includes(1984)) {
+      socket.join('instructorRoom');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const Utility = require('./model/Utility');
+  const [CourseName, _] = await Utility.OngoingCourse_Instrctor(msg);
   
+  console.log(CourseName[0]['name']);
 
+  //// bring data 
+    socket.emit('roomName', CourseName[0]['name'])
+    }
+  });
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////STUENT JOIN////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
+  socket.on("imStudent",  async (msg)  => {
 
-
-
-
-
-
-
-
-//// GENERAL ROOMS 
-//////////////////////////join rooms//////////////////////////////
-    socket.use( (socket, next) =>{
-      console.log(socket)
-      next()
-    })
-
-    socket.on("hi", message =>{
-      console.log(message)
+    let adminRole = socket.roles
+      if (adminRole.includes(2001)) {
+        socket.join("studentRoom");
+        
+      }
     });
+
 
 //////////////////////////REPORT//////////////////////////////
-    socket.on("Report", utilityInfo => {
-        console.log(`socket id: ${socket.id} Joined join`);
-        
-    });
+  socket.on("reportUtility", (utilityInfo) => {
+    console.log(utilityInfo);
+      
+  });
 
 
 
 
 //////////////////////////NOTIFICATION/////////only access by manager/////////////////////
     socket.on("notification", (toUser, inRoom) => {
-        console.log(`socket id: ${toUser , inRoom} Joined join`);
+      console.log(`socket id: ${toUser , inRoom} Joined join`);
         
     })
 
 
-
-
-
-
-
-
 //////////////////////////DISCONNECTION//////////////////////////////
     socket.on("disconnecting", () => {
-      console.log(socket.rooms); // the Set contains at least the socket ID
+      console.log(`${socket.id} loged off`); // the Set contains at least the socket ID
     });
 
     socket.on("disconnect", (reason) => {
@@ -348,22 +406,8 @@ io.on("connection", socket => {
       socket.emit("gotit", place);
     });
 
-
-//////////////////////////// STUDENT ROOM ////////////////////////////////////////
-    socket.on("students", (authInfo) => {
-      console.log("on student:", authInfo );
-
-    });
-////////////////////////////// INSTRUCTORS //////////////////////////////////////
-    socket.on("instructors", (authInfo) => {
-      console.log("on student:", authInfo );
-      
-    });
-
-
-    
     ////////////////////////////// BUILDING //////////////////////////////////////
-    socket.on("building", (number) => {
+    socket.on("Enterance", (number) => {
       console.log("on student:", number );
 
       
@@ -380,6 +424,7 @@ io.on("connection", socket => {
       console.log("on student:", course, roomNum );
 
     });
+
     /////////// MY LECTURES //////////SHOULD BE AyUTO ////////////////////////////
     socket.on("Alllectures", (course, roomNum) =>{
       console.log("on student:", course, roomNum );

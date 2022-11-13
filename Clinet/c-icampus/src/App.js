@@ -14,7 +14,6 @@ import Dashboard from './components/pages/admin/dashboard/Dashboard';
 import Schedule from './components/pages/sharedpages/schedule/Schedule';
 import Scan from './components/pages/sharedpages/scan/Scan';
 import InstHome from './components/pages/instructor/InstHome';
-
 import { 
   AttendanceCardLower,
   EmployeesCardLower, 
@@ -28,6 +27,9 @@ from './components/pages/admin/dashboard/index'
 import Messages from './components/pages/admin/messages/Messages';
 import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
+import StudentHome from './components/pages/student/StudentHome';
+
+
 
 const ROLES = {
   'Student': 2001,
@@ -74,6 +76,7 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Student]} />}>
             <Route path="student" element={<Student />} >
               <Route path="schedule" element={<Schedule/>} />
+              <Route path="home" element={<StudentHome/>} />
               <Route path="my-qr" element={<MyQR/>} />
               <Route path="Scan" element={<Scan/>} />
             </Route>

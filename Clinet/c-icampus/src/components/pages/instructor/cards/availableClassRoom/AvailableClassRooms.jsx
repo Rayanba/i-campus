@@ -1,7 +1,5 @@
 import style from './AvailableClassRooms.module.css'
-import InstHomeCard from './availableCard/AvailableCard';
 import { FaEllipsisV } from "react-icons/fa";
-import React from 'react';
 import AvailableCard from './availableCard/AvailableCard';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -22,8 +20,7 @@ export const option ={
     },
     
     
-    // with: (100),
-    // height: (100),
+    
 
 }
 }
@@ -56,37 +53,6 @@ export const data = {
 };
 
 
-
-
-
-
-
-
-<div className={style.availableClassRoomsContainer}>
-     
-            <div className={style.availableClassRoomsFloor}>
-            
-        </div>
-        <div className={style.availableClassRoomsChart}>
-              <div className={style.donutCont}>
-                  
-              </div>
-        </div>
-      </div>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const AvailableClassRooms = () => {
   
   // const  imagess = createImage();
@@ -95,7 +61,7 @@ const AvailableClassRooms = () => {
     title={'Available Class Rooms'}
     options={<FaEllipsisV/>}
     body={
-      <div>
+      <div className={style.availableClassRoomsContainer}>
         <div className={style.firstFloor}>
             <dev className={style.availableClassRoomsRoom}><p>101</p></dev>
             <dev className={style.availableClassRoomsRoom}><p>102</p></dev>

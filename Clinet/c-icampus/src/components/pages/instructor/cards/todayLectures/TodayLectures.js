@@ -12,6 +12,10 @@ import { FaEllipsisV } from "react-icons/fa";
 const TodayLectures = () => {
 
   const Lectures = ['23573', 'IT-230', '5:00', '5:55', '218']
+
+
+  
+
   return(
     <InstHomeCard
     title={'Today Lectures'}
@@ -277,10 +281,7 @@ const TodayLectures = () => {
         <div className={style.todatLecturesRows}>
         <p>218</p>
         </div>
-      </div>
-
-
-
+      </div>  
       </div> 
     }
     />

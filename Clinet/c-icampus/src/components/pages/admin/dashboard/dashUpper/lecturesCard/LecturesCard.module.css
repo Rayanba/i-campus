@@ -1,47 +1,8 @@
-.UpperLecturesContainer {
-    /* border: 1px solid red; */
-    width: 99%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-/* h5 {
-    margin-bottom: -5px;
-} */
-
-.UpperLecturesleft {
-    /* border: 1px solid blue; */
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.UpperLecturesRight{
-    /* border: 1px solid orange; */
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.UpperLecturesBarCont{
-    margin-top: -40px;
-    position: relative;
-    height: 20px;
-    width: 200px;
-    /* flex-grow: 1; */
-    border-radius: 2rem;
-    background-color: rgb(230, 230, 230);
-    box-shadow: 2px 0px 4px 0px rgba(0,0,0,0.22);
-    -webkit-box-shadow: 2px 0px 4px 0px rgba(0,0,0,0.22);
-    -moz-box-shadow: 2px 0px 4px 0px rgba(0,0,0,0.22);
-}
-.UpperLecturesBarVal{
-    /* backgroundColor: `${blue}`,
-								height: '100%',
-								borderRadius: '2rem',
-								width: `${ utili[1][1] * 100 / utili[1][0]}%` */
-    background-color: #83AEF2;
+.adminLectureChartPart{
     height: 100%;
-    border-radius: 2rem;
+    width: 100%;
+    
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }

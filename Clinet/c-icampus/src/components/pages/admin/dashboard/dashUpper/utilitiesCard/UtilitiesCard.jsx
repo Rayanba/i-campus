@@ -9,7 +9,7 @@ import { useOutletContext } from 'react-router-dom';
 function UtilitiesCard (){
 	const socket = useContext(SocketContext);
 	const [barColor, setBarColor] = useState('');
-	const {dashData} = useOutletContext();
+	const {upperUtilities} = useOutletContext();
 
 	const blue = '#83aef2';
 	
@@ -26,7 +26,7 @@ function UtilitiesCard (){
 					body= {
 					<div className={style.uCardWrapper}>
 						<ul>
-					{Object.entries(dashData).map(utili => 
+					{Object.entries(upperUtilities).map(utili => 
 						<li key={utili} >
 							<h3 >{utili[0][0].charAt(0).toUpperCase() + utili[0].slice(1)}</h3>
 							<div className={style.utilityBarContainer} >

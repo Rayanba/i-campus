@@ -27,9 +27,11 @@ function Dashboard (){
                 </Link>
             </div>
             <div className={styles.dashLower}>
-            <div className={styles.Lowercard}>
-                <Outlet/>
-            </div>
+                <div className={styles.Lowercard}>
+                    
+                        <Outlet/>
+                    
+                </div>
             
             </div>
         </div>

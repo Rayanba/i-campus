@@ -1,39 +1,51 @@
 import UpperCard from '../UpperCard';
 import style from './LecturesCard.module.css'
 import { FaEllipsisV } from "react-icons/fa";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
+ChartJS.register(ArcElement, Tooltip, Legend);
+export const option ={
+  aspectRatio: [2],
+  plugins: {
+
+    legend: {
+      labels: {boxHeight: 20, boxWidth: 30, font :{size: 16, family: 'Poppins'}, borderRadius: 20 },
+
+        
+      position: 'left',
+    },
+}
+}
+export const data = {
+  labels: ['On Going', 'Up Comming', 'Finished'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 20],
+      backgroundColor: [
+        '#ff726f',
+        '#83aef2',
+        '#83f2d0',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
 function LecturesCard (){
     return (
             <UpperCard
             title={'Lectures'}
             options= {<FaEllipsisV/>}
             body= {
-              <div className={style.UpperLecturesContainer }>
-                    <div className={style.UpperLecturesleft }>
-                        <h3>Class Rooms</h3>
-                            <div className={style.UpperLecturesBarCont }>
-                                <div className={style.UpperLecturesBarVal }>
-                                </div>
-                            </div>
-                        <h3>Labs</h3>
-                            <div className={style.UpperLecturesBarCont }>
-                                <div className={style.UpperLecturesBarVal }>
-                                </div>
-                            </div>
-                    </div>
-                    <div className={style.UpperLecturesRight}>
-                        <h3>Theatre</h3>
-                            <div className={style.UpperLecturesBarCont }>
-                                <div className={style.UpperLecturesBarVal }>
-                                </div>
-                            </div>
-                        <h3>Office</h3>
-                            <div className={style.UpperLecturesBarCont }>
-                                <div className={style.UpperLecturesBarVal }>
-                                </div>
-                            </div>
-                    </div>
-                </div>
+              <div className={style.adminLectureChartPart}>
+                  <Doughnut data={data} className={style.dunot} options={option} />
+              </div>
                 
             }
             />

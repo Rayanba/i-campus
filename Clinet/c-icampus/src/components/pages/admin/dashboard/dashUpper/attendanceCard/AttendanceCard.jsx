@@ -7,26 +7,24 @@ import { FaEllipsisV } from "react-icons/fa";
 function AttendanceCard (){
 
     return (
-       
-        
             <UpperCard
             title={'Attendance'}
             options= {<FaEllipsisV/>}
             body= {
-                <div className={style.UpperFacilitiesleft }>
+                <div className={style.upperAttendanceContainer }>
+                    <div className={style.UpperFacilitiesInstContainer}>
                         <h3>Instructors</h3>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
-                            </div>
-                        <h3>Student</h3>
-                            <div className={style.UpperFacilitiesBarCont }>
-                                <div className={style.UpperFacilitiesBarVal }>
-
-                                </div>
-                            </div>
+                        <div className={style.UpperFacilitiesBarContainer} >
+                            <div className={style.UpperFacilitiesBar}></div>
+                        </div>
+                    </div >
+                    <div className={style.UpperFacilitiesInstContainer}>
+                        <h3>Students</h3>
+                        <div className={style.UpperFacilitiesBarContainer}>
+                            <div className={style.UpperFacilitiesBar}></div>
+                        </div>
                     </div>
+                </div>
             }
             />
             

@@ -1,5 +1,5 @@
 import LowerCard from '../LowerCard';
-// import styles from "./UtilitiesCardLower.module.css"; 
+import style from "./UtilitiesCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 
 
@@ -8,7 +8,17 @@ function UtilitiesCardLower (){
         <LowerCard
         title={'Utilities Lower'}
         options={<FaEllipsisV/>}
-        body={<h1>hello</h1>}
+        body={
+        <div className={style.adminUtilitiesLowerContainer}>
+            <div className={style.adminUtilitiesLowerleft}>
+                
+            </div>
+            <div className={style.adminUtilitiesLowerRight}></div>
+        </div>
+            
+    
+    
+        }
         />
     )
 }

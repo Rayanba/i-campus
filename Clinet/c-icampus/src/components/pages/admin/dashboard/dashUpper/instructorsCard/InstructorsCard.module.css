@@ -1,19 +1,8 @@
-.lecturePieChartContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;  
-  }
+.adminInstructorChartPart{
+  height: 100%;
+  width: 100%;
   
-  .PieChartDiv{
-    /* border: 1px solid red; */
-    display: flex;
-    
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 250px;
-  }
-  .doff{
-    /* border: 1px solid red; */
-  
-    margin-right: 100px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

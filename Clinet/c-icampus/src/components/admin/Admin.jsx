@@ -6,6 +6,7 @@ import Topbar from '../pages/topbar/Topbar';
 import Sidebar from '../pages/sidebar/Sidebar';
 
 function Admin () {
+
     const adminSidebarNavLinks = ["dashboard", "messages","Reports", "scan", "my-QR"];
     const socket = useContext(SocketContext);
     const [isConnected, setIsConnected] = useState(true);
@@ -14,16 +15,34 @@ function Admin () {
     const [lastPong, setLastPong] = useState(null);
     const [unAuthorizedEvent , setUnAuthorizedEvent] = useState(false);
     const [currentRooms , setCurrentRooms] = useState();
-	const [utilitiesLoad, setUtilitiesLoad] = useState([]);
-    const [dashData, DashData] = useState([{}]);
+
+    //////////////////////Upper Cards/////////////////////////////
+	const [upperUtilities, setUpperUtilities] = useState([{}]);
+    const [upperLectures, setUpperLectures] = useState([{}]); 
+    const [upperFacilities, setUpperFacilities] = useState([{}]); 
+    const [upperAttendance, setUpperAttendance] = useState([{}]); 
+    const [upperStudents, setUpperStudents] = useState([{}]); 
+    const [upperInstructors, setUpperInstructors] = useState([{}]); 
+    const [upperEmployees, setUpperEmployees] = useState([{}]); 
+    ////////////////////// Lower Cards /////////////////////////////
+    const [lowerUtilities, setLowerUtilities] = useState([{}]);
+    const [lowerLectures, setLowerLectures] = useState([{}]); 
+    const [lowerFacilities, setLowerFacilities] = useState([{}]); 
+    const [lowerAttendance, setLowerAttendance] = useState([{}]); 
+    const [lowerStudents, setLowerStudents] = useState([{}]); 
+    const [lowerInstructors, setLowerInstructors] = useState([{}]); 
+    const [lowerEmployees, setLowerEmployees] = useState([{}]); 
     
     useEffect(() => {
+        //////////////////////////////////////////////
+        ///////////////// Essintials /////////////////
+        //////////////////////////////////////////////
+
         //////// CONNECT ////////////
         socket.on('connect', () => {
             setIsConnected(true);
 
         });
-        
         //////// DISCONECT ///////////
         socket.on('disconnect', () => {
             setIsConnected(false);
@@ -38,24 +57,88 @@ function Admin () {
         socket.on("unAuthorized", () =>{
             console.log('unauthorized recieved')
 
-        })
+        });
         /////// CURRENT ROOMS ////////////////
         socket.on("myRoom", (obj) => {
-            setCurrentRooms.y(obj);
+            setCurrentRooms(obj);
             console.log(obj);
 
-        })
-        ////////// UTILITY LOAD ////////////////
-        socket.on("NewutilitiesLoad", (utili) =>{
+        });
+
+        //////////////////////////////////////////////
+        ///////////////// UTILITIES///// /////////////
+        //////////////////////////////////////////////
+        socket.on("upperUtilitiesLoad", (utili) =>{
 			// console.log(utili)
 			// setNewUtilitiesLoad(utili)
-            DashData(utili);
-            
+            setUpperUtilities(utili)
+		});
+        socket.on("lowerUtilitiesLoad", (utili) =>{
+			
+		});
+
+        /////////////////////////////////////////////////
+        ////////////////// Lectures /////////////////////
+        /////////////////////////////////////////////////
+        socket.on("upperLecturesLoad", (utili) =>{
+			
+		});
+        socket.on("lowerLecturesLoad", (utili) =>{
+			
 		});
         
-        //////////////////////////////////
-        /////////// INITIALIZAION //////////
-        
+        ////////////////////////////////////////////////
+        ////////////////// Facilities //////////////////
+        ////////////////////////////////////////////////
+        socket.on("upperFacilitiesLoad", (utili) =>{
+			
+		});
+        socket.on("lowerFacilitiesLoad", (utili) =>{
+			
+		});
+
+        ////////////////////////////////////////////////
+        ////////////////// Attendance //////////////////
+        ////////////////////////////////////////////////
+        socket.on("upperAttendanceLoad", (utili) =>{
+			
+		});
+        socket.on("lowerAttendanceLoad", (utili) =>{
+			
+		});
+
+        ////////////////////////////////////////////////
+        ////////////////// Students //////////////////
+        ////////////////////////////////////////////////
+        socket.on("upperStudentsLoad", (utili) =>{
+			
+		});
+        socket.on("lowerStudentsLoad", (utili) =>{
+			
+		});
+
+        ////////////////////////////////////////////////
+        ////////////////// Instructors //////////////////
+        ////////////////////////////////////////////////
+        socket.on("upperInstructorsLoad", (utili) =>{
+			
+		});
+        socket.on("lowerInstructorsLoad", (utili) =>{
+			
+		});
+
+        ////////////////////////////////////////////////
+        ////////////////// Employees //////////////////
+        ////////////////////////////////////////////////
+        socket.on("upperEmployeesLoad", (utili) =>{
+			
+		});
+        socket.on("lowerEmployeesLoad", (utili) =>{
+			
+		});
+
+
+
         /////// CLEAN-UP ////////////
         return () => {
         socket.off('connect');
@@ -65,16 +148,17 @@ function Admin () {
         };
         
     }, []);
+
+
+
+
     useEffect(() =>{
         if (isConnected){
             socket.emit("imAdmin")
  
         }
-    },[isConnected])
+    },[isConnected]);
 
-    useEffect(()=>{
-
-    },[])
     const sendPing = () => {
         socket.emit('ping');
     }
@@ -150,7 +234,7 @@ function Admin () {
                     <Users />
                     <br/> */}
                     <div className={styles.adminPages }>  
-                        <Outlet context={{dashData,lastPong}}/>
+                        <Outlet context={{upperUtilities}}/>
                     </div>
                 </div>
             </div>

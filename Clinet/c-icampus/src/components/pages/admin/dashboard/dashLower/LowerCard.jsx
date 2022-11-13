@@ -2,7 +2,7 @@ import styles from './LowerCard.module.css';
 
 
 
-function LowerCard ({title, options, body}){
+const LowerCard = ({title, options, body}) => {
 
 
   return (

@@ -10,6 +10,15 @@ class Utility {
   async save() {
   
   }
+
+  static OngoingCourse_Instrctor(instName){
+    let sql = `SELECT  course.course_name AS name
+    FROM lecture
+    JOIN course on course.course_id = lecture.course_id
+    JOIN users on users.user_id = lecture.user_id
+    WHERE course_day =  DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME AND username="${instName}";`;
+    return db.execute(sql)
+  }
   
   static findAll() {
   let sql = `SELECT DISTINCT utility_name AS name from utility;`
@@ -26,7 +35,7 @@ class Utility {
       return db.execute(sql)
   } 
   static loopUtilitiesMin (name){
-    let sql = `Select utility_name, count(utility_availablitiy) AS min from utility where utility_name = '${name}' and utility_availablitiy = true;`;
+    let sql = `Select utility_name, count(utility_avaliability) AS min from utility where utility_name = '${name}' and utility_avaliability = true;`;
       return db.execute(sql)
   } 
 
