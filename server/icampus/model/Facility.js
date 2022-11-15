@@ -1,4 +1,4 @@
-const db = require('../config/db')
+const db = require('../config/dbConn')
 
 class Facility {
 constructor() {
@@ -11,19 +11,57 @@ async save() {
 
 }
 
+static findBusyFacility() {
+let sql = `SELECT count(facility.facility_number) AS Busys
+FROM course
+JOIN facility ON facility.facility_id = course.facility_id
+WHERE course_day = DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME;`
+return db.execute(sql);
+}
+
+static findOutFacility() {
+let sql = `SELECT count(facility_number) AS outservice FROM 
+facility WHERE  facility_availability = false ;`
+return db.execute(sql);
+}
+
+static findAvailableFacility() {
+let sql = `SELECT count(facility_number) AS Available FROM 
+facility WHERE  facility_availability = true ;`
+return db.execute(sql);
+}
+
+static findAllFacilitiesRooms(){
+let sql = `SELECT facility_number AS room, facility_availability AS availabil, is_busy  AS Busy FROM 
+facility WHERE facility_floor = 1;`
+
+return db.execute(sql);
+}
+static findAllFacilitiesRoomsSecFloor(){
+let sql = `SELECT facility_number AS room, facility_availability AS availabil, is_busy  AS Busy FROM 
+facility WHERE facility_floor = 2;`
+
+return db.execute(sql);
+}
+
+
+
+
+
+
 static findAll() {
 let sql = `SELECT DISTINCT facility_name from facility;`
-return db.execute(sql)
+return db.execute(sql);
 }
 
 static findAllClassRoom() {
     let sql = `Select count(facility_name) AS max  from facility where facility_name = 'classRoom';`
-    return db.execute(sql)
+    return db.execute(sql);
 }
 
 static findAllLab() {
     let sql = `Select count(facility_name)AS max  from facility where  facility_name = 'lab';`
-    return db.execute(sql)
+    return db.execute(sql);
 }
 
 static findAllBathRoom() {

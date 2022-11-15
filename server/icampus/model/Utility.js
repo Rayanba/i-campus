@@ -39,6 +39,15 @@ class Utility {
       return db.execute(sql)
   } 
 
+  static findReportedUtilities (){
+    let sql = `  SELECT utility.utility_name as utility,utility.utility_id AS id, report.report_id AS reportNumber, facility.facility_number AS Room, report.report_message AS report, users.username AS userPostIt, users.first_name AS name
+    FROM report
+    JOIN utility on utility.utility_id = report.utility_id 
+    JOIN facility on facility.facility_id = utility.facility_id
+     JOIN users on users.user_id = report.user_id;`;
+      return db.execute(sql)
+  } 
+
  
    
   static findAllProjector() {

@@ -6,9 +6,11 @@ import Topbar from '../pages/topbar/Topbar';
 import Sidebar from '../pages/sidebar/Sidebar';
 
 function Admin () {
-
+    
     const adminSidebarNavLinks = ["dashboard", "messages","Reports", "scan", "my-QR"];
     const socket = useContext(SocketContext);
+    socket.connect()
+
     const [isConnected, setIsConnected] = useState(true);
     const [socketId] = useState(socket.id);
     const [socketall] = useState(socket);
@@ -16,27 +18,45 @@ function Admin () {
     const [unAuthorizedEvent , setUnAuthorizedEvent] = useState(false);
     const [currentRooms , setCurrentRooms] = useState();
 
-    //////////////////////Upper Cards/////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    ////////////////////// Upper Cards /////////////////////////////
 	const [upperUtilities, setUpperUtilities] = useState([{}]);
-    const [upperLectures, setUpperLectures] = useState([{}]); 
-    const [upperFacilities, setUpperFacilities] = useState([{}]); 
-    const [upperAttendance, setUpperAttendance] = useState([{}]); 
-    const [upperStudents, setUpperStudents] = useState([{}]); 
-    const [upperInstructors, setUpperInstructors] = useState([{}]); 
-    const [upperEmployees, setUpperEmployees] = useState([{}]); 
+    ////////////////////////// Lectures ////////////////////////////
+    const [upperLecturesOnGo, setUpperLecturesOnGo] = useState(); 
+    const [upperLecturesFin, setUpperLecturesFin] = useState(); 
+    // console.log(upperLecturesFin);
+    const [upperLecturesCom, setUpperLecturesCom] = useState(); 
+    // console.log(upperLecturesCom);
+    ////////////////////////// Facilities //////////////////////////
+    const [upperFacilities, setUpperFacilities] = useState([]); 
+    // console.log(upperFacilities);
+    const [upperAttendance, setUpperAttendance] = useState([]); 
+    // console.log(upperAttendance[0]);
+    const [upperStudents, setUpperStudents] = useState([]); 
+
+    const [upperInstructors, setUpperInstructors] = useState([]); 
+
+    const [upperEmployees, setUpperEmployees] = useState([]); 
     ////////////////////// Lower Cards /////////////////////////////
-    const [lowerUtilities, setLowerUtilities] = useState([{}]);
-    const [lowerLectures, setLowerLectures] = useState([{}]); 
-    const [lowerFacilities, setLowerFacilities] = useState([{}]); 
-    const [lowerAttendance, setLowerAttendance] = useState([{}]); 
-    const [lowerStudents, setLowerStudents] = useState([{}]); 
-    const [lowerInstructors, setLowerInstructors] = useState([{}]); 
-    const [lowerEmployees, setLowerEmployees] = useState([{}]); 
+    var [lowerUtilities, setLowerUtilities] = useState([]);
+
+
+    var [lowerLectures, setLowerLectures] = useState([]); 
+    // console.log(lowerLectures)
+    var [lowerFacilities, setLowerFacilities] = useState([]); 
+    // console.log(lowerFacilities[0]);
+    var [lowerFacilitiesSec, setLowerFacilitiesSec] = useState([]); 
+    // console.log(lowerFacilities[0]);
+    var [lowerAttendance, setLowerAttendance] = useState([]); 
+
+    var [lowerStudents, setLowerStudents] = useState([]); 
+    var [lowerInstructors, setLowerInstructors] = useState([]); 
+    var [lowerEmployees, setLowerEmployees] = useState([]); 
     
     useEffect(() => {
-        //////////////////////////////////////////////
-        ///////////////// Essintials /////////////////
-        //////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        ////////////////////// Essintials ///////////////////////
+        /////////////////////////////////////////////////////////
 
         //////// CONNECT ////////////
         socket.on('connect', () => {
@@ -66,77 +86,90 @@ function Admin () {
         });
 
         //////////////////////////////////////////////
-        ///////////////// UTILITIES///// /////////////
+        ///////////////// UTILITIES //////////////////
         //////////////////////////////////////////////
         socket.on("upperUtilitiesLoad", (utili) =>{
-			// console.log(utili)
-			// setNewUtilitiesLoad(utili)
+
             setUpperUtilities(utili)
 		});
         socket.on("lowerUtilitiesLoad", (utili) =>{
-			
+			setLowerUtilities(utili)
 		});
 
         /////////////////////////////////////////////////
         ////////////////// Lectures /////////////////////
         /////////////////////////////////////////////////
-        socket.on("upperLecturesLoad", (utili) =>{
+        socket.on("upperLecturesLoadOnGo", (utili) =>{
+			setUpperLecturesOnGo(utili)
+		});
+        socket.on("upperLecturesLoadFin", (utili) =>{
+			setUpperLecturesFin(utili)
 			
 		});
-        socket.on("lowerLecturesLoad", (utili) =>{
+        
+        socket.on("upperLecturesLoadCom", (utili) =>{
+			setUpperLecturesCom(utili)
 			
+		});
+        
+        socket.on("lowerLecturesLoad", (utili) =>{
+			setLowerLectures(utili)
 		});
         
         ////////////////////////////////////////////////
         ////////////////// Facilities //////////////////
         ////////////////////////////////////////////////
         socket.on("upperFacilitiesLoad", (utili) =>{
-			
+			setUpperFacilities(utili)
 		});
+        
         socket.on("lowerFacilitiesLoad", (utili) =>{
-			
+			setLowerFacilities(utili)
+		});
+        socket.on("lowerFacilitiesLoadSec", (utili) =>{
+			setLowerFacilitiesSec(utili)
 		});
 
         ////////////////////////////////////////////////
         ////////////////// Attendance //////////////////
         ////////////////////////////////////////////////
         socket.on("upperAttendanceLoad", (utili) =>{
-			
+			setUpperAttendance(utili);
 		});
+
         socket.on("lowerAttendanceLoad", (utili) =>{
-			
+            setLowerAttendance(utili);
 		});
 
         ////////////////////////////////////////////////
-        ////////////////// Students //////////////////
+        ////////////////// Students ////////////////////
         ////////////////////////////////////////////////
         socket.on("upperStudentsLoad", (utili) =>{
-			
+			setUpperStudents(utili);
 		});
         socket.on("lowerStudentsLoad", (utili) =>{
-			
+			setLowerStudents(utili);
 		});
 
-        ////////////////////////////////////////////////
+        /////////////////////////////////////////////////
         ////////////////// Instructors //////////////////
-        ////////////////////////////////////////////////
+        /////////////////////////////////////////////////
         socket.on("upperInstructorsLoad", (utili) =>{
-			
+			setUpperInstructors(utili);
 		});
         socket.on("lowerInstructorsLoad", (utili) =>{
-			
+			setLowerInstructors(utili);
 		});
 
         ////////////////////////////////////////////////
-        ////////////////// Employees //////////////////
+        ////////////////// Employees ///////////////////
         ////////////////////////////////////////////////
         socket.on("upperEmployeesLoad", (utili) =>{
-			
+			setUpperEmployees(utili);
 		});
         socket.on("lowerEmployeesLoad", (utili) =>{
-			
+			setLowerEmployees(utili)
 		});
-
 
 
         /////// CLEAN-UP ////////////
@@ -146,7 +179,6 @@ function Admin () {
         socket.off('pong');
         socket.off('unAuthorized');
         };
-        
     }, []);
 
 
@@ -158,6 +190,13 @@ function Admin () {
  
         }
     },[isConnected]);
+
+    // useEffect(() =>{
+    //     if (!isConnected){
+    //         socket.connect()
+            
+    //     }
+    // },[isConnected]);
 
     const sendPing = () => {
         socket.emit('ping');
@@ -234,7 +273,7 @@ function Admin () {
                     <Users />
                     <br/> */}
                     <div className={styles.adminPages }>  
-                        <Outlet context={{upperUtilities}}/>
+                        <Outlet context={{upperUtilities, upperLecturesOnGo, upperLecturesFin, upperLecturesCom, upperFacilities, upperAttendance, upperStudents, upperInstructors, upperEmployees, lowerLectures, lowerFacilities ,lowerFacilitiesSec, lowerAttendance,lowerUtilities, lowerStudents, lowerInstructors, lowerEmployees}}/>
                     </div>
                 </div>
             </div>

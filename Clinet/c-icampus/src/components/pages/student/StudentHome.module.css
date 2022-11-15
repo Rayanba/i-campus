@@ -1,1 +1,58 @@
+.studentHomeContainer{
+  /* border: 2px solid red ; */
+  width: 100%;
+  height: 100%;
+}
+.todatLecturesContainer{
+  /* border: 3px solid orange; */
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+  /* overflow-y: scroll; */
+  
+
+}
+.todatLecturesTiltesColumns{
+  /* border: 3px solid orange; */
+
+  width: 99.5%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todatLecturesTitle{
+  /* border: 3px solid green; */
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+
+  width: 20%;
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todatLecturesColumns{
+  /* border: 1px solid blue; */
+  
+  width: 98%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todatLecturesRows{
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  /* border: 1px solid green; */
+  width: 95%;
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 

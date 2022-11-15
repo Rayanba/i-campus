@@ -32,7 +32,7 @@ try {
     }
     text = '{' + text + text.slice( 0 ,text.length -1) + '}';
     const araayT = JSON.parse(text);
-    console.log(araayT);
+    // console.log(araayT);
     // console.log(araayT['projector'][0]);
      
   

@@ -1,13 +1,19 @@
 import style from "./LecturesCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 import LowerCard from '../LowerCard';
+import { useOutletContext } from "react-router-dom";
 
+
+/// the Map need To have a Key
 
 
 function LecturesCardLower (){
+  const {lowerLectures} = useOutletContext();
+  // console.log(lowerLectures[0]['CRN']);
+
     return (
         <LowerCard
-        title={'Lectures Lower'}
+        title={'Today Lectures'}
         options={<FaEllipsisV/>}
         body={
           <div className={style.adminLowerLecturesContainer}>
@@ -20,41 +26,41 @@ function LecturesCardLower (){
                 <p>Course Name</p>
               </div>
               <div className={style.adminLowerLecturesTitle}>
-                <p>Instructor Name</p>
-              </div>
-              <div className={style.adminLowerLecturesTitle}>
                 <p>Start Time</p>
               </div>
               <div className={style.adminLowerLecturesTitle}>
                 <p>End Time</p>
               </div>
+              <div className={style.adminLowerLecturesTitle}>
+                <p>Room NO</p>
+              </div>
               <div className={style.adminLowerLecturesTitleLast}>
-                <p>unworking Facilities</p>
+                <p>instructor</p>
               </div>
             </div>
-
-
-              <div className={style.adminLowerLectueColumnContainer}>
-                <div className={style.adminLowerLectueData}>
-                  <p>23563</p>
+              {lowerLectures.map(ll => 
+        
+                <div key={ll.CRN} className={style.adminLowerLectueColumnContainer} >
+                   <div className={style.adminLowerLectueData}>
+                    <p>{ll.CRN}</p>
+                   </div>
+                   <div className={style.adminLowerLectueData}>
+                   <p>{ll.name}</p>
+                   </div>
+                   <div className={style.adminLowerLectueData}>
+                   <p>{ll.StartTime}</p>
+                   </div>
+                   <div className={style.adminLowerLectueData}>
+                   <p>{ll.EndTime}</p>
+                   </div>
+                   <div className={style.adminLowerLectueData}>
+                   <p>{ll.Room}</p>
+                   </div>
+                   <div className={style.adminLowerLectueDataLast}>
+                   <p>{ll.instructor}</p>
+                   </div>
                 </div>
-                <div className={style.adminLowerLectueData}>
-                  <p>TI-230</p>
-                </div>
-                <div className={style.adminLowerLectueData}>
-                  <p>Abdullah Albarakati</p>
-                </div>
-                <div className={style.adminLowerLectueData}>
-                  <p>5:00</p>
-                </div>
-                <div className={style.adminLowerLectueData}>
-                  <p>5:55</p>
-                </div>
-                <div className={style.adminLowerLectueDataLast}>
-                  <p>2</p>
-                </div>
-              </div>
-
+                )}
           </div>
         }
         />

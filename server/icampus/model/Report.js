@@ -25,6 +25,8 @@ async save() {
    return newReport
 }
 
+
+
 static findAllDaily() {
     let sql = `select * from report where report_date >= current_date - interval 1 day;`
     return db.execute(sql)

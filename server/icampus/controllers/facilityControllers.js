@@ -1,4 +1,4 @@
-const facility = require('../models/Facility')
+const facility = require('../model/Facility')
 
 const getAllByName = async (req ,res ,next) => {
     try {
@@ -11,34 +11,26 @@ const getAllByName = async (req ,res ,next) => {
   
 }
 
-const getAllFacilites = async (req ,res ,next) => {
+const getAllFacilitesStatus = async () => {
     try {
-  
-      const [ classRoom, ] = await facility.findAllClassRoom()
-      const jsonclassRoom = classRoom[0] 
+        
+      const [ BusyClassrooms, ] = await facility.findBusyFacility()
+      const jsonBusyClassrooms = BusyClassrooms[0] 
        
-      const [lab,] = await facility.findAllLab() 
-      const jsonlab = lab[0]
+
+
+      const [OutClassrooms,] = await facility.findOutFacility() 
+      const jsonOutClassrooms = OutClassrooms[0]
      
-      const [bathRoom, ] = await facility.findAllBathRoom() 
-      const jsonbathRoom = bathRoom[0] 
-      
-      const [theater, ] = await facility.findAllTheater()
-      const jsontheater = theater[0] 
+      const [AvailableClassrooms,] = await facility.findAvailableFacility() 
+      const jsonAvailableClassrooms = AvailableClassrooms[0]
      
-      const [office, ] = await facility.findAllOffice() 
-      const jsonoffice = office[0] 
-      
-      const [storeHouse, ] = await facility.findAllStoreHouse()
-       const jsonstoreHouse = storeHouse[0] 
-  
-    
-    
-       res.status(200).json({'classRoom': jsonclassRoom, 'lab': jsonlab, 'bathRoom': jsonbathRoom, 'theater': jsontheater, 'office': jsonoffice, 'storeHouse': jsonstoreHouse});
+        
+       return json({'available' : jsonAvailableClassrooms ,'busy': jsonBusyClassrooms, 'out': jsonOutClassrooms });
       
     } catch (error) {
         console.log(error)
-        next(error)
+    
     }
   
   }
@@ -48,7 +40,7 @@ const getAllFacilites = async (req ,res ,next) => {
   
   module.exports = {
     getAllByName,
-    getAllFacilites,
+    getAllFacilitesStatus,
   
   }
 

@@ -1,0 +1,24 @@
+.GatescanContainer{
+  width: 95%;
+  height: 95%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.GateCamOff {
+  display: none;
+
+}
+
+.GatecamOnn{
+  display: flex;
+
+}
+.GateCamButton{
+  color: black;
+  
+}

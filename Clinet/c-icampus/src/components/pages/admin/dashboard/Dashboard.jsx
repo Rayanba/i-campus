@@ -1,5 +1,5 @@
 import styles from "./Dashboard.module.css";
-import {Outlet, Link} from 'react-router-dom'
+import {Outlet, Link, useOutletContext} from 'react-router-dom'
 import { UtilitiesCard,AttendanceCard,EmployeesCard,InstructorsCard, LecturesCard, FacilitiesCard, StudentsCard} from './index';
 import { useContext, useEffect } from "react";
 import { useState } from "react";
@@ -29,7 +29,7 @@ function Dashboard (){
             <div className={styles.dashLower}>
                 <div className={styles.Lowercard}>
                     
-                        <Outlet/>
+                        <Outlet context={useOutletContext()}/>
                     
                 </div>
             

@@ -28,25 +28,27 @@ import Messages from './components/pages/admin/messages/Messages';
 import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
 import StudentHome from './components/pages/student/StudentHome';
-
+import TheGate from './components/theGate/TheGate';
 
 
 const ROLES = {
   'Student': 2001,
   'Instructor': 1984,
-  'Admin': 5150
+  'Admin': 5150,
+  'Gate': 1000
 }
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* public routes */}
+        {/* Public Routes */}
         <Route path="/" element={< Home />} />
+        
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-        {/*  protected routes */}
+        {/*  Protected Routes */}
         <Route element={<PresistLogin/>}>
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}> 
             <Route path="admin" element={<Admin />} >
@@ -59,10 +61,10 @@ function App() {
                 <Route path="students" element={<StudentsCardLower/>} />
                 <Route path="facilities" element={<FacilitiesCardLower/>} />
               </Route>
-              <Route path="messages" element={<Messages />} />
-              <Route path="Reports" element={<Reports />} />
-              <Route path="my-qr" element={<MyQR/>} />
-              <Route path="Scan" element={<Scan/>} />
+                <Route path="messages" element={<Messages />} />
+                <Route path="Reports" element={<Reports />} />
+                <Route path="my-qr" element={<MyQR/>} />
+                <Route path="Scan" element={<Scan/>} />
             </Route>
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Instructor]} />} >
@@ -81,10 +83,11 @@ function App() {
               <Route path="Scan" element={<Scan/>} />
             </Route>
           </Route>
-          <Route element={<RequireAuth allowedRoles={[ROLES.Instructor, ROLES.Admin]} />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Gate]} />}>
+            <Route path="/Gate" element={< TheGate />} />
           </Route>
         </Route>
-        {/* catch all */}
+        {/* catch Everything Else */}
         <Route path="*" element={<Missing />} />
       </Route>
     </Routes>

@@ -12,6 +12,7 @@ function Home () {
         <Link to = '/admin'>Admin</Link>
         <Link to = '/instructor'>Instructor</Link>
         <Link to = '/student'>Student</Link>
+        <Link to = '/Gate'>The Gate</Link>
       </div>
     )
 }

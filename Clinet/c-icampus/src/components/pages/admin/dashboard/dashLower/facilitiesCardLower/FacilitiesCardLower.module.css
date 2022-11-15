@@ -19,17 +19,6 @@
   flex-wrap: wrap;
 }
 
-.adminAvailableClassRoomsRoom{
-  border-radius: 1rem;
-  border: 1px solid gray;
-  width: 16%;
-  height: 16%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .firstFloor{
   border-right: 2px solid gray;
 height: 88%;
@@ -43,6 +32,46 @@ justify-content: center;
 align-items: center;
 flex-wrap: wrap;
 }
+
+.adminAvailableClassRoomsRoom{
+  border-radius: 1rem;
+  border: 1px solid gray;
+  width: 16%;
+  height: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminAvailableClassRoomsRoomOOS{
+  border-radius: 1rem;
+  background-color: #ff726f;
+  border: 1px solid gray;
+  width: 16%;
+  height: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.adminAvailableClassRoomsRoomBusy{
+  border-radius: 1rem;
+  background-color: #83f2d0;
+  border: 1px solid gray;
+  width: 16%;
+  height: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
 
 .secFloor{
   /* border-right: 2px solid gray; */

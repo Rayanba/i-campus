@@ -13,6 +13,7 @@ const {verifyJWT} = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 
+
 const PORT = process.env.PORT || 3500; 
 
 
@@ -100,6 +101,8 @@ instrument(io, {
 
 
 
+  
+
 /////////////////////////////////////////////////////////////////
 /////////////////////SOCKET-IO GENERAL Middleware /////////////////////////
 io.use( async (socket, next) =>{
@@ -150,25 +153,47 @@ const message = {
 
 //  socket connections ./ 
 io.on("connection", socket => {
+  
+
   console.log(socket.rooms)
   let [currentRooms,] = socket.rooms;
 
-  io.emit('myRoom', currentRooms);
+  socket.emit('myRoom', currentRooms);
   socket.emit('pong');
-  /// send username to all connected users
-  socket.on("join server", (username) => {
-    const user = {username};
-    users.push(user);
-    io.emit("new user", users);
-  });
-  // handle join room 
+  // socket.emit('connect');
+  
+
+//////////////////////////////////////////////////////////////
+/////////////////DISCONNECTION/////////////////////////////////
+///////////////////////////////////////////////////////////////
+socket.on("disconnecting", () => {
+  console.log(`${socket.id} loged off`); // the Set contains at least the socket ID
+});
+
+socket.on("disconnect", (reason) => {
+    console.log(reason);
+    for (const room of socket.rooms){
+        if (room !== socket.id){
+            socket.to(room).emit("user has left", socket.id);
+        }
+    }
+});
+
+//////////////////////////////////////////////////////////////
+///////////////// DISCONNECTION /////////////////////////////////
+///////////////////////////////////////////////////////////////
+
   socket.on("join room", (roomName, cb) => {
     socket.join(roomName);
     cb(message[roomName]);
     console.log(socket.id)
   });
-  
+
+
+/////////////////////////////////////////////////////////////////////////// 
 ////////////////////////////// ADMIN //////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
   socket.on("imAdmin", async ()  => {
     let adminRole = socket.roles
     if (adminRole.includes(5150)) {
@@ -181,45 +206,104 @@ io.on("connection", socket => {
 
       /////////// Upper Utilities///////////////
       const Utility = require('./model/Utility');
-      const [utilities, _] = await Utility.findAll();
+      const [utilities, ] = await Utility.findAll();
+      // console.log(` utilities is :${utilities}`);
       let araay = [];
+
       for (let i = 0 ; i < parseInt(utilities.length) ; i++){
-        // console.log(Object(utilities)[i]['name'])
+        // console.log(`all utilities are ${Object(utilities)[i]['name']}`);
         araay.push(Object(utilities)[i]['name']);
       }
+
       socket.emit("utilitiesLoad", araay);
+      
       const Utilites = require('./controllers/utilityController')
       const result = await Utilites.getAllUtilities();
       socket.emit("upperUtilitiesLoad", result);
-      console.log(result);
-      // console.log(Object(result));
 
       ///////////  Lower Utilities //////////////
       let hi = 'hi'
+
+      const [utilitiesReported, ] = await Utility.findReportedUtilities();
+      // console.log(utilitiesReported)
       ///Bring Data
-      socket.emit("lowerUtilitiesLoad", hi);
+      socket.emit("lowerUtilitiesLoad", utilitiesReported);
       
       /////////////////////////////////////////////////
       ////////////////// Lectures /////////////////////
       /////////////////////////////////////////////////
 
       /////////// Upper Lectures ///////////////
-      socket.emit("upperLecturesLoad", hi);
+
+      /////////ON Going/////////////
+      const Course = require('./model/Course');
+      const [OngoingCourses, ] = await Course.findOngoindClasses();
+      // console.log(`ongoing ${OngoingCourses[0]['InProgress']}`);
+      const [FinishedCourses, ] = await Course.findFinishedClasses();
+      // console.log(`finished ${FinishedCourses[0]['Finished']}`);
+      const [CommingCourses, ] = await Course.findCommingSoon();
+      // console.log(`Comming ${CommingCourses[0]['commingSoon']}`);
+
+
+      const [AllLectures, ] = await Course.findAllClasses();
+      // console.log(`AllClasses/Courses ${AllLectures[1]['CRN']}`);
+      // console.log(`AllClasses/Courses ${AllLectures[1]['name']}`);
+      // console.log(`AllClasses/Courses ${AllLectures[1]['StartTime']}`);
+      // console.log(`AllClasses/Courses ${AllLectures[1]['EndTime']}`);
+      // console.log(`AllClasses/Courses ${AllLectures[1]['Room']}`);
+      // console.log(`AllClasses/Courses ${AllLectures[1]['instructor']}`);
+      socket.emit("lowerLecturesLoad", AllLectures);
+      
+      if (OngoingCourses[0] !== undefined){
+        socket.emit("upperLecturesLoadOnGo", OngoingCourses[0]['InProgress']);
+      }else{
+        socket.emit("upperLecturesLoadOnGo", 0) ///
+      }
+      if (FinishedCourses[0] !== undefined){
+        socket.emit("upperLecturesLoadFin", FinishedCourses[0]['Finished']);
+      }else{
+        socket.emit("upperLecturesLoadFin", 0) ///
+      }
+      if (CommingCourses[0] !== undefined){
+        socket.emit("upperLecturesLoadCom", CommingCourses[0]['commingSoon']);
+      }else{
+        socket.emit("upperLecturesLoadCom", 0) ///
+      }
+      /////////ON Going/////////////
 
 
       /////////// Lower Lectures ///////////////
-      socket.emit("lowerLecturesLoad", hi);
-
       
+
 
       ////////////////////////////////////////////////
       ////////////////// Facilities //////////////////
       ////////////////////////////////////////////////
 
       /////////// Upper Facilites ///////////////
-      socket.emit("upperFacilitiesLoad", hi);
-      /////////// Upper Facilites ///////////////
-      socket.emit("lowerFacilitiesLoad", hi);
+
+      const Facilities = require('./model/Facility');
+      const [facilitiesbusy,] = await Facilities.findBusyFacility();
+      const [facilitiesav,] = await Facilities.findAvailableFacility();
+      const [facilitiesout,] = await Facilities.findOutFacility();
+      // console.log(facilitiesbusy[0]['Busys'], facilitiesout[0]['outservice'], facilitiesav[0]["Available"]);
+      
+      const upperFacilities = [facilitiesbusy[0]['Busys'],facilitiesout[0]['outservice'],facilitiesav[0]["Available"]]
+      // console.log(upperFacilities)
+      socket.emit("upperFacilitiesLoad", upperFacilities);
+      
+
+
+      /////////// Lower Facilites ///////////////
+
+      const [faciliiesbusy,] = await Facilities.findAllFacilitiesRooms();
+      // console.log(faciliiesbusy)
+      
+      socket.emit("lowerFacilitiesLoad", faciliiesbusy);
+      const [faciliiesbusysecFloor,] = await Facilities.findAllFacilitiesRoomsSecFloor();
+      // console.log(faciliiesbusysecFloor) 
+      socket.emit("lowerFacilitiesLoadSec", faciliiesbusysecFloor);
+
 
 
       ////////////////////////////////////////////////
@@ -227,9 +311,19 @@ io.on("connection", socket => {
       ////////////////////////////////////////////////
 
       /////////// Upper Attendance ///////////////
-      socket.emit("upperAttendanceLoad", hi);
+      const Attendance = require('./model/Attendance');
+      const [studenetAtten,] = await Attendance.findStdnAttend();
+      const [instructorAtten,] = await Attendance.findInstAttend();
+      // console.log(studenetAtten[0]['AttendStudent'], instructorAtten[0]['AttendInstructor'])
+      const upperAttendance = [studenetAtten[0]['AttendStudent'], instructorAtten[0]['AttendInstructor']]
+      socket.emit("upperAttendanceLoad", upperAttendance);
       /////////// Lower Attendance ///////////////
-      socket.emit("lowerAttendanceLoad", hi);
+
+      const [crnWithStudentNum, ] = await Attendance.findCrnStdAttendace();
+      // console.log(crnWithStudentNum)
+      socket.emit("lowerAttendanceLoad", crnWithStudentNum);
+
+
 
 
       ////////////////////////////////////////////////
@@ -237,28 +331,52 @@ io.on("connection", socket => {
       ////////////////////////////////////////////////
 
       /////////// Upper Students ///////////////
-      socket.emit("upperStudentsLoad", hi);
+      const UsersIn = require('./model/User');
+      const [InstInBuilding,] = await UsersIn.findInstInBuilding();
+      const [InstInRoom,] = await UsersIn.findInstInRoom();
+
+      const [studentInBuilding,] = await UsersIn.findStudInBuilding();
+      const [studentInRoom,] = await UsersIn.findStudInRoom();
+
+      const [EmpInBuilding,] = await UsersIn.findEmptInBuilding();
+
+      // console.log(InstInBuilding[0],InstInRoom[0]);
+      // console.log(studentInBuilding[0],studentInRoom[0]);
+      // console.log(EmpInBuilding[0]);
+
+      const UpperInstAttendance = [InstInBuilding[0],InstInRoom[0]]
+      const UpperstudentAttendance = [studentInBuilding[0],studentInRoom[0]]
+      const UpperEmpAttendance = [EmpInBuilding[0]]
+      
+
+      socket.emit("upperStudentsLoad", UpperstudentAttendance);
+      socket.emit("upperInstructorsLoad", UpperInstAttendance);
+      socket.emit("upperEmployeesLoad", UpperEmpAttendance);
+
+
       /////////// Lower Students ///////////////
-      socket.emit("lowerStudentsLoad", hi);
-
-
+      const [StudInfoInBuilding,] = await UsersIn.findStudInfoInBuilding();
+      
+      socket.emit("lowerStudentsLoad", StudInfoInBuilding);
+      
+      
       ////////////////////////////////////////////////
       ////////////////// Instructor //////////////////
       ////////////////////////////////////////////////
-
+      
       /////////// Upper Instructor ///////////////
-      socket.emit("upperInstructorsLoad", hi);
       /////////// Lower Instructor ///////////////
-      socket.emit("lowerInstructorsLoad", hi);
-
+      const [InsInfoInBuilding,] = await UsersIn.findInstInfoInBuilding();
+      socket.emit("lowerInstructorsLoad", InsInfoInBuilding);
+      
       ////////////////////////////////////////////////
       ////////////////// Employees ///////////////////
       ////////////////////////////////////////////////
-
+      
       /////////// Upper Employees ///////////////
-      socket.emit("upperEmployeesLoad", hi);
       /////////// Lower Employees ///////////////
-      socket.emit("lowerEmployeesLoad", hi);
+      const [EmpInfoInBuilding,] = await UsersIn.findEmpInfoInBuilding();
+      socket.emit("lowerEmployeesLoad", EmpInfoInBuilding);
 
 
       ////////////////////////////////////////////////
@@ -269,18 +387,6 @@ io.on("connection", socket => {
       socket.emit("upperReportsLoad", hi);
       /////////// Lower Reports ///////////////
       socket.emit("lowerReportsLoad", hi);
-
-
-
-
-
-
-
-
-
-
-
-
 
     }else{
       socket.emit("unAuthorized")
@@ -313,123 +419,179 @@ io.on("connection", socket => {
 
 
 
+/////////////////////////////////////////////////////////////////////////// 
+////////////////////////////// Instructor /////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+  socket.on("imInst",  async ()  => {
 
-
-
-
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  socket.on("inst",  ()  => {
     let adminRole = socket.roles
-    if (adminRole.includes(5150)) {
-     socket.join('Admino')
+    let id = socket.id;
+    console.log(`id is ${id}`)
+      if (adminRole.includes(1984)) {
+        socket.join('instructorRoom');
+        //this should be from Courses 
+      const Utility = require('./model/Utility');
+      const [CourseName, _] = await Utility.OngoingCourse_Instrctor(id);
+          
+      if (CourseName[0] !== undefined){
+        socket.emit('roomName', CourseName[0]['name'])
+        
+      }else{
+        socket.emit('roomName', 'No Class')
+      }
+      // console.log(CourseName[0]['name']);
+      //// bring data 
+
+
+
+
+
+      const Courses = require('./model/Course');
+      const [MyCourses, ] = await Courses.findMyClassesToday(id);
+      // console.log(MyCourses)
+      if (MyCourses !== undefined){
+        socket.emit('todayLectures', MyCourses)
+
+      }else{
+        socket.emit('todayLectures', [{'CRN':'n'}, {'name': 'n'},{'StartTime': 'n'} , {'EndTime': 'n'}, {'Room': 'n'}])
+        
+      }
       
-      console.log(true)
-      console.log(socket.rooms)
+
+
+
+      const Attendance = require('./model/Attendance');
+      const [AttendStudents, ] = await Attendance.findNowClassAttendance();
+      console.log(`Attend Student ${AttendStudents}`);
+      socket.emit("AttendStudents", AttendStudents )
+      
+
+      const Facilities = require('./model/Facility');
+      const [faciliiesbusy,] = await Facilities.findAllFacilitiesRooms();
+      // console.log(faciliiesbusy)
+      const [faciliiesbusysecFloor,] = await Facilities.findAllFacilitiesRoomsSecFloor();
+      // console.log(faciliiesbusysecFloor)
+      
+      socket.emit('floorOne', faciliiesbusy)
+      socket.emit('floorTwo', faciliiesbusysecFloor)
+
+      const [facilitiesbusy,] = await Facilities.findBusyFacility();
+      const [facilitiesav,] = await Facilities.findAvailableFacility();
+      const [facilitiesout,] = await Facilities.findOutFacility();
+      // console.log(facilitiesbusy[0]['Busys'], facilitiesout[0]['outservice'], facilitiesav[0]["Available"]);
+          
+      const upperFacilities = [facilitiesbusy[0]['Busys'],facilitiesout[0]['outservice'],facilitiesav[0]["Available"]]
+      // console.log(upperFacilities)
+      socket.emit("insPieChart", upperFacilities);
+
+
     }else{
       socket.emit("unAuthorized")
     }
+
     
-  });
 
 
- socket.on("imInst",  async (msg)  => {
 
-  let adminRole = socket.roles
-    if (adminRole.includes(1984)) {
-      socket.join('instructorRoom');
-
-  const Utility = require('./model/Utility');
-  const [CourseName, _] = await Utility.OngoingCourse_Instrctor(msg);
-  
-  console.log(CourseName[0]['name']);
-
-  //// bring data 
-    socket.emit('roomName', CourseName[0]['name'])
-    }
   });
 
 ///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-///////////////////STUENT JOIN////////////////////////
-///////////////////////////////////////////////////////////
+/////////////////// STUENT ////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-  socket.on("imStudent",  async (msg)  => {
-
+  socket.on("imStudent",  async ()  => {
+    let id = socket.id;
     let adminRole = socket.roles
+
       if (adminRole.includes(2001)) {
         socket.join("studentRoom");
-        
+        const Courses = require('./model/Course');
+        const [MyCourses, ] = await Courses.findMyClassesToday(id);
+        // console.log(MyCourses)
+
+        socket.emit('todayLecturesStud', MyCourses)
+
+
+
+
+
+
+
+      }else{
+        socket.emit("unAuthorized")
       }
-    });
-
-
-//////////////////////////REPORT//////////////////////////////
-  socket.on("reportUtility", (utilityInfo) => {
-    console.log(utilityInfo);
-      
   });
 
 
 
 
-//////////////////////////NOTIFICATION/////////only access by manager/////////////////////
-    socket.on("notification", (toUser, inRoom) => {
-      console.log(`socket id: ${toUser , inRoom} Joined join`);
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+/////////////////// General ////////////////////////////////
+///////////////////////////////////////////////////////////
+
+
+//socket should have (admin or instructor or student)
+  // socket.on("reportUtility", (utilityInfo) => {
+  //   console.log(utilityInfo);
+      
+  // });
+
+
+
+
+////////NOTIFICATION/////////only access by manager/////////////////////
+    // socket.on("notification", (toUser, inRoom) => {
+    //   console.log(`socket id: ${toUser , inRoom} Joined join`);
         
-    })
-
-
-//////////////////////////DISCONNECTION//////////////////////////////
-    socket.on("disconnecting", () => {
-      console.log(`${socket.id} loged off`); // the Set contains at least the socket ID
-    });
-
-    socket.on("disconnect", (reason) => {
-        console.log(reason);
-        for (const room of socket.rooms){
-            if (room !== socket.id){
-                socket.to(room).emit("user has left", socket.id);
-            }
-        }
-    });
+    // })
 
 
 
 
 
-////////////////////////// JOIN-AUTH ////////////////////////////
-    socket.on("joins", (place) => {
-      console.log(place);
-      socket.emit("gotit", place);
-    });
 
-    ////////////////////////////// BUILDING //////////////////////////////////////
-    socket.on("Enterance", (number) => {
-      console.log("on student:", number );
+    // ////////////////////////// JOIN-AUTH /////////////////////////////////////////
+    // socket.on("joins", (place) => {
+    //   console.log(place);
+    //   socket.emit("gotit", place);
+    // });
+
+    // ////////////////////////////// BUILDING //////////////////////////////////////
+    // socket.on("Enterance", (number) => {
+    //   console.log("on student:", number );
 
       
-    });
+    // });
     
-    ////////////////////////////// FACILITY //////////////////////////////////////
-    socket.on("facilities", (facilityName, )=> {
-      console.log("on student:", facilityName );
+    // ////////////////////////////// FACILITY //////////////////////////////////////
+    // socket.on("facilities", (facilityName, )=> {
+    //   console.log("on student:", facilityName );
 
-    });
+    // });
 
-    /////////// MY LECTURES //////////SHOULD BE AyUTO ////////////////////////////
-    socket.on("mylectures", (course, roomNum) =>{
-      console.log("on student:", course, roomNum );
+    // /////////// MY LECTURES //////////SHOULD BE AyUTO ////////////////////////////
+    // socket.on("mylectures", (course, roomNum) =>{
+    //   console.log("on student:", course, roomNum );
 
-    });
+    // });
 
-    /////////// MY LECTURES //////////SHOULD BE AyUTO ////////////////////////////
-    socket.on("Alllectures", (course, roomNum) =>{
-      console.log("on student:", course, roomNum );
+    // /////////// MY LECTURES //////////SHOULD BE AyUTO ////////////////////////////
+    // socket.on("Alllectures", (course, roomNum) =>{
+    //   console.log("on student:", course, roomNum );
 
-    });
+    // });
 
 });
 

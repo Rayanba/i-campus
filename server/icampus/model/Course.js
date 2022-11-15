@@ -9,20 +9,56 @@ async save() {
 
 }
 
+static findAllClasses(){
+    let sql = `SELECT  course.course_crn AS CRN, course_name AS name, course_start_time AS StartTime, 
+    course_end_time AS EndTime, facility.facility_number AS Room, users.username AS instructor
+     FROM course
+     JOIN facility on facility.facility_id = course.facility_id
+     JOIN lecture ON lecture.lecture_id = lecture.course_id
+     JOIN users ON users.user_id = lecture.user_id
+     WHERE course_day = DAYNAME(CURRENT_DATE) AND roles = JSON_ARRAY(1984);`
+    return db.execute(sql);
+}
+
 static findTodayClasses() {
 let sql = `SELECT count(course_date) AS TodaySchedule from course where course_date = current_date;`
 return db.execute(sql)
 }
 
 static findCommingSoon() {
-    let sql = `Select count(course_start_time) As commingSoon, (course_date) AS date from course where course_start_time >= current_time and course_date = current_date; `
+    let sql = `Select count(course_start_time) As commingSoon from course where course_start_time > current_time and course_day = dayname(current_date);`
     return db.execute(sql)
 }
 
 static findFinishedClasses() {
-    let sql = `Select count(course_end_time), (course_date) from course where course_end_time < current_time and course_date = current_date;`
+    let sql = `SELECT count(course_day) as Finished from course where course_day = dayname(current_date) AND course_end_time < current_time;`
     return db.execute(sql)
 }
+static findOngoindClasses(){
+    let sql= `Select count(course_start_time) as InProgress from course where course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME and course_day = dayname(current_date);`
+    return db.execute(sql)
+}
+
+static findMyClassesToday(userId){
+    let sql= `SELECT  course.course_crn AS CRN, course_name AS name, course_start_time AS StartTime, 
+    course_end_time AS EndTime, facility.facility_number AS Room
+     FROM lecture
+     JOIN course ON course.course_id = lecture.course_id
+     JOIN users ON users.user_id = lecture.user_id
+     JOIN facility ON facility.facility_id = course.facility_id
+     WHERE course_day = DAYNAME(CURRENT_DATE) AND username = '${userId}';`
+
+    return db.execute(sql)
+
+}
+
+
+
+
+
+
+
+
 
 // static findAllBathRoom() {
 //     let sql = `Select count(facility_name) AS max  from facility where facility_name = 'bathRoom';`

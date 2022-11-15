@@ -9,9 +9,11 @@ import { SocketContext } from '../../context/SocketProvider';
 
 function Student () {
     const socket = useContext(SocketContext);
+    socket.connect()
     const [isConnected, setIsConnected] = useState(true);
     const [currentRooms , setCurrentRooms] = useState();
-
+    const [Schedual , setSchedual] = useState();
+    
     useEffect(() =>{
         //////////////////////////////////////////////
         ///////////////// Essintials /////////////////
@@ -36,9 +38,18 @@ function Student () {
         /////// CURRENT ROOMS ////////////////
         socket.on("myRoom", (obj) => {
             setCurrentRooms(obj);
-            console.log(obj);
 
         });
+        socket.on("todayLecturesStud", (obj) => {
+            setSchedual(obj);
+
+        });
+        /////// CLEAN-UP ////////////
+        return () => {
+        socket.off('connect');
+        socket.off('disconnect');
+        socket.off('unAuthorized');
+        };
        
 
     },[])
@@ -50,6 +61,12 @@ function Student () {
             
         }
     },[isConnected]);
+    // useEffect(() =>{
+    //     if (!isConnected){
+    //         socket.connect()
+            
+    //     }
+    // },[isConnected]);
 
 
 
@@ -82,7 +99,7 @@ function Student () {
                 </div>
                 <div className={styles.studentPagesContainer}>
                     <div className={styles.studentPages }>  
-                        <Outlet/>
+                        <Outlet context={{Schedual}}/>
                     </div>
                 </div>
             </div>

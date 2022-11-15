@@ -1,11 +1,13 @@
 import UpperCard from '../UpperCard';
 import style from './AttendanceCard.module.css'
 import { FaEllipsisV } from "react-icons/fa";
+import { useOutletContext } from 'react-router-dom';
 // import DontChart from 'react-donut-chart';
 
 
 function AttendanceCard (){
-
+    const {upperAttendance} = useOutletContext();
+    console.log(upperAttendance[0]);
     return (
             <UpperCard
             title={'Attendance'}

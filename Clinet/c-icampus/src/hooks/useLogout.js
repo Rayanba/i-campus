@@ -1,9 +1,11 @@
 
 import axios from "../api/axios";
 import useAuth from "./useAuth";
-
+import {SocketContext} from '../context/SocketProvider'
+import { useContext } from "react";
 
 const useLogout = () => {
+    const socket = useContext(SocketContext);
     const { setAuth } = useAuth();
     
     const logout = async () => {
@@ -13,6 +15,7 @@ const useLogout = () => {
                 withCredentials: true
                 
             });
+            socket.disconnect()
             
         } catch (err) {
             console.error(err);
