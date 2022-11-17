@@ -28,18 +28,18 @@ const data = {
   datasets: [
     {
       label: '# of Votes',
-      data: [upperFacilities[1], upperFacilities[0],upperFacilities[2]],
+      data: [upperFacilities[1], upperFacilities[0],upperFacilities[2] - upperFacilities[0]],
       backgroundColor: [
         '#ff726f',
         '#83aef2',
-        '#83f2d0',
+        '#f5f5f5',
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
+        '#bfbfbf',
       ],
-      borderWidth: 0,
+      borderWidth: 1,
     },
   ],
 };

@@ -11,12 +11,12 @@ async save() {
 
 static findAllClasses(){
     let sql = `SELECT  course.course_crn AS CRN, course_name AS name, course_start_time AS StartTime, 
-    course_end_time AS EndTime, facility.facility_number AS Room, users.username AS instructor
-     FROM course
-     JOIN facility on facility.facility_id = course.facility_id
-     JOIN lecture ON lecture.lecture_id = lecture.course_id
+    course_end_time AS EndTime, facility.facility_number AS Room, users.username AS Instructor
+     FROM lecture
+     JOIN course ON course.course_id = lecture.course_id
      JOIN users ON users.user_id = lecture.user_id
-     WHERE course_day = DAYNAME(CURRENT_DATE) AND roles = JSON_ARRAY(1984);`
+     JOIN facility on facility.facility_id = course.facility_id
+     WHERE course_day = DAYNAME(CURRENT_DATE) AND users.roles = JSON_ARRAY(1984);`
     return db.execute(sql);
 }
 

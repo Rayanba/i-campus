@@ -9,10 +9,10 @@ const MyQR = () => {
 
         <QRCode
         id=""
-        value="https://seu.ehjgu.sa" 
+        value="101" 
         size={300}
          />
-
+  
 
     </div>
   )

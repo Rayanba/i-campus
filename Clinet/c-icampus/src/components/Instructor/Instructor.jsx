@@ -13,6 +13,7 @@ function Instructor () {
     const socket = useContext(SocketContext);
     socket.connect()
     const [isConnected, setIsConnected] = useState(true);
+    const [isConnectedChi, setIsConnectedChi] = useState(true);
     const [roomName, setRoomName] = useState([]);
     const [attendStudent, setAttendStudent] = useState([]);
     const [todayLectures, setTodayLectures] = useState([]);
@@ -26,40 +27,40 @@ function Instructor () {
     useEffect(() =>{
       socket.on('connect', () => {
         setIsConnected(true);
-  
-    });
+        setIsConnectedChi(true)
+      });
     
     //////// DISCONECT ///////////
     socket.on('disconnect', () => {
         setIsConnected(false);
     
-    });
+     });
     //////// ROOM NAME ///////////
     socket.on('roomName', (msg) => {
         setRoomName(msg)
       
-    });
+      });
   
     socket.on("unAuthorized", () =>{
       console.log('unauthorized recieved')
       
-    });
+      });
     socket.on("todayLectures", (data) =>{
       setTodayLectures(data)
       
-    });
+      });
     socket.on("AttendStudents", (data) =>{
         setAttendStudent(data)
       
-    });
+      });
     socket.on("floorOne", (data) =>{
         setFloorOne(data)
       
-    });
+      });
     socket.on("floorTwo", (data) =>{
         setFloorTwo(data)
       
-    });
+     });
     socket.on("insPieChart", (data) =>{
         setpieChart(data)
       
@@ -122,7 +123,7 @@ function Instructor () {
                 </div>
                 <div className={styles.instructorPagesContainer}>
                     <div className={styles.instructorPages }>  
-                        <Outlet context={{roomName,todayLectures, attendStudent, floorOne, floorTwo, pieChart}}/>
+                        <Outlet context={{roomName,todayLectures, attendStudent, floorOne, floorTwo, pieChart, isConnectedChi}}/>
 
                     </div>
                 </div>

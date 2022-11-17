@@ -2,14 +2,25 @@ import LowerCard from '../LowerCard';
 import style from "./EmployeesCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 import { useOutletContext } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 
 
 function EmployeesCardLower (){
 //   const toolbarOptions = ['Search'];
-const {lowerEmployees} = useOutletContext();
+    const {lowerEmployees} = useOutletContext();
+    const [first, setfirst] = useState([{'email': ""}, {'firstName': ""}, {'lastName': ""}, {'phone': ""}, {'username': ""}]);
 
-
+    useEffect(() =>{
+        try {
+            if(lowerEmployees){
+                setfirst(lowerEmployees);
+            }
+        } catch (err) {
+            // console.error(err)
+        }
+    }, [lowerEmployees])
     return (
         <LowerCard
         title={'Employees In Buiding'}
@@ -33,23 +44,9 @@ const {lowerEmployees} = useOutletContext();
                     </div>
                 </div>
 
-                <div className={style.adminLowerUtilityColumnContainer}> 
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>dfd</p>
-                    </div>
-                </div>
 
-                {<p>No One</p> || lowerEmployees.map(ls => 
-                    <div className={style.adminLowerUtilityColumnContainer}> 
+                {first.map(ls => 
+                    <div key={ls.username} className={style.adminLowerUtilityColumnContainer}> 
                     <div className={style.adminLowerUtilityData}>
                         <p>{ls.username}</p>
                     </div>
@@ -63,7 +60,7 @@ const {lowerEmployees} = useOutletContext();
                         <p>{ls.phone}</p>
                     </div>
                 </div>
-                    )}
+                )}
                  
             </div>
         </div>

@@ -2,10 +2,27 @@ import LowerCard from '../LowerCard';
 import style from "./InstructorsCardLower.module.css"; 
 import { FaEllipsisV } from "react-icons/fa";
 import { useOutletContext } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 function InstructorsCardLower (){
-const {lowerEmployees} = useOutletContext();
+    const {lowerInstructors} = useOutletContext();
+    // console.log(lowerInstructors)
+    const [instInfo, setInstInfo] = useState([{'email': ""}, {'firstName': ""}, {'lastName': ""}, {'phone': ""}, {'username': ""}]);
+    
+    useEffect(() =>{
+        try {
+            if(lowerInstructors){
+
+                setInstInfo(lowerInstructors);
+                console.log('wooow')
+            }
+            
+        } catch (err) {
+            // console.error(err)
+        }
+
+    },[lowerInstructors]);
 
 
     return (
@@ -31,23 +48,8 @@ const {lowerEmployees} = useOutletContext();
                     </div>
                 </div>
 
-                <div className={style.adminLowerUtilityColumnContainer}> 
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>f</p>
-                    </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>dfd</p>
-                    </div>
-                </div>
-
-                {<p>No One</p> || lowerEmployees.map(ls => 
-                    <div className={style.adminLowerUtilityColumnContainer}> 
+                { instInfo.map(ls => 
+                <div key={ls.username}  className={style.adminLowerUtilityColumnContainer}> 
                     <div className={style.adminLowerUtilityData}>
                         <p>{ls.username}</p>
                     </div>
@@ -55,13 +57,13 @@ const {lowerEmployees} = useOutletContext();
                         <p>{ls.email}</p>
                     </div>
                     <div className={style.adminLowerUtilityData}>
-                        <p>{ls.firstName + ls.lastName}</p>
+                        <p>{ls.firstName }</p>
                     </div>
                     <div className={style.adminLowerUtilityData}>
                         <p>{ls.phone}</p>
                     </div>
                 </div>
-                    )}
+                )}
                  
             </div>
         </div>

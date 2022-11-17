@@ -4,12 +4,27 @@ import { FaEllipsisV } from "react-icons/fa";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useOutletContext } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function EmployeesCard (){
   const {upperEmployees} = useOutletContext()
+  const [inBuilding , setInBuilding] = useState(0);
+  console.log(upperEmployees)
+  useEffect(() =>{
+    try {
+      if(upperEmployees){
+        setInBuilding(upperEmployees[0]['empInBuilding']);
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  },[upperEmployees]);
+
+
+
   const option ={
     aspectRatio: [2],
     plugins: {
@@ -19,19 +34,20 @@ function EmployeesCard (){
       },
     }
   }
+ 
   const data = {
-    labels: ['In Building', 'In Room'],
+    labels: ['In Building'],
     datasets: [
       {
         label: '# of Votes',
-        data: [upperEmployees[0], 19],
+        data: [inBuilding, 9],
         backgroundColor: [
-          '#ff726f',
           '#83aef2',
+          '#f5f5f5',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          '#83aef2',
+          '#f5f5f5',
         ],
         borderWidth: 1,
       },

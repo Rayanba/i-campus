@@ -12,6 +12,7 @@ const errorHandler = require('./middleware/errorHandler');
 const {verifyJWT} = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
+const { tr } = require('date-fns/locale');
 
 
 const PORT = process.env.PORT || 3500; 
@@ -286,7 +287,7 @@ socket.on("disconnect", (reason) => {
       const [facilitiesbusy,] = await Facilities.findBusyFacility();
       const [facilitiesav,] = await Facilities.findAvailableFacility();
       const [facilitiesout,] = await Facilities.findOutFacility();
-      // console.log(facilitiesbusy[0]['Busys'], facilitiesout[0]['outservice'], facilitiesav[0]["Available"]);
+      // console.log(facilitiesbusy[0]['Busys']);
       
       const upperFacilities = [facilitiesbusy[0]['Busys'],facilitiesout[0]['outservice'],facilitiesav[0]["Available"]]
       // console.log(upperFacilities)
@@ -368,7 +369,7 @@ socket.on("disconnect", (reason) => {
       /////////// Lower Instructor ///////////////
       const [InsInfoInBuilding,] = await UsersIn.findInstInfoInBuilding();
       socket.emit("lowerInstructorsLoad", InsInfoInBuilding);
-      
+
       ////////////////////////////////////////////////
       ////////////////// Employees ///////////////////
       ////////////////////////////////////////////////
@@ -384,9 +385,9 @@ socket.on("disconnect", (reason) => {
       ////////////////////////////////////////////////
 
       /////////// Upper Reports ///////////////
-      socket.emit("upperReportsLoad", hi);
+      // socket.emit("upperReportsLoad", hi);
       /////////// Lower Reports ///////////////
-      socket.emit("lowerReportsLoad", hi);
+      // socket.emit("lowerReportsLoad", hi);
 
     }else{
       socket.emit("unAuthorized")
@@ -443,7 +444,7 @@ socket.on("disconnect", (reason) => {
       //// bring data 
 
 
-
+      /// scan 
 
 
       const Courses = require('./model/Course');
@@ -462,7 +463,7 @@ socket.on("disconnect", (reason) => {
 
       const Attendance = require('./model/Attendance');
       const [AttendStudents, ] = await Attendance.findNowClassAttendance();
-      console.log(`Attend Student ${AttendStudents}`);
+      // console.log(`Attend Student ${AttendStudents}`);
       socket.emit("AttendStudents", AttendStudents )
       
 
@@ -472,8 +473,8 @@ socket.on("disconnect", (reason) => {
       const [faciliiesbusysecFloor,] = await Facilities.findAllFacilitiesRoomsSecFloor();
       // console.log(faciliiesbusysecFloor)
       
-      socket.emit('floorOne', faciliiesbusy)
-      socket.emit('floorTwo', faciliiesbusysecFloor)
+      socket.emit("floorOne", faciliiesbusy)
+      socket.emit("floorTwo", faciliiesbusysecFloor)
 
       const [facilitiesbusy,] = await Facilities.findBusyFacility();
       const [facilitiesav,] = await Facilities.findAvailableFacility();
@@ -484,6 +485,83 @@ socket.on("disconnect", (reason) => {
       // console.log(upperFacilities)
       socket.emit("insPieChart", upperFacilities);
 
+
+      socket.on("facilityID", async (data)=>{
+        console.log(typeof(data));
+
+
+        const [isBusy,] = await Facilities.findFacilityById(data);
+        console.log(isBusy[0]);
+        
+
+
+        if(isBusy[0]['is_busy'] === 0 ){
+          const result = await Facilities.updateFacilityById(data)
+          console.log(result);
+
+
+
+          const [faciliiesbusy,] = await Facilities.findAllFacilitiesRooms();
+          // console.log(faciliiesbusy)
+          socket.to('Admino').emit("lowerFacilitiesLoad", faciliiesbusy);
+          const [faciliiesbusysecFloor,] = await Facilities.findAllFacilitiesRoomsSecFloor();
+          // console.log(faciliiesbusysecFloor) 
+
+          socket.emit('roomStatus', `You Signed In room ${data}`)
+
+
+
+          socket.to('Admino').emit("lowerFacilitiesLoadSec", faciliiesbusysecFloor);
+          socket.emit("floorOne", faciliiesbusy);
+          socket.emit("floorTwo", faciliiesbusysecFloor);
+          socket.to('instructorRoom').emit("floorOne", faciliiesbusy);
+          socket.to('instructorRoom').emit("floorTwo", faciliiesbusysecFloor);
+
+
+          const [facilitiesbusy,] = await Facilities.findBusyFacility();
+          const [facilitiesav,] = await Facilities.findAvailableFacility();
+          const [facilitiesout,] = await Facilities.findOutFacility();
+          // console.log(facilitiesbusy[0]['Busys']);
+          
+          const upperFacilities = [facilitiesbusy[0]['Busys'],facilitiesout[0]['outservice'],facilitiesav[0]["Available"]]
+          // console.log(upperFacilities)
+          socket.to('Admino').emit("upperFacilitiesLoad", upperFacilities);
+
+        }
+        else{
+          const result = await Facilities.updateFacilityByIdToOff(data)
+
+
+          const [faciliiesbusy,] = await Facilities.findAllFacilitiesRooms();
+          // console.log(faciliiesbusy)
+
+          socket.emit('roomStatus', `You Signed out room ${data}`)
+
+          socket.to('Admino').emit("lowerFacilitiesLoad", faciliiesbusy);
+          const [faciliiesbusysecFloor,] = await Facilities.findAllFacilitiesRoomsSecFloor();
+          // console.log(faciliiesbusysecFloor) 
+          socket.to('Admino').emit("lowerFacilitiesLoadSec", faciliiesbusysecFloor);
+
+          socket.emit("floorOne", faciliiesbusy);
+          socket.emit('floorTwo', faciliiesbusysecFloor);
+          socket.to('instructorRoom').emit("floorOne", faciliiesbusy);
+          socket.to('instructorRoom').emit('floorTwo', faciliiesbusysecFloor);
+          console.log(result);
+
+
+          const [facilitiesbusy,] = await Facilities.findBusyFacility();
+          const [facilitiesav,] = await Facilities.findAvailableFacility();
+          const [facilitiesout,] = await Facilities.findOutFacility();
+          // console.log(facilitiesbusy[0]['Busys']);
+          
+          const upperFacilities = [facilitiesbusy[0]['Busys'],facilitiesout[0]['outservice'],facilitiesav[0]["Available"]]
+          // console.log(upperFacilities)
+          socket.to('Admino').emit("upperFacilitiesLoad", upperFacilities);
+
+        }
+
+
+      });
 
     }else{
       socket.emit("unAuthorized")
@@ -512,6 +590,8 @@ socket.on("disconnect", (reason) => {
         socket.emit('todayLecturesStud', MyCourses)
 
 
+        /// scan 
+
 
 
 
@@ -522,7 +602,91 @@ socket.on("disconnect", (reason) => {
       }
   });
 
+  
 
+  socket.on("imGate", async () => {
+    let adminRole = socket.roles;
+
+      if (adminRole.includes(1000)) {
+        socket.join("Gate");
+        
+        socket.on('userIdInandOut', async (data) => {
+          // console.log(`gate data is ${typeof(data)}`);
+          const User = require('./model/User');
+          //check 
+          const [userIsInOrOut, ] = await User.findSetUserInOrOut(data);
+
+          // console.log(userIsInOrOut);
+          // const num = userIsInOrOut[0];
+          // console.log(userIsInOrOut[0]['in_building']);
+
+          //condition
+          try {
+              if (userIsInOrOut[0]['in_building'] === 0 ){
+                
+                  const result = await User.gateSetUserIn(data);
+                  // console.log(result);
+                  
+                
+    
+              }else{
+                const result = await User.gateSetUserOut(data);
+                // console.log(result);
+              }
+            
+          } catch (error) {
+            console.log(error)
+          }
+          const UsersIn = require('./model/User');
+          const [InstInBuilding,] = await UsersIn.findInstInBuilding();
+          const [studentInBuilding,] = await UsersIn.findStudInBuilding();
+          const [EmpInBuilding,] = await UsersIn.findEmptInBuilding();
+
+          // console.log(InstInBuilding[0]);
+          // console.log(studentInBuilding[0]);
+          // console.log(EmpInBuilding[0]);
+
+        const UpperInstAttendance = [InstInBuilding[0]]
+        const UpperstudentAttendance = [studentInBuilding[0]]
+        const UpperEmpAttendance = [EmpInBuilding[0]]
+      
+
+        socket.to('Admino').emit("upperStudentsLoad", UpperstudentAttendance);
+        socket.to('Admino').emit("upperInstructorsLoad", UpperInstAttendance);
+        socket.to('Admino').emit("upperEmployeesLoad", UpperEmpAttendance);
+
+
+
+        // /////////// Lower Students ///////////////
+        const [StudInfoInBuilding,] = await UsersIn.findStudInfoInBuilding();
+        
+        socket.to('Admino').emit("lowerStudentsLoad", StudInfoInBuilding);
+        
+        /////////// Lower Instructor ///////////////
+        const [InsInfoInBuilding,] = await UsersIn.findInstInfoInBuilding();
+        socket.to('Admino').emit("lowerInstructorsLoad", InsInfoInBuilding);
+
+        /////////// Lower Employees ///////////////
+        const [EmpInfoInBuilding,] = await UsersIn.findEmpInfoInBuilding();
+        socket.to('Admino').emit("lowerEmployeesLoad", EmpInfoInBuilding);
+
+
+      } )
+
+        // socket.emit('')
+
+
+
+
+
+
+
+      }else{
+        socket.emit("unAuthorized")
+      }
+
+
+  });
 
 
 

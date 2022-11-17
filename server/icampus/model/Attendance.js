@@ -9,11 +9,14 @@ class Attendance {
     }
 
     async save() {
-    let sql = `
-    INSERT INTO attendance(course_id,user_id)VALUES('${this.course_id}','${this.user_id}')`
+    let sql = `INSERT INTO attendance(course_id,user_id)VALUES('${this.course_id}','${this.user_id}')`
+
+
     const [attendTime,_] = await db.execute(sql)
     return attendTime
     }
+
+
 
     static findAllTotall() {
     let sql = `SELECT COUNT(attendance_time) AS todayAttendance FROM attendance where attendance_time = current_date;`;
@@ -54,6 +57,19 @@ class Attendance {
         GROUP BY course_crn;`;
     return db.execute(sql)
     }
+    
+
+    static findTimeIfAttend(name , room ){
+        let sql = `SELECT  attendance.attendance_time AS name
+        FROM attendance
+        JOIN course on course.course_id = attendance.course_id
+        JOIN users on users.user_id = attendance.user_id
+        JOIN facility ON facility.facility_id = course.facility_id
+        WHERE course_day =  DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME AND  users.username ='${name}' AND facility.facility_number = ${room} AND attendance_time >= CURRENT_DATE;`
+        return db.execute(sql)
+    }
+
+
 
 
 

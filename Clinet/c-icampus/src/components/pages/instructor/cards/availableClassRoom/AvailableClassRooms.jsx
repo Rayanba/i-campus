@@ -17,28 +17,28 @@ const AvailableClassRooms = () => {
     plugins: {
   
       legend: {
-        labels: {boxHeight: 50, boxWidth: 100, font :{size: 24, family: 'Poppins'}, borderRadius: 20 },
+        labels: {boxHeight: 30, boxWidth: 20, font :{size: 24, family: 'Poppins'}, borderRadius: 20 },
         position: 'right',
       },
   }
   }
   const data = {
   
-    labels: ['Unavailable', 'Blue', 'Yellow'],
+    labels: ['Unavailable', 'Busy', 'available'],
     datasets: [
       {
         label: '# of Votes',
-        data: [pieChart[1], pieChart[0], pieChart[2]],
+        data: [pieChart[1], pieChart[0], pieChart[2] - pieChart[0]],
         backgroundColor: [
           '#ff726f',
           '#83aef2',
-          '#83f2d0',
+          '#f5f5f5',
           
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
+          '#bfbfbf',
         ],
         borderWidth: 1,
         

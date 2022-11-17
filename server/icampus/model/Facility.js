@@ -12,10 +12,7 @@ async save() {
 }
 
 static findBusyFacility() {
-let sql = `SELECT count(facility.facility_number) AS Busys
-FROM course
-JOIN facility ON facility.facility_id = course.facility_id
-WHERE course_day = DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME;`
+let sql = `SELECT COUNT(is_busy) AS Busys FROM facility WHERE is_busy = true;`
 return db.execute(sql);
 }
 
@@ -83,6 +80,45 @@ static findAllTheater() {
     let sql = `Select count(facility_name) AS max  from facility where facility_name = 'theater';`
     return db.execute(sql)
 }
+
+
+
+
+static findFacilityById(data){
+    let sql =`SELECT is_busy FROM facility WHERE facility_number = ${data};`
+
+    return db.execute(sql)
+}
+
+static updateFacilityById(data){
+    let sql =`UPDATE facility SET is_busy = true WHERE facility_number = ${data};`
+
+    return db.execute(sql)
+}
+static updateFacilityByIdToOff(data){
+    let sql =`UPDATE facility SET is_busy = false WHERE facility_number = ${data};`
+
+    return db.execute(sql)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // static findAllPrinter() {
 //     let sql = `Select count(utility_name), count(utility_avaliability)  from utility where utility_avaliability = true and utility_name = 'printer';`
 //     return db.execute(sql)

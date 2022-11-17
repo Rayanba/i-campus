@@ -2,13 +2,14 @@ import style from './TheGate';
 import { QRScanner } from "react-scanned-qr";
 import { useState ,useEffect, useContext  } from "react";
 import { SocketContext } from '../../context/SocketProvider';
-
+import useLogout from '../../hooks/useLogout';
 
 const TheGate = () =>{
   const socket = useContext(SocketContext);
-
-  const [scannedData, setScannedData] = useState();
+  socket.connect();
+  const [scannedData, setScannedData] = useState('');
   const [isConnected, setIsConnected] = useState(true);
+  // console.log(scannedData);
 
   useEffect(() =>{
     socket.on('connect', () => {
@@ -40,10 +41,17 @@ const TheGate = () =>{
   useEffect(() =>{
     if (isConnected){
         
-        socket.emit("TheGate")
+        socket.emit("imGate"); 
 
     }
 },[isConnected])
+  useEffect(() =>{
+    if (isConnected && scannedData !== ''){
+        
+        socket.emit("userIdInandOut", scannedData); 
+
+    }
+},[scannedData])
 
 
 
@@ -57,7 +65,11 @@ const TheGate = () =>{
   const handleError = (error) => {
     console.log(error);
   }
- 
+  const logout = useLogout();
+    const signOut = async () => {
+        await logout();
+        
+    }
 
   return(
     <div className={style.GatescanContainer}>
@@ -79,6 +91,7 @@ const TheGate = () =>{
 
       <div>
         <p> {scannedData}</p>
+        <button onClick={signOut}>logOut</button>
       </div>
     </div>
   )

@@ -31,10 +31,14 @@ class User {
         return db.execute(sql);
 
     }
+
+
     static findOneUser(username){
         let sql = `SELECT * FROM users WHERE username = '${username}'`;
         return db.execute(sql);
     }
+
+    
     static findInstInBuilding(){
         let sql = `SELECT count(username) As instInBuilding FROM users WHERE roles = JSON_ARRAY(1984) AND in_building = true ;
         `;
@@ -83,6 +87,20 @@ class User {
     static findStudInfoInBuilding(){
         let sql= `SELECT  username AS username,  email , first_name AS firstName, last_name AS lastName, phone_number AS phone
         FROM users WHERE roles = JSON_ARRAY(2001) AND in_building = true;`
+        return db.execute(sql);
+    }
+
+    static gateSetUserIn(data){
+        let sql = `UPDATE users SET in_building = true WHERE  username = '${data}';`
+        return db.execute(sql);
+    }
+    static gateSetUserOut(data){
+        let sql = `UPDATE users SET in_building = false WHERE  username = '${data}';`
+        return db.execute(sql);
+    }
+    static findSetUserInOrOut(data){
+        let sql = `SELECT in_building FROM users WHERE username = '${data}';`
+        
         return db.execute(sql);
     }
 }

@@ -33,6 +33,19 @@ static findAllLecture() {
     return db.execute(sql)
     }
 
+static findInstCourseNow(id, data) {
+    let sql = `SELECT  course.course_id AS name FROM lecture
+  JOIN course on course.course_id = lecture.course_id
+  JOIN users on users.user_id = lecture.user_id
+  JOIN facility ON facility.facility_id = course.facility_id
+  WHERE course_day =  DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME AND  users.username ='${id}' AND facility.facility_number = ${data};`
+    return db.execute(sql)
+}
+
+
+
+
+
 // static findAllMonthly() {
 //     let sql = `select * from report where report_date >= current_date - interval 1 month;`
 //     return db.execute(sql)

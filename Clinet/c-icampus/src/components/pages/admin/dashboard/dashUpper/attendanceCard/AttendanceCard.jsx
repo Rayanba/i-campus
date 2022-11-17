@@ -15,15 +15,12 @@ function AttendanceCard (){
             body= {
                 <div className={style.upperAttendanceContainer }>
                     <div className={style.UpperFacilitiesInstContainer}>
-                        <h3>Instructors</h3>
-                        <div className={style.UpperFacilitiesBarContainer} >
-                            <div className={style.UpperFacilitiesBar}></div>
-                        </div>
-                    </div >
-                    <div className={style.UpperFacilitiesInstContainer}>
                         <h3>Students</h3>
                         <div className={style.UpperFacilitiesBarContainer}>
-                            <div className={style.UpperFacilitiesBar}></div>
+                        <div style={{borderRadius: '2rem',
+                                backgroundColor: '#83aef2',
+                                width: `${upperAttendance[1]}%`,
+                                height:'100%',}}></div>
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ function LecturesCardLower (){
                    <p>{ll.Room}</p>
                    </div>
                    <div className={style.adminLowerLectueDataLast}>
-                   <p>{ll.instructor}</p>
+                   <p>{ll.Instructor}</p>
                    </div>
                 </div>
                 )}

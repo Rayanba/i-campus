@@ -4,6 +4,7 @@ import { FaEllipsisV } from "react-icons/fa";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useOutletContext } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -12,6 +13,18 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function StudentsCard (){
   const {upperStudents} = useOutletContext()
+  const [inBuilding , setInBuilding] = useState(0);
+  const [inRoom , setInRoom] = useState(0);
+   useEffect(() =>{
+    try {
+      setInBuilding(upperStudents[0]['stdInBuilding']);
+      setInRoom(upperStudents[1]['InRoom']);
+      
+    } catch (err) {
+      console.error(err)
+    }
+  },[upperStudents]);
+
   const option ={
     aspectRatio: [2],
     plugins: {
@@ -27,14 +40,14 @@ function StudentsCard (){
     datasets: [
       {
         label: '# of Votes',
-        data: [upperStudents[0], upperStudents[1]],
+        data: [inBuilding, inRoom],
         backgroundColor: [
-          '#ff726f',
           '#83aef2',
+          '#9983f2',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
+          '#83aef2',
+          '#9983f2',
         ],
         borderWidth: 0,
       },

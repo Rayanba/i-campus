@@ -5,7 +5,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useOutletContext } from 'react-router-dom';
 
-
+// #83aef2
+// '#ff726f',
+//           '#83aef2',
+//           '#83f2d0',
 ChartJS.register(ArcElement, Tooltip, Legend);
 export 
 function LecturesCard (){
@@ -31,8 +34,8 @@ function LecturesCard (){
         label: '# of Votes',
         data: [upperLecturesOnGo, upperLecturesCom, upperLecturesFin],
         backgroundColor: [
-          '#ff726f',
           '#83aef2',
+          '#9983f2 ',
           '#83f2d0',
         ],
         borderColor: [

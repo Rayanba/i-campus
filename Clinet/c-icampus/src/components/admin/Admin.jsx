@@ -7,7 +7,7 @@ import Sidebar from '../pages/sidebar/Sidebar';
 
 function Admin () {
     
-    const adminSidebarNavLinks = ["dashboard", "messages","Reports", "scan", "my-QR"];
+    const adminSidebarNavLinks = ["dashboard", "messages", "my-QR"];
     const socket = useContext(SocketContext);
     socket.connect()
 
@@ -40,7 +40,6 @@ function Admin () {
     ////////////////////// Lower Cards /////////////////////////////
     var [lowerUtilities, setLowerUtilities] = useState([]);
 
-
     var [lowerLectures, setLowerLectures] = useState([]); 
     // console.log(lowerLectures)
     var [lowerFacilities, setLowerFacilities] = useState([]); 
@@ -50,7 +49,8 @@ function Admin () {
     var [lowerAttendance, setLowerAttendance] = useState([]); 
 
     var [lowerStudents, setLowerStudents] = useState([]); 
-    var [lowerInstructors, setLowerInstructors] = useState([]); 
+    var [lowerInstructors, setLowerInstructors] = useState();
+    // console.log(lowerInstructors) 
     var [lowerEmployees, setLowerEmployees] = useState([]); 
     
     useEffect(() => {
@@ -171,7 +171,6 @@ function Admin () {
 			setLowerEmployees(utili)
 		});
 
-
         /////// CLEAN-UP ////////////
         return () => {
         socket.off('connect');
@@ -180,9 +179,6 @@ function Admin () {
         socket.off('unAuthorized');
         };
     }, []);
-
-
-
 
     useEffect(() =>{
         if (isConnected){
@@ -197,7 +193,6 @@ function Admin () {
             
     //     }
     // },[isConnected]);
-
     const sendPing = () => {
         socket.emit('ping');
     }
@@ -273,7 +268,7 @@ function Admin () {
                     <Users />
                     <br/> */}
                     <div className={styles.adminPages }>  
-                        <Outlet context={{upperUtilities, upperLecturesOnGo, upperLecturesFin, upperLecturesCom, upperFacilities, upperAttendance, upperStudents, upperInstructors, upperEmployees, lowerLectures, lowerFacilities ,lowerFacilitiesSec, lowerAttendance,lowerUtilities, lowerStudents, lowerInstructors, lowerEmployees}}/>
+                        <Outlet context={{upperUtilities, upperLecturesOnGo, upperLecturesFin, upperLecturesCom, upperFacilities, upperAttendance, upperStudents, upperInstructors, upperEmployees, lowerLectures, lowerFacilities ,lowerFacilitiesSec, lowerAttendance, lowerUtilities, lowerStudents, lowerInstructors, lowerEmployees}}/>
                     </div>
                 </div>
             </div>
