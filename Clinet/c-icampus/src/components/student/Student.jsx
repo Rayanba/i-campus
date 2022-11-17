@@ -4,7 +4,7 @@ import Sidebar from '../pages/sidebar/Sidebar';
 import Topbar from '../pages/topbar/Topbar';
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from '../../context/SocketProvider';
-
+import Scans from "./Scans";
 
 
 function Student () {

@@ -9,19 +9,13 @@
   flex-direction: row;
   
 }
-.adminUtilitiesLowerleft{
-  /* border: solid 1px blue; */
-  border-radius: 0rem 0rem 0rem 2rem ;
-  height: 100%;
-  width: 30%;
-  /* overflow-y: scroll; */
-}
+
 
 .adminUtilitiesLowerRight{
   border: solid 1px green;
   border-radius: 0rem 0rem 2rem 0rem ;
   height: 100%;
-  width: 70%;
+  width: 100%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

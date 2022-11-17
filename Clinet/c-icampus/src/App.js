@@ -29,6 +29,7 @@ import Reports from './components/pages/admin/reports/Reports';
 import MyQR from './components/pages/sharedpages/myQR/MyQR';
 import StudentHome from './components/pages/student/StudentHome';
 import TheGate from './components/theGate/TheGate';
+import Scans from './components/student/Scans';
 
 
 const ROLES = {
@@ -80,7 +81,7 @@ function App() {
               <Route path="schedule" element={<Schedule/>} />
               <Route path="home" element={<StudentHome/>} />
               <Route path="my-qr" element={<MyQR/>} />
-              <Route path="Scan" element={<Scan/>} />
+              <Route path="Scan" element={<Scans/>} />
             </Route>
           </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.Gate]} />}>

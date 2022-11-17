@@ -13,6 +13,7 @@ const {verifyJWT} = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const { tr } = require('date-fns/locale');
+const Attendance = require('./model/Attendance');
 
 
 const PORT = process.env.PORT || 3500; 
@@ -567,6 +568,62 @@ socket.on("disconnect", (reason) => {
       socket.emit("unAuthorized")
     }
 
+
+
+
+    socket.on('reportUtility', async (uid)=>{
+      console.log(uid)
+      
+      const user_id = id;
+      const utility_id = uid
+      const User = require('./model/User')
+      const Report = require('./model/Report');
+      const Utility = require('./model/Utility');
+      try {
+        const [UtilityState, ] = await Utility.findUtilityStateByID(uid);
+        console.log(UtilityState[0]['utility_avaliability']);
+        
+        if(UtilityState[0]['utility_avaliability'] === 1 ){
+          
+          const [userIDIs, ] = await User.findOneUser(user_id)
+          console.log(userIDIs[0]['user_id']);
+
+
+
+          const repo = await Report.NewReport(userIDIs[0]['user_id'], utility_id);
+
+          console.log(repo);
+
+          const [utilitiesReported, ] = await Utility.findReportedUtilities();
+          // console.log(utilitiesReported)
+          ///Bring Data
+          socket.to("Admino").emit("lowerUtilitiesLoad", utilitiesReported);
+
+          const [changeUtily, ] = await Utility.updateUtilityStateToFalse(uid)
+          console.log(changeUtily);
+          const Utilites = require('./controllers/utilityController')
+          const result = await Utilites.getAllUtilities();
+          socket.to("Admino").emit("upperUtilitiesLoad", result);
+
+
+
+
+        }else{
+          socket.emit('alreadyReported', 'The Utility is already reported')
+          console.log(`no ${id}`)
+        }
+
+
+        
+        
+      } catch (error) {
+        console.log(error)
+      }
+      
+
+
+    });
+
     
 
 
@@ -594,6 +651,136 @@ socket.on("disconnect", (reason) => {
 
 
 
+
+
+
+
+
+        socket.on('attendClass', async (data)=>{
+          console.log(data)
+          console.log(id)
+          const Lecture = require('./model/Lecture')
+          const User = require('./model/User')
+          const Attendance = require ('./model/Attendance')
+          const [isAttended,] = await Attendance.findTimeIfAttend(id, data);
+
+          console.log(isAttended)
+          if (isAttended[0] === undefined){
+            console.log('not Attended')
+            const [userIDIs, ] = await User.findOneUser(id)
+            console.log(userIDIs[0]['user_id']);
+
+            const [courseID] = await Lecture.findCourseIDByUsername(id)
+            console.log(courseID[0]['course_id']);
+
+            const  attendUser = await Attendance.AddAttendStudent(userIDIs[0]['user_id'], courseID[0]['course_id']);
+
+            console.log(attendUser);
+            ////send to instructors
+            const [AttendStudents, ] = await Attendance.findNowClassAttendance();
+            // console.log(`Attend Student ${AttendStudents}`);
+            socket.to('instructorRoom').emit("AttendStudents", AttendStudents )
+
+            // send to admin
+            const [studenetAtten,] = await Attendance.findStdnAttend();
+            const [instructorAtten,] = await Attendance.findInstAttend();
+            // console.log(studenetAtten[0]['AttendStudent'], instructorAtten[0]['AttendInstructor'])
+            const upperAttendance = [studenetAtten[0]['AttendStudent'], instructorAtten[0]['AttendInstructor']]
+            socket.to("Admino").emit("upperAttendanceLoad", upperAttendance);
+
+            const [crnWithStudentNum, ] = await Attendance.findCrnStdAttendace();
+            // console.log(crnWithStudentNum)
+            socket.to("Admino").emit("lowerAttendanceLoad", crnWithStudentNum);
+
+
+            const [studentInBuilding,] = await User.findStudInBuilding();
+            const [studentInRoom,] = await User.findStudInRoom();
+
+            const UpperstudentAttendance = [studentInBuilding[0],studentInRoom[0]]
+
+            socket.to("Admino").emit("upperStudentsLoad", UpperstudentAttendance);
+            
+
+          }else{
+            socket.emit('alreadyAttended', 'your are already attended this class')
+          }
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        socket.on('reportUtility', async (uid)=>{
+          console.log(uid)
+          
+          const user_id = id;
+          const utility_id = uid
+          const User = require('./model/User')
+          const Report = require('./model/Report');
+          const Utility = require('./model/Utility');
+          try {
+            const [UtilityState, ] = await Utility.findUtilityStateByID(uid);
+            console.log(UtilityState[0]['utility_avaliability']);
+            
+            if(UtilityState[0]['utility_avaliability'] === 1 ){
+              
+              const [userIDIs, ] = await User.findOneUser(user_id)
+              console.log(userIDIs[0]['user_id']);
+    
+    
+    
+              const repo = await Report.NewReport(userIDIs[0]['user_id'], utility_id);
+    
+              console.log(repo);
+    
+              const [utilitiesReported, ] = await Utility.findReportedUtilities();
+              // console.log(utilitiesReported)
+              ///Bring Data
+              socket.to("Admino").emit("lowerUtilitiesLoad", utilitiesReported);
+    
+              const [changeUtily, ] = await Utility.updateUtilityStateToFalse(uid)
+              console.log(changeUtily);
+              const Utilites = require('./controllers/utilityController')
+              const result = await Utilites.getAllUtilities();
+              socket.to("Admino").emit("upperUtilitiesLoad", result);
+    
+    
+    
+    
+            }else{
+              socket.emit('alreadyReported', 'The Utility is already reported')
+              console.log(`no ${id}`)
+            }
+    
+    
+            
+            
+          } catch (error) {
+            console.log(error)
+          }
+          
+    
+    
+        });
 
 
 

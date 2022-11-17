@@ -25,19 +25,16 @@ function UtilitiesCardLower (){
                         <p>name</p>
                     </div>
                     <div className={style.adminLowerUtilitiesTitle}>
-                        <p>utility ID</p>
+                        <p>Utility ID</p>
                     </div>
                     <div className={style.adminLowerUtilitiesTitle}>
                         <p>Room</p>
                     </div>
                     <div className={style.adminLowerUtilitiesTitle}>
-                        <p>message</p>
+                        <p>user ID</p>
                     </div>
                     <div className={style.adminLowerUtilitiesTitle}>
-                        <p>userid</p>
-                    </div>
-                    <div className={style.adminLowerUtilitiesTitle}>
-                        <p>user name</p>
+                        <p>User Name</p>
                     </div>
                 </div>
 
@@ -52,9 +49,7 @@ function UtilitiesCardLower (){
                     <div className={style.adminLowerUtilityData}>
                         <p>{lowUti.Room}</p>
                     </div>
-                    <div className={style.adminLowerUtilityData}>
-                        <p>dfd</p>
-                    </div>
+                
                     <div className={style.adminLowerUtilityData}>
                         <p>{lowUti.userPostIt}</p>
                     </div>

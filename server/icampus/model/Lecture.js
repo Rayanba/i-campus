@@ -42,7 +42,17 @@ static findInstCourseNow(id, data) {
     return db.execute(sql)
 }
 
+static findCourseIDByUsername(username){
+  let sql = `        SELECT  course.course_id , course_crn AS CRN, course_name AS name, course_start_time AS StartTime, 
+  course_end_time AS EndTime, facility.facility_number AS Room, users.username AS Student
+   FROM lecture
+   JOIN course ON course.course_id = lecture.course_id
+   JOIN users ON users.user_id = lecture.user_id
+   JOIN facility on facility.facility_id = course.facility_id
+   WHERE course_day = DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME and users.username = '${username}';`
+   return db.execute(sql)
 
+}
 
 
 

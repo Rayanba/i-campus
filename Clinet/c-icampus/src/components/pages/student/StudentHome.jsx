@@ -3,10 +3,19 @@ import { FaEllipsisV } from "react-icons/fa";
 
 import InstHomeCard from "../instructor/cards/InstHomeCard"
 import { useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 const StudentHome = () =>{
   const {Schedual} = useOutletContext();
+  const [scheduals , setScheduals] = useState([{CRN:'1'},{name:'2'},{StartTime:'3'},{EndTime:'4'},{Room:'5'}]);
+
+
+  useEffect(() =>{
+    setScheduals(Schedual)
+
+  },[Schedual])
   return(
     
       <div className={style.studentHomeContainer}>
@@ -32,7 +41,7 @@ const StudentHome = () =>{
               <p>Room Number</p>
               </div>
           </div>
-          { <p>nothing</p> || Schedual.map(onGo =>
+          { scheduals.map(onGo =>
             <div key={onGo.CRN} className={style.todatLecturesColumns}>
               <div className={style.todatLecturesRows}>
                 <p>{onGo.CRN}</p>

@@ -68,6 +68,10 @@ class Attendance {
         WHERE course_day =  DAYNAME(CURRENT_DATE) AND course_start_time <= CURRENT_TIME AND course_end_time >= CURRENT_TIME AND  users.username ='${name}' AND facility.facility_number = ${room} AND attendance_time >= CURRENT_DATE;`
         return db.execute(sql)
     }
+    static AddAttendStudent(courseId , userId){
+        let sql = `INSERT INTO attendance(course_id,user_id)VALUES('${courseId}','${userId}')`
+        return db.execute(sql)
+    }
 
 
 

@@ -56,6 +56,21 @@ class Utility {
   }
 
 
+  static findUtilityStateByID(id){
+    let sql = `SELECT utility_avaliability FROM utility WHERE utility_id = ${id};`;
+
+
+
+
+    return db.execute(sql);
+    
+  }
+
+  static updateUtilityStateToFalse(id){
+    let sql = `UPDATE utility SET utility_avaliability = false WHERE utility_id = ${id};`
+    return db.execute(sql);
+
+  }
 // //     static findAllPrinter() {
 // //       let sql = "Select count(utility_name), count(utility_avaliability)  from utility where utility_avaliability = true and utility_name = 'Printer';"
 // //       return db.execute(sql);

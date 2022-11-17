@@ -22,6 +22,9 @@ class User {
         INSERT INTO users (username, pwd , email, first_name, last_name, phone_number, roles, refreshtoken) VALUES ('${this.username}', '${this.pwd}' , '${this.email}', '${this.first_name}', '${this.last_name}', '${this.phone_number}', '${this.roles}', '${this.refreshtoken}');`;
         return db.execute(sql);
     }
+    
+
+
     static userUpdateRefresh(username, refreshtoken) {
         let sql = `UPDATE users SET refreshtoken = '${refreshtoken}' WHERE username = '${username}';`;
         return db.execute(sql);

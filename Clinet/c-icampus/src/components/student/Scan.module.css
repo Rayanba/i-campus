@@ -1,0 +1,24 @@
+.scanContainer{
+  width: 95%;
+  height: 95%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.CamOff {
+  display: none;
+
+}
+
+.camOnn{
+  display: flex;
+
+}
+.CamButton{
+  color: black;
+  
+}

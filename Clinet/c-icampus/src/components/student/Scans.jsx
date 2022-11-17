@@ -2,17 +2,16 @@ import style from './Scan.module.css';
 import { useState ,useEffect, useContext  } from "react";
 // import Webcam from "react-webcam";
 import { QRScanner } from "react-scanned-qr";
-import { SocketContext } from "../../../../context/SocketProvider";
+import { SocketContext } from "../../context/SocketProvider";
 import { useOutletContext } from 'react-router-dom';
 
 
 
-const Scan = () => {
+const Scans = () => {
   const socket = useContext(SocketContext);
-  const {isConnectedChi} = useOutletContext()
+  // const {isConnectedChi} = useOutletContext()
   const [scannedData, setScannedData] = useState('');
   const [CamState, setCamState] = useState(true);
-  const [roomState, setRoomState] = useState('');
   const [already, setAlready] = useState('');
   const [alreadyReported, setAlreadyReported] = useState('');
   const [ReportBottton, setReportBottton] = useState(false);
@@ -24,9 +23,7 @@ const Scan = () => {
   
   /////// CLEAN-UP ////////////
   useEffect (() =>{
-    socket.on('roomStatus', (data)=>{
-      setRoomState(data);
-    });
+
 
     socket.on('alreadyAttended', (data)=>{
       setAlready(data);
@@ -40,9 +37,8 @@ const Scan = () => {
 
 
   useEffect(() =>{
-    if ( scannedData >= 101){
-      socket.emit("facilityID", scannedData); 
-
+    if ( scannedData >= 100 ){
+      socket.emit('attendClass', scannedData)
     }
     if ( scannedData < 101 && scannedData > 0 ){
       // socket.emit("reportUtility", scannedData); 
@@ -106,6 +102,7 @@ const Scan = () => {
       buttonClassName={style.Cambutton}
       />
       </div>
+      {/* <p>this is student</p> */}
         <button className={CamState === true ? style.CamOff : style.camOnn} onClick={hanldeCamOpen}>Scan Again</button>
       <div>
       </div>
@@ -113,7 +110,6 @@ const Scan = () => {
        
       <div>
       <p> {scannedData}</p>
-      <p>{roomState}</p>
       <p>{already}</p>
       <p>{alreadyReported}</p>
     </div>
@@ -122,5 +118,5 @@ const Scan = () => {
   )
 }
 
-export default Scan;
+export default Scans;
 
