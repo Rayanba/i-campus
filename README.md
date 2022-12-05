@@ -45,7 +45,9 @@ Finally, to install the Database import /Database/icmapus.sql file to you empty 
 
 Or you can build the tables using commands in Database/DATABASESCHEMA.SQL file, then insert data using the commands inside the files (each named by the table name ) in Database folder.
 
-*NOTE* all users default password is: password
+*NOTE* 
+- all users default password is: password
+- add you own .env file and give hashed values for (ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET), and Database values for (DATABASE_HOST, DATABASE_USER, DATABASE_PWD, DATABASE_NAME).
 ## Screenshots
 Admin Dashboard
 ![App Screenshot](Clinet/c-icampus/src/assets/png/readmeImg/Facilities.jpg)
