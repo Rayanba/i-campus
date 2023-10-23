@@ -51,15 +51,11 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 // routes
 // unverified
-
-
-
 app.use('/', require('./routes/root'));
 app.use('/registeration', require('./routes/userRegi'));
 app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
-
 
 
 
